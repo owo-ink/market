@@ -14,10 +14,10 @@ def writeFile (path, data):
 
 def savePage (tempUrl, templateID):
   url = 'http://127.0.0.1:3000/'
-  d = '<!DOCTYPE html><html lang="zh-CN"><head><title>demo</title><link rel="stylesheet" href="./main.css"></head><body><temple name="templeName"></temple><script src="./main.js" type="text/javascript"></script></body></html>'
+  d = '<!DOCTYPE html><html lang="zh-CN"><head><title>demo</title><meta charset="utf-8"><link rel="stylesheet" href="./main.css"></head><body><temple name="templeName"></temple><script src="./main.js" type="text/javascript"></script></body></html>'
   d = d.replace('templeName', tempUrl)
   r = requests.post(url, data=d)
-  print(r.json())
+  # print(r.json())
   # 临时页面目录
   tempPath = './server/temp/' + templateID +'/'
   if (not os.path.exists(tempPath)):
@@ -37,7 +37,7 @@ def list(request):
   # 使用 fetchone() 方法获取单条数据.
   data = cursor.fetchall()
   
-  print ("Database version : %s " % data)
+  print("Database version : %s " % data)
   
   # 关闭数据库连接
   connection.close()
@@ -96,7 +96,7 @@ def creatTemplate(request):
       f.close()
 
     # 向页面生成服务请求生成页面
-    savePage('http://127.0.0.1:8000/static/' + md5.hexdigest(), md5.hexdigest())
+    savePage('http://127.0.0.1:8000/static/' + md5.hexdigest() + '.page', md5.hexdigest())
 
     response = HttpResponse('{"err":0,"templateID":"' + md5.hexdigest() + '"}',)
     
@@ -108,7 +108,7 @@ def creatTemplate(request):
     return response
   else:
     response = HttpResponse('{"err":1,msg:"参数为空!"}')
-    response['Access-Control-Allow-Origin'] = '*' 
+    response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS' 
     response['Access-Control-Max-Age'] = '1000' 
     response['Access-Control-Allow-Headers'] = '*'

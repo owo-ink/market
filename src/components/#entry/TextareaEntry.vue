@@ -1,7 +1,7 @@
 <template lang="pug">
   .textarea-entry
     .lable {{name}}
-    textarea(v-model="value", @blur="updateValue($event.target.value)")
+    textarea(:value="value", @blur="updateValue($event.target.value)")
 </template>
 
 <script>
@@ -9,12 +9,7 @@ export default {
   props: ['name', 'value'],
   methods: {
     updateValue (data) {
-      const sendData = data.split(',')
-      if (sendData.length === 1) {
-        this.$emit('input', sendData[0])
-      } else {
-        this.$emit('input', sendData)
-      }
+      this.$emit('input', data)
     }
   }
 }

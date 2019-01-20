@@ -7,6 +7,7 @@
         ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
       WaterRipple.creat(text="生成链接", @onClick="creatTemplate")
     TemplateCard(v-for="value in templateList", :data="value", @onClick="templateClick(value)", :key="value.id")
+      iframe(:src="src")
     .alert-box(v-if="templateID")
       .alert
         .title-bar
@@ -27,6 +28,7 @@ export default {
   name: 'home',
   data: function () {
     return {
+      src: '',
       activeId: 0,
       templateID: null,
       templateControl: [],
@@ -56,10 +58,11 @@ export default {
       this.templateControl = value
     },
     creatTemplate: function () {
-      console.log('12')
+      console.log({data: this.templateControl})
       axios.post('http://127.0.0.1:8000/creatTemplate', {data: this.templateControl}).then((response) => {
         console.log(response.data)
         this.templateID = `http://127.0.0.1:8000/static/${response.data.templateID}.page`
+        this.src = `http://127.0.0.1:8000/static/${response.data.templateID}/index.html`
       })
     }
   }
@@ -119,4 +122,9 @@ export default {
       height: calc(100% - 20px);
       border: none;
       padding: 10px;
+
+  iframe
+    width: 100%;
+    height: 100%;
+    border: none;
 </style>

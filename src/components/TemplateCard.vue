@@ -4,7 +4,7 @@
       <span class="title-bar-item">{{data.browser}}</span>
     </div>
     <div class="template-view" @click.stop="$emit('onClick')">
-      没有预览效果
+      <slot></slot>
     </div>
   </div>
 </template>
