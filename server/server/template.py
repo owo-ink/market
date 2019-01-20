@@ -2,8 +2,29 @@ import os
 import sys
 import json
 import hashlib
+import requests
+import http.client
 import pymysql.cursors
 from django.http import HttpResponse
+
+def writeFile (path, data):
+  f = open(path, 'w', encoding='utf-8')
+  f.write(data)
+  f.close()
+
+def savePage (tempUrl, templateID):
+  url = 'http://127.0.0.1:3000/'
+  d = '<!DOCTYPE html><html lang="zh-CN"><head><title>demo</title><link rel="stylesheet" href="./main.css"></head><body><temple name="templeName"></temple><script src="./main.js" type="text/javascript"></script></body></html>'
+  d = d.replace('templeName', tempUrl)
+  r = requests.post(url, data=d)
+  print(r.json())
+  # 临时页面目录
+  tempPath = './server/temp/' + templateID +'/'
+  if (not os.path.exists(tempPath)):
+    os.makedirs(tempPath)
+    writeFile(tempPath + 'index.html', r.json()['html'])
+    writeFile(tempPath + 'main.css', r.json()['style'])
+    writeFile(tempPath + 'main.js', r.json()['script'])
 
 def list(request):
   # 连接数据库
@@ -31,7 +52,7 @@ def list(request):
 def getTemplate(request, templateID):
   response = HttpResponse('{"err":1,msg:"模板不存在!"}')
   # 模板目录
-  tempPath = './server/temp/' + templateID +'.template'
+  tempPath = './temp/' + templateID
   if (os.path.exists(tempPath)):
     # 打开并读取文件
     templateFile = open(tempPath, encoding='utf-8')
@@ -61,17 +82,23 @@ def creatTemplate(request):
       # 模板替换
       template = template.replace('{{--' + control['name'] + '--}}', str(control['value']))
     
+    
     # 计算MD5
     md5 = hashlib.md5()
     md5.update(template.encode('utf8'))
+
+    
     # 判断模板文件是否已经存在
-    tempPath = './server/temp/' + md5.hexdigest() +'.template'
+    tempPath = './server/temp/' + md5.hexdigest() + '.page'
     if (not os.path.exists(tempPath)):
       f = open(tempPath, 'w', encoding='utf-8')
       f.write(template)
       f.close()
 
-    response = HttpResponse('{"err":0,"templateID":"' + md5.hexdigest() + '"}')
+    # 向页面生成服务请求生成页面
+    savePage('http://127.0.0.1:8000/static/' + md5.hexdigest(), md5.hexdigest())
+
+    response = HttpResponse('{"err":0,"templateID":"' + md5.hexdigest() + '"}',)
     
     # 允许跨域
     response['Access-Control-Allow-Origin'] = '*' 

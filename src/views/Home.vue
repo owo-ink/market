@@ -59,7 +59,7 @@ export default {
       console.log('12')
       axios.post('http://127.0.0.1:8000/creatTemplate', {data: this.templateControl}).then((response) => {
         console.log(response.data)
-        this.templateID = `http://127.0.0.1:8000/getTemplate/${response.data.templateID}`
+        this.templateID = `http://127.0.0.1:8000/static/${response.data.templateID}.page`
       })
     }
   }
