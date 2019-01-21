@@ -23,7 +23,6 @@ export default {
   textarea {
     width: 100%;
     height: 100px;
-    padding: 5px;
     background-color: #fff;
     color: #aaa;
     border: 1px solid #ddd;

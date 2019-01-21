@@ -32,6 +32,7 @@ export default {
     box-sizing: border-box;
   }
   .attribute-bar {
+    background-color: #f8f8f8;
     border-top: 1px solid #ccc;
   }
   .attribute-bar-item {
@@ -57,6 +58,7 @@ export default {
     display: flex;
     text-align: center;
     line-height: 25px;
+    background-color: #f8f8f8;
   }
   .title-bar .name {
     width: 100px;

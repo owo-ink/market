@@ -3,6 +3,7 @@
     .control-bar(:class="{active: activeID !== null}")
       .control-item(v-for="control in templateControl.control")
         TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
+        TextareaEntry(v-else-if="control.type === 'array'", :name="control.label", v-model="control.value")
         AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
         ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
       WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
@@ -23,7 +24,7 @@ export default {
   data: function () {
     return {
       src: '',
-      activeID: 0,
+      activeID: null,
       activeTemplate: null,
       templateControl: [],
       templateList: []
