@@ -1,19 +1,13 @@
 <template lang="pug">
   .home
-    .control-bar(:class="{active: activeId !== 0}")
+    .control-bar(:class="{active: activeID !== null}")
       .control-item(v-for="control in templateControl.control")
         TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
         AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
         ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
-      WaterRipple.creat(text="生成链接", @onClick="creatTemplate")
-    TemplateCard(v-for="value in templateList", :data="value", @onClick="templateClick(value)", :key="value.id")
-      iframe(:src="src")
-    .alert-box(v-if="templateID")
-      .alert
-        .title-bar
-          span.title 模板链接
-          span.close(@click="templateID = null") 关闭
-        textarea(v-model="templateID")
+      WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
+    TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
+      iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '/index.html'")
 </template>
 
 <script>
@@ -29,8 +23,8 @@ export default {
   data: function () {
     return {
       src: '',
-      activeId: 0,
-      templateID: null,
+      activeID: 0,
+      activeTemplate: null,
       templateControl: [],
       templateList: []
     }
@@ -49,20 +43,18 @@ export default {
     TextareaEntry
   },
   methods: {
-    templateClick: function (value) {
+    templateClick: function (value, ind) {
       console.log(value)
       // 特殊处理
       if (typeof value.control === 'string') value.control = JSON.parse(value.control)
-      
-      this.activeId = value.id
+      this.activeID = ind
+      this.activeTemplate = value
       this.templateControl = value
     },
     creatTemplate: function () {
       console.log({data: this.templateControl})
       axios.post('http://127.0.0.1:8000/creatTemplate', {data: this.templateControl}).then((response) => {
-        console.log(response.data)
-        this.templateID = `http://127.0.0.1:8000/static/${response.data.templateID}.page`
-        this.src = `http://127.0.0.1:8000/static/${response.data.templateID}/index.html`
+        this.templateList[this.activeID].template = response.data.templateID
       })
     }
   }
@@ -90,38 +82,6 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100%;
-
-  .alert-box
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 14, 3, 0.5);
-    .close
-      cursor: pointer;
-    .alert
-      width: 400px;
-      height: 300px;
-      background-color: white;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-    .title-bar
-      height: 40px;
-      border-bottom: 1px solid #ccc;
-      line-height: 40px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-    textarea
-      width: calc(100% - 20px);
-      height: calc(100% - 20px);
-      border: none;
-      padding: 10px;
 
   iframe
     width: 100%;
