@@ -7,23 +7,8 @@ import http.client
 import pymysql.cursors
 from django.http import HttpResponse
 
-# 从数据库中找出style数据
-# 待完善
-def findStyle ():
-  # 连接数据库
-  connection = pymysql.connect(host='cdb-iphpadts.cd.tencentcdb.com', port=10035, user='ozzx', password='ozzx', db='ozzx', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
-  # 使用 cursor() 方法创建一个游标对象 cursor
-  cursor = connection.cursor()
-  # 使用 execute()  方法执行 SQL 查询 
-  cursor.execute("SELECT * FROM template")
-  
-  # 使用 fetchone() 方法获取单条数据.
-  data = cursor.fetchall()
-  
-  print("Database version : %s " % data)
-  
-  # 关闭数据库连接
-  connection.close()
+styleListDB = []
+scriptListDB = []
 
 def writeFile (path, data):
   f = open(path, 'w', encoding='utf-8')
@@ -31,18 +16,32 @@ def writeFile (path, data):
   f.close()
 
 def savePage (tempUrl, templateID, styleLsit, scriptList):
-  print(styleLsit, scriptList)
   url = 'http://127.0.0.1:3000/'
-  d = '<!DOCTYPE html><html lang="zh-CN"><head><title>demo</title><meta charset="utf-8"><!-- *styles* --><link rel="stylesheet" href="./main.css"></head><body><temple name="templeName"></temple><script src="./main.js" type="text/javascript"></script></body></html>'
+  d = '<!DOCTYPE html><html lang="zh-CN"><head><title>demo</title><meta charset="utf-8"><!-- *styles* --><link rel="stylesheet" href="./main.css"></head><body><temple name="templeName"></temple><script src="./main.js" type="text/javascript"></script><!-- *script* --></body></html>'
   # 替换掉模板路径
   d = d.replace('templeName', tempUrl)
   # 替换style
   styleString = ''
   for style in styleLsit:
-    
-    styleString += '<link rel="stylesheet" href="' + styleUrl + '">'
-    print(style)
-  
+    print(styleListDB)
+    # 从style列表中取出此项的url
+    for styleItem in styleListDB:
+      print(styleItem)
+      if (styleItem['name'] == style):
+        styleString += '<link rel="stylesheet" href="' + styleItem['url'] + '">'
+        break
+  d = d.replace('<!-- *styles* -->', styleString)
+
+  # 替换style
+  scriptString = ''
+  for script in scriptList:
+    # 从style列表中取出此项的url
+    for scriptItem in scriptListDB:
+      if (scriptItem['name'] == script):
+        scriptString += '<script type="text/javascript" src="' + scriptItem['url'] + '"></script>'
+        break
+  d = d.replace('<!-- *script* -->', scriptString)
+
   r = requests.post(url, data=d)
   # print(r.json())
   # 临时页面目录
@@ -53,26 +52,33 @@ def savePage (tempUrl, templateID, styleLsit, scriptList):
     writeFile(tempPath + 'main.css', r.json()['style'])
     writeFile(tempPath + 'main.js', r.json()['script'])
 
+
+
 def list(request):
   # 连接数据库
   connection = pymysql.connect(host='cdb-iphpadts.cd.tencentcdb.com', port=10035, user='ozzx', password='ozzx', db='ozzx', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
   # 使用 cursor() 方法创建一个游标对象 cursor
   cursor = connection.cursor()
-  # 使用 execute()  方法执行 SQL 查询 
+  # 获取模板列表
   cursor.execute("SELECT * FROM template")
-  
-  # 使用 fetchone() 方法获取单条数据.
-  data = cursor.fetchall()
-  
-  print("Database version : %s " % data)
+  templateList = cursor.fetchall()
+  # 获取style列表
+  cursor.execute("SELECT * FROM style")
+  global styleListDB
+  styleListDB = cursor.fetchall()
+  # 获取script列表
+  cursor.execute("SELECT * FROM script")
+  global scriptListDB
+  scriptListDB = cursor.fetchall()
+  # print("Database version : %s " % data)
   
   # 关闭数据库连接
   connection.close()
-  response = HttpResponse(json.dumps(data))
+  response = HttpResponse(json.dumps(templateList))
   # 允许跨域
-  response['Access-Control-Allow-Origin'] = '*' 
-  response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS' 
-  response['Access-Control-Max-Age'] = '1000' 
+  response['Access-Control-Allow-Origin'] = '*'
+  response['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+  response['Access-Control-Max-Age'] = '1000'
   response['Access-Control-Allow-Headers'] = '*'
   return response
 

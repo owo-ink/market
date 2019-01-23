@@ -6,8 +6,8 @@
     </div>
     <div class="attribute-bar">
       <span class="attribute-bar-item">{{data.browser}}</span>
-      <span class="attribute-bar-item" v-for="item in data.scriptList" :key="item">item</span>
-      <span class="attribute-bar-item" v-for="item in data.styleList" :key="item">item</span>
+      <span class="attribute-bar-item attribute-script" v-for="item in JSON.parse(data.scriptList)" :key="'script' + item">{{item}}</span>
+      <span class="attribute-bar-item attribute-style" v-for="item in JSON.parse(data.styleList)" :key="'style' + item">{{item}}</span>
     </div>
     <div class="template-view">
       <slot></slot>
@@ -27,7 +27,6 @@ export default {
   .template-card {
     margin: 10px;
     font-size: 12px;
-    width: calc(100% - 320px);
     border: 1px solid #ccc;
     box-sizing: border-box;
   }
@@ -36,7 +35,7 @@ export default {
     border-top: 1px solid #ccc;
   }
   .attribute-bar-item {
-    width: 100px;
+    width: 140px;
     text-align: center;
     font-size: 12px;
     line-height: 25px;
@@ -61,10 +60,10 @@ export default {
     background-color: #f8f8f8;
   }
   .title-bar .name {
-    width: 100px;
+    width: 140px;
     border-right: 1px solid #ccc;
   }
   .title-bar .url {
-    width: calc(100% - 100px);
+    width: calc(100% - 140px);
   }
 </style>

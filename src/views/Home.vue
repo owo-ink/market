@@ -1,14 +1,17 @@
 <template lang="pug">
   .home
+    .left
+      TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
+        iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '/index.html'")
     .control-bar(:class="{active: activeID !== null}")
       .control-item(v-for="control in templateControl.control")
         TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
-        TextareaEntry(v-else-if="control.type === 'array'", :name="control.label", v-model="control.value")
+        JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
+        JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
         AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
         ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
       WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
-    TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
-      iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '/index.html'")
+    
 </template>
 
 <script>
@@ -16,6 +19,7 @@
 import WaterRipple from 'waterripple'
 import AutoEntry from '@/components/#entry/AutoEntry'
 import ColorEntry from '@/components/#entry/ColorEntry'
+import JsonEntry from '@/components/#entry/JsonEntry'
 import TextareaEntry from '@/components/#entry/TextareaEntry'
 import TemplateCard from '@/components/TemplateCard.vue'
 import axios from 'axios'
@@ -39,13 +43,13 @@ export default {
   components: {
     ColorEntry,
     AutoEntry,
+    JsonEntry,
     WaterRipple,
     TemplateCard,
     TextareaEntry
   },
   methods: {
     templateClick: function (value, ind) {
-      console.log(value)
       // 特殊处理
       if (typeof value.control === 'string') value.control = JSON.parse(value.control)
       this.activeID = ind
@@ -63,6 +67,14 @@ export default {
 </script>
 
 <style scoped lang="sass">
+  .home
+    display: flex;
+    width: 100%;
+    height: 100%;
+  .left
+    height: 100%;
+    overflow-y: auto;
+    width: calc(100% - 300px);
   .control-bar
     position: fixed;
     width: 300px;
