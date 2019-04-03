@@ -2,7 +2,7 @@
   .home
     .left
       TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
-        iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '/index.html'")
+        iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '.html'")
     .control-bar(:class="{active: activeID !== null}")
       .control-item(v-for="control in templateControl.control")
         TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
@@ -37,7 +37,7 @@ export default {
   created: function () {
     axios.get('http://127.0.0.1:8000/templateList').then((response) => {
       console.log(response.data)
-      this.templateList = response.data
+      this.templateList = response.data.data
     })
   },
   components: {
