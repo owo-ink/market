@@ -1,0 +1,41 @@
+<template>
+  <!-- 右侧信息条 -->
+  <div class="right-bar">
+    <img src="{{--topUrl--}}" class="right-bar-item QR"/>
+    <a href="#" class="right-bar-item home"></a>
+    <a href="#" class="right-bar-item to-top"></a>
+  </div>
+</template>
+
+<style>
+  .right-bar {
+    position: fixed;
+    right: {{--rightDistance--}}px;
+    z-index: 99;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 241px;
+  }
+  .right-bar-item {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 4px;
+  }
+  .QR {
+    display: block;
+  }
+  .home {
+    display: block;
+    background-position: {{--backgroundPositionCentre--}}px;
+    background-image: url("{{--centreUrl--}}");
+  }
+  .to-top {
+    display: block;
+    background-position: {{--backgroundPositionBottom--}}px;
+    background-image: url("{{--bottomUrl--}}");
+  }
+</style>
