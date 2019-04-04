@@ -77,6 +77,7 @@ export default {
     width: calc(100% - 300px);
   .control-bar
     position: fixed;
+    overflow: auto;
     width: 300px;
     height: 100%;
     right: -300px;

@@ -7,8 +7,10 @@ const crypto = require('crypto')
 const ozzx = require('ozzx')
 const bodyParser = require('body-parser')
 
+// 获取ozzx模块目录
+const corePath = path.join(__dirname, 'node_modules', 'ozzx', 'core')
 
-const jsonParser = bodyParser.json() // 获取JSON解析器中间件  
+const jsonParser = bodyParser.json() // 获取JSON解析器中间件
 
 //设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
@@ -21,34 +23,39 @@ app.all('*', function (req, res, next) {
 // 静态目录
 app.use('/static', express.static('temp'))
 
-// 连接数据库
-const mysql      = require('mysql');
-const connection = mysql.createConnection({
-  host     : 'cdb-iphpadts.cd.tencentcdb.com',
-  port     : 10035,
-  user     : 'ozzx',
-  password : 'ozzx',
-  database : 'ozzx'
-})
- 
-connection.connect()
-
 let styleListDB = []
 let scriptListDB = []
 
-// 获取样式列表
-connection.query('SELECT * FROM style', (error, results, fields) => {
-  if (error) throw error
-  console.log('获取样式列表成功!')
-  styleListDB = results
-})
+// 连接数据库
+const mysql      = require('mysql');
+{
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+   
+  connection.connect()
+  
+  // 获取样式列表
+  connection.query('SELECT * FROM style', (error, results, fields) => {
+    if (error) throw error
+    console.log('获取样式列表成功!')
+    styleListDB = results
+  })
+  
+  // 获取脚本列表
+  connection.query('SELECT * FROM script', (error, results, fields) => {
+    if (error) throw error
+    console.log('获取脚本列表成功!')
+    scriptListDB = results
+  })
+  
+  connection.end()
+}
 
-// 获取脚本列表
-connection.query('SELECT * FROM script', (error, results, fields) => {
-  if (error) throw error
-  console.log('获取脚本列表成功!')
-  scriptListDB = results
-})
 
 // 全部替换
 function replaceAll (str, substr, newstr) {
@@ -57,6 +64,15 @@ function replaceAll (str, substr, newstr) {
   return str.replace(re, newstr)
 }
 
+// 读取指定目录文件
+function loadFile (path) {
+  if (fs.existsSync(path)) {
+    return fs.readFileSync(path, 'utf8')
+  } else {
+    log.error(`file does not exist: ${path}`)
+    return ''
+  }
+}
 
 // 生成html页面
 function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
@@ -114,7 +130,6 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   let htmlTemple = fs.readFileSync(templeFile, 'utf8')
   const dom = ozzx(htmlTemple, config)
   let htmlData = dom.html
-  console.log(dom)
   // 替换样式
   dom.needReplaceCssList.forEach(element => {
     dom.style = replaceAll(dom.style, element[0], element[1])
@@ -133,7 +148,10 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   })
   
   outPutScript += `<script>${dom.script}\r\n</script>`
-
+  // 增加main.js
+  outPutScript += `<script>${loadFile(path.join(corePath, 'main.js'))}\r\n</script>`
+  // 增加SinglePage.js
+  outPutScript += `<script>${loadFile(path.join(corePath, 'SinglePage.js'))}\r\n</script>`
   styleLsit.forEach(style => {
     // 从style列表中取出此项的url
     styleListDB.forEach(styleItem => {
@@ -154,7 +172,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/templateList', (req, res) => {
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
   connection.query('SELECT * FROM template', (error, results, fields) => {
+    connection.end()
     if (error) throw error;
     res.send({
       err: 0,

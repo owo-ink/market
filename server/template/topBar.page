@@ -1,0 +1,36 @@
+<template>
+  <div class="title-bar">
+    <div class="content">
+      <img class="logo content-item" src="{{--logo--}}"/>
+      <div class="link content-item"><a href="http://www.people.com.cn/">人民网首页</a></div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</template>
+
+<style>
+.content {
+  width: 1000px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.logo {
+  margin: 5px 10px;
+}
+.content-item {
+  float: left;
+}
+.link {
+  color: rgba(102, 102, 102, 1.00);
+  font-size: 14px;
+  margin: 0 10px;
+  line-height: 40px;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+</style>
