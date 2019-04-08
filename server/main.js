@@ -131,6 +131,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   // 读取入口模板文件(一次性读取到内存中)
   const templeFile = path.join(__dirname, 'index.html')
   let htmlTemple = fs.readFileSync(templeFile, 'utf8')
+  // console.log(config)
   const dom = ozzx(htmlTemple, config)
   let htmlData = dom.html
   // 替换样式
@@ -164,7 +165,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   // 数组去重
   toolList = new Set(toolList.concat(toolList2))
   toolList.forEach(element => {
-    console.log(element)
+    // console.log(element)
     coreScript += Tool.loadFile(path.join(corePath, 'tool', `${element}.js`))
   })
 
@@ -238,6 +239,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
   const body = req.body.data
   if (body) {
     // 读取模板文件
+    console.log(`读取文件: ./template/${body['templateFile']}`)
     let templateData = fs.readFileSync(`./template/${body['templateFile']}`, 'utf8')
     // 控制列表
     const controlList = body['control']
@@ -254,6 +256,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     // 判断模板文件是否已经存在
     const tempPath = './temp/' + md5Data + '.page'
     if (!fs.existsSync(tempPath)) {
+      // console.log(templateData)
       fs.writeFileSync(tempPath, templateData)
     }
     // 生成html页面
@@ -268,6 +271,33 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     }))
   }
   res.end('{err:0}')
+})
+
+app.all('/changeControl', jsonParser, function(req, res){
+  const body = req.body
+  if (body && body["data"]) {
+    // 连接数据库
+    const connection = mysql.createConnection({
+      host     : 'cdb-iphpadts.cd.tencentcdb.com',
+      port     : 10035,
+      user     : 'ozzx',
+      password : 'ozzx',
+      database : 'ozzx'
+    })
+    connection.connect()
+    console.log(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`)
+    connection.query(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`, (error, results, fields) => {
+      connection.end()
+      if (error) throw error
+      res.send({
+        err: 0,
+        message: results
+      })
+    })
+  } else {
+    res.end('{"err":1,"message": "数据不能为空!"}')
+  }
+  
 })
 
 app.listen(8000, () => console.log('服务运行于8000端口!'))
