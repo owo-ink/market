@@ -9,12 +9,12 @@
 </template>
 
 <style>
+.title-bar {
+  background-color: {{--bgColor--}};
+}
 .content {
   width: 1000px;
   height: 40px;
-  position: absolute;
-  left: 0;
-  right: 0;
   margin: auto;
 }
 .logo {

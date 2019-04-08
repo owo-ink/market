@@ -7,8 +7,11 @@ const crypto = require('crypto')
 const ozzx = require('ozzx')
 const bodyParser = require('body-parser')
 
+
 // 获取ozzx模块目录
 const corePath = path.join(__dirname, 'node_modules', 'ozzx', 'core')
+const Tool = require(path.join(__dirname, 'node_modules', 'ozzx', 'lib', 'tool'))
+const Cut = require(path.join(__dirname, 'node_modules', 'ozzx', 'lib', 'cut'))
 
 const jsonParser = bodyParser.json() // 获取JSON解析器中间件
 
@@ -152,6 +155,21 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   outPutScript += `<script>${loadFile(path.join(corePath, 'main.js'))}\r\n</script>`
   // 增加SinglePage.js
   outPutScript += `<script>${loadFile(path.join(corePath, 'SinglePage.js'))}\r\n</script>`
+
+  let coreScript = ''
+  // 处理使用到的方法
+  // console.log(htmlTemple)
+  let toolList = Cut.stringArray(outPutScript, 'ozzx.tool.', '(')
+  let toolList2 = Cut.stringArray(outPutScript, '$tool.', '(')
+  // 数组去重
+  toolList = new Set(toolList.concat(toolList2))
+  toolList.forEach(element => {
+    console.log(element)
+    coreScript += Tool.loadFile(path.join(corePath, 'tool', `${element}.js`))
+  })
+
+  outPutScript += `<script>${coreScript}\r\n</script>`
+
   styleLsit.forEach(style => {
     // 从style列表中取出此项的url
     styleListDB.forEach(styleItem => {
@@ -171,7 +189,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/templateList', (req, res) => {
+app.get('/getTemplateListByType', (req, res) => {
   const connection = mysql.createConnection({
     host     : 'cdb-iphpadts.cd.tencentcdb.com',
     port     : 10035,
@@ -180,12 +198,38 @@ app.get('/templateList', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  connection.query('SELECT * FROM template', (error, results, fields) => {
+  connection.query(`SELECT * FROM template WHERE type='${req.query.type}'`, (templateError, templateResults, typeFields) => {
     connection.end()
-    if (error) throw error;
+    if (templateError) throw templateError
     res.send({
       err: 0,
-      data: results
+      data: templateResults
+    })
+  })
+})
+
+app.get('/typeList', (req, res) => {
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
+  // 查询类型列表
+  connection.query('SELECT * FROM type', (typeError, typeResults, typeFields) => {
+    if (typeError) throw typeError;
+    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults, typeFields) => {
+      connection.end()
+      if (templateError) throw templateError;
+      res.send({
+        err: 0,
+        data: {
+          template: templateResults,
+          type: typeResults
+        }
+      })
     })
   })
 })

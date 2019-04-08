@@ -43,15 +43,15 @@ export default {
     border-right: 1px solid #ccc;
   }
   .template-view {
-    height: 300px;
     width: 100%;
     border-top: 1px solid #ccc;
     text-align: center;
-    line-height: 300px;
     color: #ccc;
     font-size: 30px;
     cursor: pointer;
     box-sizing: border-box;
+    background-color: currentColor;
+    height: 300px;
   }
   .title-bar {
     display: flex;

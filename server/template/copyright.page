@@ -13,6 +13,7 @@
     color: {{--color--}};
     font-size: {{--fontSize--}}px;
     position: relative;
+    background-color: {{--bgColor--}};
   }
   .copyright-box .copyright {
     width: 500px;
