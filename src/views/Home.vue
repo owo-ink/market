@@ -20,12 +20,21 @@
               ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
           WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
         template(v-else)
-          .add-box
-            AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
-            AutoEntry(name="标签类型", v-model="addTag.type", :type="String")
-            AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
-            TextareaEntry(name="标签数值", v-model="addTag.value")
-          WaterRipple.add-tag(text="添加标签", @onClick="addNewTag")
+          .tag-list
+            .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
+              .label {{item.label}}
+              .edit 编辑
+              .delete(@click="deleteTag(item, ind)") 删除
+          WaterRipple.add-tag(text="添加标签", @onClick="showAddTagBox = !showAddTagBox")
+    .add-tag-box(v-show="showAddTagBox")
+      .close(@click="showAddTagBox = false") 关闭
+      .add-box
+        .title-bar 添加标签
+        AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
+        AutoEntry(name="标签类型", v-model="addTag.type", :type="String")
+        AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
+        TextareaEntry(name="标签数值", v-model="addTag.value")
+        WaterRipple.add-tag(text="添加标签", @onClick="addNewTag")
 </template>
 
 <script>
@@ -49,6 +58,7 @@ export default {
       templateList: [],
       typeList: [],
       controlModel: 'value',
+      showAddTagBox: false,
       addTag: {
         name: "",
         type: "",
@@ -97,16 +107,32 @@ export default {
       console.log(templateControlCopy)
       templateControlCopy.push(addTagCopy)
       axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
-        if (response.data.data.err === 0) {
+        console.log(response.data)
+        if (response.data.err === 0) {
           this.addTag = {
             name: "",
             type: "",
             label: "",
             value: ""
           }
+          this.templateControl['control'] = templateControlCopy
           alert('添加成功!')
+          this.showAddTagBox = false
         }
       })
+    },
+    deleteTag: function (item, ind) {
+      const confirm = window.confirm(`确认删除 "${item.label}" 这个标签吗!`)
+      if (confirm) {
+        let copyData = JSON.parse(JSON.stringify(this.templateControl))
+        copyData.control.splice(ind, 1)
+        // 发送删除请求
+        axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+          if (response.data.err === 0) {
+            this.templateControl = copyData
+          }
+        })
+      }
     }
   }
 }
@@ -174,4 +200,40 @@ export default {
     width: 100%;
     height: 100%;
     border: none;
+  
+  .add-tag-box
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.60);
+    left: 0;
+    top: 0;
+    .add-box
+      width: 400px;
+      background-color: white;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 400px;
+    .title-bar
+      height: 40px;
+      background-color: white;
+      text-align: center;
+      line-height: 40px;
+      border-bottom: 1px solid #ccc;
+    .close
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background-color: blanchedalmond;
+  .tag-list
+    .tag-item
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      padding: 0 10px;
+      line-height: 40px;
 </style>
