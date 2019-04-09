@@ -6,6 +6,8 @@
       .left
         TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
           iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '.html'")
+        // 添加模板按钮
+        .add-temple-button.icon(@click="$router.push(`/edit`)") &#xe6ff;
       .control-bar(:class="{active: activeID !== null}")
         .control-title-bar
           .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
@@ -178,7 +180,14 @@ export default {
   .left
     height: 100%;
     overflow-y: auto;
+    position: relative;
     width: calc(100% - 300px);
+    .add-temple-button
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      font-size: 40px;
+      color: chocolate;
   .control-bar
     position: fixed;
     overflow: auto;

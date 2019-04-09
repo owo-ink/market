@@ -300,4 +300,60 @@ app.all('/changeControl', jsonParser, function(req, res){
   
 })
 
+// 获取分组等信息
+app.get('/getInfo', (req, res) => {
+  // 查询数据库获取标签列表
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
+  connection.query(`SELECT * FROM type`, (error, typeResults, typeFields) => {
+    connection.end()
+    if (error) throw error
+    res.send({
+      err: 0,
+      data: {
+        type: typeResults,
+        style: styleListDB,
+        script: scriptListDB
+      }
+    })
+  })
+})
+
+// 添加模板文件
+app.all('/saveTemplateFile', jsonParser, function(req, res){
+  const body = req.body
+  if (body && body.value) {
+    console.log(body)
+    // 连接数据库
+    const connection = mysql.createConnection({
+      host     : 'cdb-iphpadts.cd.tencentcdb.com',
+      port     : 10035,
+      user     : 'ozzx',
+      password : 'ozzx',
+      database : 'ozzx'
+    })
+    connection.connect()
+    const sql = `INSERT INTO template (name, templateFile, styleList, scriptList, browser, type) VALUES ('${body.name}', '${body.templateFile}', '${body.styleList}', '${body.scriptList}', '${body.browser}', '${body.type}')`
+    // console.log(sql)
+    connection.query(sql, (error, results, fields) => {
+      connection.end()
+      if (error) throw error
+      console.log(results)
+      fs.writeFileSync(`./template/${body.templateFile}`, body.value)
+      res.send({
+        err: 0
+      })
+    })
+  } else {
+    res.end('{"err":1,"message": "数据不能为空!"}')
+  }
+  
+})
+
 app.listen(8000, () => console.log('服务运行于8000端口!'))
