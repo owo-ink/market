@@ -23,18 +23,19 @@
           .tag-list
             .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
               .label {{item.label}}
-              .edit 编辑
-              .delete(@click="deleteTag(item, ind)") 删除
+              .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
+              .delete.icon(@click="deleteTag(item, ind)") &#xe686;
           WaterRipple.add-tag(text="添加标签", @onClick="showAddTagBox = !showAddTagBox")
-    .add-tag-box(v-show="showAddTagBox")
-      .close(@click="showAddTagBox = false") 关闭
+    .add-tag-box(v-show="showAddTagBox || editTagID !== null")
+      .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
       .add-box
-        .title-bar 添加标签
+        .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
         AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
         AutoEntry(name="标签类型", v-model="addTag.type", :type="String")
         AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
         TextareaEntry(name="标签数值", v-model="addTag.value")
-        WaterRipple.add-tag(text="添加标签", @onClick="addNewTag")
+        WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
+        WaterRipple.add-tag(v-else, text="确定修改", @onClick="editTag")
 </template>
 
 <script>
@@ -59,6 +60,7 @@ export default {
       typeList: [],
       controlModel: 'value',
       showAddTagBox: false,
+      editTagID: null,
       addTag: {
         name: "",
         type: "",
@@ -133,6 +135,22 @@ export default {
           }
         })
       }
+    },
+    showEditTagBox: function (item, ind) {
+      this.addTag = item
+      this.editTagID = ind
+    },
+    editTag: function () {
+      let copyData = JSON.parse(JSON.stringify(this.templateControl))
+      copyData.control[this.editTagID] = this.addTag
+      this.templateControl = copyData
+      axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+        console.log(response.data)
+        if (response.data.err === 0) {
+          this.editTagID = null
+          alert('修改成功!')
+        }
+      })
     }
   }
 }
@@ -180,10 +198,12 @@ export default {
     .active
       background-color: #009fe9;
       color: white;
-    .title-bar-item
-      width: 50%;
-      text-align: center;
-      cursor: pointer;
+  .title-bar-item
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
   .active
     right: 0;
 
@@ -206,7 +226,7 @@ export default {
     z-index: 99;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.60);
+    background-color: rgba(0, 0, 0, 0.80);
     left: 0;
     top: 0;
     .add-box
@@ -229,11 +249,27 @@ export default {
       position: absolute;
       right: 10px;
       top: 10px;
-      background-color: blanchedalmond;
+      color: white;
+      font-size: 35px;
   .tag-list
     .tag-item
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #e9e9e9;
       display: flex;
-      padding: 0 10px;
+      margin: 0 10px;
       line-height: 40px;
+      .icon
+        width: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 1.4em;
+        position: absolute;
+        cursor: pointer;
+      .edit
+        right: 40px;
+        color: white;
+        background-color: yellowgreen;
+      .delete
+        right: 0;
+        color: white;
+        background-color: teal;
 </style>

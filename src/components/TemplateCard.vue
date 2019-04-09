@@ -31,7 +31,7 @@ export default {
     box-sizing: border-box;
   }
   .attribute-bar {
-    background-color: #f8f8f8;
+    background-color: white;
     border-top: 1px solid #ccc;
   }
   .attribute-bar-item {
@@ -50,14 +50,14 @@ export default {
     font-size: 30px;
     cursor: pointer;
     box-sizing: border-box;
-    background-color: currentColor;
+    background-color: #f2f2f2;
     height: 300px;
   }
   .title-bar {
     display: flex;
     text-align: center;
     line-height: 25px;
-    background-color: #f8f8f8;
+    background-color: white;
   }
   .title-bar .name {
     width: 140px;
