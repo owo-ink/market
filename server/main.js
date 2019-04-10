@@ -24,7 +24,7 @@ app.all('*', function (req, res, next) {
 })
 
 // 静态目录
-app.use('/static', express.static('temp'))
+app.use('/', express.static('temp'))
 
 let styleListDB = []
 let scriptListDB = []

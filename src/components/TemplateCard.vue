@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     getUrl: (data) => {
-      return 'http://' + window.location.host + '/static/' + data.template + '.page'
+      return 'http://' + window.location.host + '/' + data.template + '.page'
     }
   }
 }
