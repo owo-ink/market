@@ -186,10 +186,6 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   fs.writeFileSync('./temp/' + templateID + '.html', htmlData)
 }
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
 app.get('/getTemplateListByType', (req, res) => {
   const connection = mysql.createConnection({
     host     : 'cdb-iphpadts.cd.tencentcdb.com',
