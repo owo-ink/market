@@ -2,7 +2,7 @@
   <div class="template-card" @click.stop="$emit('onClick')">
     <div class="title-bar">
       <div class="name">{{data.name}}</div>
-      <div class="url">{{'http://127.0.0.1:8000/static/' + data.template + '.page'}}</div>
+      <div class="url">{{getUrl(data)}}</div>
     </div>
     <div class="attribute-bar">
       <span class="attribute-bar-item">{{data.browser}}</span>
@@ -19,6 +19,11 @@
 export default {
   props: {
     data: Object
+  },
+  methods: {
+    getUrl: (data) => {
+      return 'http://' + window.location.host + '/static/' + data.template + '.page'
+    }
   }
 }
 </script>

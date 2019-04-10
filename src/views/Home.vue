@@ -5,7 +5,7 @@
     .content-bar
       .left
         TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
-          iframe(:src="'http://127.0.0.1:8000/static/' + value.template + '.html'")
+          iframe(:src="'/static/' + value.template + '.html'")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit`)") &#xe6ff;
       .control-bar(:class="{active: activeID !== null}")
@@ -72,7 +72,7 @@ export default {
     }
   },
   created: function () {
-    axios.get('http://127.0.0.1:8000/typeList').then((response) => {
+    axios.get('/typeList').then((response) => {
       const data = response.data.data
       this.templateList = data.template
       this.typeList = data.type
@@ -95,12 +95,12 @@ export default {
       this.templateControl = value
     },
     creatTemplate: function () {
-      axios.post('http://127.0.0.1:8000/creatTemplate', {data: this.templateControl}).then((response) => {
+      axios.post('/creatTemplate', {data: this.templateControl}).then((response) => {
         this.templateList[this.activeID].template = response.data.templateID
       })
     },
     changeType: function (type) {
-      axios.get(`http://127.0.0.1:8000/getTemplateListByType?type=${type}`).then((response) => {
+      axios.get(`/getTemplateListByType?type=${type}`).then((response) => {
         this.templateList = response.data.data
       })
     },
@@ -110,7 +110,7 @@ export default {
       
       console.log(templateControlCopy)
       templateControlCopy.push(addTagCopy)
-      axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
+      axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
         console.log(response.data)
         if (response.data.err === 0) {
           this.addTag = {
@@ -131,7 +131,7 @@ export default {
         let copyData = JSON.parse(JSON.stringify(this.templateControl))
         copyData.control.splice(ind, 1)
         // 发送删除请求
-        axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+        axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
           if (response.data.err === 0) {
             this.templateControl = copyData
           }
@@ -146,7 +146,7 @@ export default {
       let copyData = JSON.parse(JSON.stringify(this.templateControl))
       copyData.control[this.editTagID] = this.addTag
       this.templateControl = copyData
-      axios.post('http://127.0.0.1:8000/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+      axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
         console.log(response.data)
         if (response.data.err === 0) {
           this.editTagID = null
@@ -160,125 +160,125 @@ export default {
 
 <style scoped lang="sass">
   .home
-    width: 100%;
-    height: 100%;
+    width: 100%
+    height: 100%
   .type-bar
-    height: 40px;
-    display: flex;
+    height: 40px
+    display: flex
     .type-item
-      background-color: #009fe9;
-      color: white;
-      width: 80px;
-      text-align: center;
-      line-height: 30px;
-      margin: 5px;
-      cursor: pointer;
+      background-color: #009fe9
+      color: white
+      width: 80px
+      text-align: center
+      line-height: 30px
+      margin: 5px
+      cursor: pointer
   .content-bar
-    height: calc(100% - 40px);
-    width: 100%;
-    display: flex;
+    height: calc(100% - 40px)
+    width: 100%
+    display: flex
   .left
-    height: 100%;
-    overflow-y: auto;
-    position: relative;
-    width: calc(100% - 300px);
+    height: 100%
+    overflow-y: auto
+    position: relative
+    width: calc(100% - 300px)
     .add-temple-button
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      font-size: 40px;
-      color: chocolate;
+      position: absolute
+      right: 10px
+      bottom: 10px
+      font-size: 40px
+      color: chocolate
   .control-bar
-    position: fixed;
-    overflow: auto;
-    width: 300px;
-    height: 100%;
-    right: -300px;
-    top: 0;
-    transition: right 0.5s;
-    border-left: 1px solid #ccc;
+    position: fixed
+    overflow: auto
+    width: 300px
+    height: 100%
+    right: -300px
+    top: 0
+    transition: right 0.5s
+    border-left: 1px solid #ccc
     .input-box
-      height: calc(100% - 40px);
+      height: calc(100% - 40px)
   .control-title-bar
-    height: 40px;
-    display: flex;
-    line-height: 40px;
-    background-color: #f2f2f2;
+    height: 40px
+    display: flex
+    line-height: 40px
+    background-color: #f2f2f2
     .active
-      background-color: #009fe9;
-      color: white;
+      background-color: #009fe9
+      color: white
   .title-bar-item
-    width: 50%;
-    text-align: center;
-    cursor: pointer;
-    background-color: white;
-    color: #333;
+    width: 50%
+    text-align: center
+    cursor: pointer
+    background-color: white
+    color: #333
   .active
-    right: 0;
+    right: 0
 
   .creat, .add-tag
-    background-color: #009fe9;
-    line-height: 40px;
-    text-align: center;
-    color: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    background-color: #009fe9
+    line-height: 40px
+    text-align: center
+    color: white
+    position: absolute
+    bottom: 0
+    width: 100%
 
   iframe
-    width: 100%;
-    height: 100%;
-    border: none;
+    width: 100%
+    height: 100%
+    border: none
   
   .add-tag-box
-    position: fixed;
-    z-index: 99;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.80);
-    left: 0;
-    top: 0;
+    position: fixed
+    z-index: 99
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, 0.80)
+    left: 0
+    top: 0
     .add-box
-      width: 400px;
-      background-color: white;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      height: 400px;
+      width: 400px
+      background-color: white
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      margin: auto
+      height: 400px
     .title-bar
-      height: 40px;
-      background-color: white;
-      text-align: center;
-      line-height: 40px;
-      border-bottom: 1px solid #ccc;
+      height: 40px
+      background-color: white
+      text-align: center
+      line-height: 40px
+      border-bottom: 1px solid #ccc
     .close
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      color: white;
-      font-size: 35px;
+      position: absolute
+      right: 10px
+      top: 10px
+      color: white
+      font-size: 35px
   .tag-list
     .tag-item
-      border-bottom: 1px solid #e9e9e9;
-      display: flex;
-      margin: 0 10px;
-      line-height: 40px;
+      border-bottom: 1px solid #e9e9e9
+      display: flex
+      margin: 0 10px
+      line-height: 40px
       .icon
-        width: 40px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 1.4em;
-        position: absolute;
-        cursor: pointer;
+        width: 40px
+        line-height: 40px
+        text-align: center
+        font-size: 1.4em
+        position: absolute
+        cursor: pointer
       .edit
-        right: 40px;
-        color: white;
-        background-color: yellowgreen;
+        right: 40px
+        color: white
+        background-color: yellowgreen
       .delete
-        right: 0;
-        color: white;
-        background-color: teal;
+        right: 0
+        color: white
+        background-color: teal
 </style>

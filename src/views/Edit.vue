@@ -33,7 +33,7 @@ export default {
     WaterRipple
   },
   created: function () {
-    axios.get('http://127.0.0.1:8000/getInfo').then((response) => {
+    axios.get('/getInfo').then((response) => {
       this.info = response.data.data
     })
   },
@@ -49,7 +49,7 @@ export default {
         type: this.type,
         value: this.value
       }
-      axios.post('http://127.0.0.1:8000/saveTemplateFile', sendData).then((response) => {
+      axios.post('/saveTemplateFile', sendData).then((response) => {
         console.log(response)
       })
     }
@@ -59,29 +59,29 @@ export default {
 
 <style scoped lang="sass">
 .edit-box
-  width: 100%;
-  height: 100%;
+  width: 100%
+  height: 100%
 input
-  width: calc(100% - 20px);
-  border: none;
-  height: 40px;
-  background-color: white;
-  padding: 0 10px;
-  border-bottom: 1px solid #ccc;
+  width: calc(100% - 20px)
+  border: none
+  height: 40px
+  background-color: white
+  padding: 0 10px
+  border-bottom: 1px solid #ccc
 .edit
-  height: calc(100% - 286px);
+  height: calc(100% - 286px)
 select
-  width: 100%;
-  border: none;
-  height: 40px;
-  border-bottom: 1px solid #ccc;
-  padding: 0 7px;
-  color: #333;
-  font-size: 1.2rem;
+  width: 100%
+  border: none
+  height: 40px
+  border-bottom: 1px solid #ccc
+  padding: 0 7px
+  color: #333
+  font-size: 1.2rem
 .send
-  width: 100%;
-  text-align: center;
-  background-color: #009fe9;
-  color: white;
-  line-height: 40px;
+  width: 100%
+  text-align: center
+  background-color: #009fe9
+  color: white
+  line-height: 40px
 </style>

@@ -1,11 +1,11 @@
 'use strict'
 const fs = require('fs')
 const path = require('path')
-const express = require('express')
+const express = require('./node_modules/express')
 const app = express()
 const crypto = require('crypto')
-const ozzx = require('ozzx')
-const bodyParser = require('body-parser')
+const ozzx = require('./node_modules/ozzx/lib/page/body')
+const bodyParser = require('./node_modules/body-parser')
 
 
 // 获取ozzx模块目录
@@ -30,7 +30,7 @@ let styleListDB = []
 let scriptListDB = []
 
 // 连接数据库
-const mysql      = require('mysql');
+const mysql      = require('./node_modules/mysql');
 {
   const connection = mysql.createConnection({
     host     : 'cdb-iphpadts.cd.tencentcdb.com',
@@ -356,4 +356,4 @@ app.all('/saveTemplateFile', jsonParser, function(req, res){
   
 })
 
-app.listen(8000, () => console.log('服务运行于8000端口!'))
+app.listen(8004, () => console.log('服务运行于8004端口!'))
