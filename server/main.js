@@ -239,12 +239,14 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     let templateData = fs.readFileSync(`./template/${body['templateFile']}`, 'utf8')
     // 控制列表
     const controlList = body['control']
-    controlList.forEach(control => {
-      if (typeof control['value'] === 'object') {
-        control['value'] = JSON.stringify(control['value'])
-      }
-      templateData = templateData.replace('{{--' + control['name'] + '--}}', control['value'])
-    })
+    if (controlList) {
+      controlList.forEach(control => {
+        if (typeof control['value'] === 'object') {
+          control['value'] = JSON.stringify(control['value'])
+        }
+        templateData = templateData.replace('{{--' + control['name'] + '--}}', control['value'])
+      })
+    }
     // 计算MD5
     const md5 = crypto.createHash('md5')
     const md5Data = md5.update(templateData).digest('hex')
