@@ -156,7 +156,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   outPutScript += `<script>${loadFile(path.join(corePath, 'main.js'))}\r\n</script>`
   // 增加SinglePage.js
   outPutScript += `<script>${loadFile(path.join(corePath, 'SinglePage.js'))}\r\n</script>`
-
+  outPutScript = outPutScript.replace(/\\r  /g, '\r\n ')
   let coreScript = ''
   // 处理使用到的方法
   // console.log(htmlTemple)
