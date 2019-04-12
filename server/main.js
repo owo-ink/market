@@ -310,16 +310,37 @@ app.get('/getInfo', (req, res) => {
   })
   connection.connect()
   connection.query(`SELECT * FROM type`, (error, typeResults, typeFields) => {
-    connection.end()
-    if (error) throw error
-    res.send({
-      err: 0,
-      data: {
-        type: typeResults,
-        style: styleListDB,
-        script: scriptListDB
-      }
-    })
+    // 判断是否为修改
+    if (req.query && req.query.id) {
+      console.log(`根据ID查找模板: ${req.query.id}`)
+      // 根据id查找对应模板
+      connection.query(`SELECT * FROM template WHERE id=${req.query.id}`, (error, templateData, typeFields) => {
+        connection.end()
+        if (error) throw error
+        // console.log(templateData)
+        res.send({
+          err: 0,
+          data: {
+            type: typeResults,
+            style: styleListDB,
+            script: scriptListDB
+          },
+          templateInfo: templateData[0],
+          fileData: fs.readFileSync(`./template/${templateData[0].templateFile}`, 'utf8')
+        })
+      })
+    } else {
+      connection.end()
+      if (error) throw error
+      res.send({
+        err: 0,
+        data: {
+          type: typeResults,
+          style: styleListDB,
+          script: scriptListDB
+        }
+      })
+    }
   })
 })
 
@@ -351,7 +372,33 @@ app.all('/saveTemplateFile', jsonParser, function(req, res){
   } else {
     res.end('{"err":1,"message": "数据不能为空!"}')
   }
-  
+})
+
+// 更新模板文件
+app.all('/updataTemplateFile', jsonParser, function(req, res){
+  const body = req.body
+  if (body && body.value) {
+    // 连接数据库
+    const connection = mysql.createConnection({
+      host     : 'cdb-iphpadts.cd.tencentcdb.com',
+      port     : 10035,
+      user     : 'ozzx',
+      password : 'ozzx',
+      database : 'ozzx'
+    })
+    connection.connect()
+    const sql = `UPDATE template SET name = "${body.name}", styleList = '${body.styleList}', scriptList = '${body.scriptList}',  browser = "${body. browser}", type = "${body.type}"  WHERE id = '${body.id}'`
+    console.log(`执行SQL：${sql}`)
+    connection.query(sql, (error, results, fields) => {
+      connection.end()
+      if (error) throw error
+      res.send({
+        err: 0
+      })
+    })
+  } else {
+    res.end('{"err":1,"message": "数据不能为空!"}')
+  }
 })
 
 app.listen(8004, () => console.log('服务运行于8004端口!'))

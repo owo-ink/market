@@ -4,8 +4,9 @@
       .type-item(v-for="value in typeList", @click="changeType(value.value)") {{value.name}}
     .content-bar
       .left
-        TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
-          iframe(:src="'/' + value.template + '.html'")
+        .card-box
+          TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
+            iframe(:src="'/' + value.template + '.html'")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit`)") &#xe6ff;
       .control-bar(:class="{active: activeID !== null}")
@@ -108,10 +109,10 @@ export default {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
       const addTagCopy = JSON.parse(JSON.stringify(this.addTag))
       
-      console.log(templateControlCopy)
+      // console.log(templateControlCopy)
       templateControlCopy.push(addTagCopy)
       axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         if (response.data.err === 0) {
           this.addTag = {
             name: "",
@@ -147,7 +148,7 @@ export default {
       copyData.control[this.editTagID] = this.addTag
       this.templateControl = copyData
       axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         if (response.data.err === 0) {
           this.editTagID = null
           alert('修改成功!')
@@ -182,10 +183,14 @@ export default {
     overflow-y: auto
     position: relative
     width: calc(100% - 300px)
+    .card-box
+      width: 100%
+      height: 100%
+      overflow: auto
     .add-temple-button
       position: absolute
-      right: 10px
-      bottom: 10px
+      right: 20px
+      bottom: 20px
       font-size: 40px
       color: chocolate
   .control-bar
@@ -199,6 +204,8 @@ export default {
     border-left: 1px solid #ccc
     .input-box
       height: calc(100% - 40px)
+      overflow-x: hidden
+      overflow-y: auto
   .control-title-bar
     height: 40px
     display: flex

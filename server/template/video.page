@@ -1,0 +1,66 @@
+<template lang="pug">
+.video-box
+  .left.float-left
+    video(src="https://cunchu.site/ozzx/resource/movie.ogg", controls="controls")
+  .right.float-left
+    a.video-item(@for="item in videoList", href="{{item.url}}", target="view_frame")
+      img(src="{{item.src}}")
+      .text {{item.text}}
+  .clear
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      videoList: [
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
+      ]
+    }
+  }
+</script>
+
+
+<style lang="less">
+.float-left {
+  float: left;
+}
+img {
+  width: 100%;
+}
+// 视频报道区域
+.video-box {
+  .left {
+    width: 55%;
+    float: left;
+  }
+  video {
+    width: 100%;
+  }
+  .right {
+    width: 45%;
+    position: relative;
+  }
+  .video-item {
+    width: 45%;
+    margin-left: 5%;
+    height: 150px;
+    float: left;
+    cursor: pointer;
+    .text {
+      color: #595757;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+</style>

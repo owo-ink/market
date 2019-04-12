@@ -9,6 +9,7 @@
     "manage": "python ./server/manage.py runserver 0.0.0.0:8000"
   },
   "dependencies": {
+    "@puge/checkbox": "^1.1.7",
     "@puge/highlight": "^1.1.8",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
