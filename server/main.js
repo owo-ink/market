@@ -283,6 +283,8 @@ app.all('/changeControl', jsonParser, function(req, res){
       database : 'ozzx'
     })
     connection.connect()
+    
+    console.log(`收到数据:`, body["data"])
     console.log(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`)
     connection.query(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`, (error, results, fields) => {
       connection.end()
@@ -392,6 +394,7 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
     connection.query(sql, (error, results, fields) => {
       connection.end()
       if (error) throw error
+      fs.writeFileSync(`./template/${body.templateFile}`, body.value)
       res.send({
         err: 0
       })

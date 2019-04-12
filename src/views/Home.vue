@@ -107,9 +107,11 @@ export default {
     },
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
-      const addTagCopy = JSON.parse(JSON.stringify(this.addTag))
+      let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
+      if (this.addTag.type === 'array' || this.addTag.type === 'object') {
+        addTagCopy.value = JSON.parse(addTagCopy.value)
+      }
       
-      // console.log(templateControlCopy)
       templateControlCopy.push(addTagCopy)
       axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
         // console.log(response.data)

@@ -1,8 +1,8 @@
 <template lang="pug">
 .swiper-box
   .left.float-left
-    .title 三月扬州 “大厨”精烹法治课间餐
-    .text 3月15日,烟花烂漫,草长莺飞,扬州市竹西中学内更是一片春意浓浓。由最高人民检察院、教育部联合组织的“法治进校园”全国巡讲团,在这里为500名学生“烹调”了一场别具风味的“法治课间餐”,江苏省、扬州市、区县三级检察院,以及扬州市教育局负责人出席。
+    .title {{--title--}}
+    .text {{--brief--}}
     ul.li-list
       li(@for="item in hrefList")
         a(href="{{item.href}}") {{item.name}}

@@ -1,7 +1,7 @@
 <template lang="pug">
 .video-box
   .left.float-left
-    video(src="https://cunchu.site/ozzx/resource/movie.ogg", controls="controls")
+    video(src="{{--movie--}}", controls="controls")
   .right.float-left
     a.video-item(@for="item in videoList", href="{{item.url}}", target="view_frame")
       img(src="{{item.src}}")
@@ -12,14 +12,7 @@
 <script>
   module.exports = {
     data: {
-      videoList: [
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-        {src:"https://cunchu.site/ozzx/resource/img1.jpg", text: "东方航空“人民网号”首航", url: "http://www.people.com.cn/"},
-      ]
+      videoList: {{--videoList--}}
     }
   }
 </script>
@@ -34,6 +27,8 @@ img {
 }
 // 视频报道区域
 .video-box {
+  max-width: 1000px;
+  margin: 0 auto;
   .left {
     width: 55%;
     float: left;
@@ -62,5 +57,10 @@ img {
     }
   }
 }
-
+.clear {
+  clear: both;
+}
+a {
+  text-decoration:none;
+}
 </style>
