@@ -1,7 +1,7 @@
 <template lang="pug">
   .home
     .type-bar
-      .type-item(v-for="value in typeList", @click="changeType(value.value)") {{value.name}}
+      .type-item(v-for="value in typeList", :class="{active: activeType === value.value}" @click="changeType(value.value)") {{value.name}}
     .content-bar
       .left
         .card-box
@@ -66,6 +66,8 @@ export default {
       controlModel: 'value',
       showAddTagBox: false,
       editTagID: null,
+      // 当前选中的模式
+      activeType: null,
       typeSelectList: [
         {value: 'string', text: '字符串'},
         {value: 'array', text: '数组'},
@@ -86,6 +88,8 @@ export default {
       const data = response.data.data
       this.templateList = data.template
       this.typeList = data.type
+      // 默认选中第一个模式
+      this.activeType = data.type[0].value
     })
   },
   components: {
@@ -111,6 +115,7 @@ export default {
       })
     },
     changeType: function (type) {
+      this.activeType = type
       axios.get(`/getTemplateListByType?type=${type}`).then((response) => {
         this.templateList = response.data.data
       })
@@ -206,6 +211,8 @@ export default {
       line-height: 30px
       margin: 5px
       cursor: pointer
+    .active
+      background-color: coral
   .content-bar
     height: calc(100% - 40px)
     width: 100%
