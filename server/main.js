@@ -7,12 +7,6 @@ const crypto = require('crypto')
 const owo = require('@owo/owo')
 const bodyParser = require('./node_modules/body-parser')
 
-
-// 获取owo模块目录
-const corePath = path.join(__dirname, 'node_modules', '@owo', 'owo', 'core')
-const Tool = require(path.join(__dirname, 'node_modules', '@owo', 'owo', 'lib', 'tool'))
-const Cut = require(path.join(__dirname, 'node_modules', '@owo', 'owo', 'lib', 'cut'))
-
 const jsonParser = bodyParser.json() // 获取JSON解析器中间件
 
 //设置允许跨域访问该服务.
@@ -60,27 +54,130 @@ const mysql      = require('./node_modules/mysql');
   connection.end()
 }
 
-
-// 全部替换
-function replaceAll (str, substr, newstr) {
-  substr = substr.replace(/[.\\[\]{}()|^$?*+]/g, "\\$&")
-  const re = new RegExp(substr, "g")
-  return str.replace(re, newstr)
-}
-
-// 读取指定目录文件
-function loadFile (path) {
-  if (fs.existsSync(path)) {
-    return fs.readFileSync(path, 'utf8')
-  } else {
-    console.error(`file does not exist: ${path}`)
-    return ''
-  }
-}
-
 // 生成html页面
 function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
-  
+  console.log(styleLsit, scriptList)
+  let styleArr = []
+  let scriptArr = []
+  styleLsit.forEach(style => {
+    // 从style列表中取出此项的url
+    styleListDB.forEach(styleItem => {
+      if (styleItem['name'] == style) {
+        styleArr.push({
+          name: styleItem.name,
+          src: styleItem.url
+        })
+      }
+    })
+  })
+
+  scriptList.forEach(script => {
+    // 从style列表中取出此项的url
+    scriptListDB.forEach(scriptItem => {
+      if (scriptItem['name'] == script) {
+        scriptArr.push({
+          name: scriptItem.name,
+          src: scriptItem.url
+        })
+      }
+    })
+  })
+
+  // 生成页面配置
+  let config = {
+    // 项目根目录
+    root: "/src",
+    // 项目入口文件
+    entry: "home",
+    // 页面标题
+    title: '页面',
+    // 输出目录
+    outFolder: './temp/' + templateID,
+    // 资源目录
+    resourceFolder: "./src/resource",
+    // head属性清单
+    headList: [
+      {
+        'http-equiv': 'content-type',
+        content: 'text/html; charset=UTF-8',
+      },
+      {
+        name: 'viewport',
+        content: 'initial-scale=1,user-scalable=no,maximum-scale=1',
+      }
+    ],
+    // 使用到的外部脚本清单
+    scriptList: scriptArr,
+    // 使用到的样式列表
+    styleList: styleArr,
+    // 页面清单
+    pageList: [
+      {
+        // 是否为页面主入口
+        main: true,
+        isPage: true,
+        name: 'home',
+        src: tempUrl
+      }
+    ],
+    // 输出配置
+    outPut: {
+      // 是否压缩css
+      minifyCss: true,
+      // 是否压缩js
+      minifyJs: true,
+      // 输出文件自动追加版本号，可以用来消除缓存
+      addVersion: true,
+    }
+  }
+  console.log(styleArr, scriptArr)
+  const pack = new owo(config, () => {})
+  pack.pack()
+}
+
+app.get('/getTemplateListByType', (req, res) => {
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
+  connection.query(`SELECT * FROM template WHERE type='${req.query.type}'`, (templateError, templateResults, typeFields) => {
+    connection.end()
+    if (templateError) throw templateError
+    res.send({
+      err: 0,
+      data: templateResults
+    })
+  })
+})
+
+app.get('/typeList', (req, res) => {
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
+  // 查询类型列表
+  connection.query('SELECT * FROM type', (typeError, typeResults, typeFields) => {
+    if (typeError) throw typeError;
+    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults, typeFields) => {
+      connection.end()
+      if (templateError) throw templateError;
+      res.send({
+        err: 0,
+        data: {
+          template: templateResults,
+          type: typeResults
+        }
+      })
+    })
+  })
 })
 
 app.all('/creatTemplate', jsonParser, function(req, res){
