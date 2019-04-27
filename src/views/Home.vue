@@ -8,7 +8,7 @@
           TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
             iframe(:src="'/' + value.template + '.html'")
         // 添加模板按钮
-        .add-temple-button.icon(@click="$router.push(`/edit`)") &#xe6ff;
+        .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       .control-bar(:class="{active: activeID !== null}")
         .control-title-bar
           .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理

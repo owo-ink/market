@@ -4,14 +4,14 @@ const path = require('path')
 const express = require('./node_modules/express')
 const app = express()
 const crypto = require('crypto')
-const ozzx = require('./node_modules/ozzx/lib/page/body')
+const owo = require('@owo/owo')
 const bodyParser = require('./node_modules/body-parser')
 
 
-// 获取ozzx模块目录
-const corePath = path.join(__dirname, 'node_modules', 'ozzx', 'core')
-const Tool = require(path.join(__dirname, 'node_modules', 'ozzx', 'lib', 'tool'))
-const Cut = require(path.join(__dirname, 'node_modules', 'ozzx', 'lib', 'cut'))
+// 获取owo模块目录
+const corePath = path.join(__dirname, 'node_modules', '@owo', 'owo', 'core')
+const Tool = require(path.join(__dirname, 'node_modules', '@owo', 'owo', 'lib', 'tool'))
+const Cut = require(path.join(__dirname, 'node_modules', '@owo', 'owo', 'lib', 'cut'))
 
 const jsonParser = bodyParser.json() // 获取JSON解析器中间件
 
@@ -79,156 +79,7 @@ function loadFile (path) {
 
 // 生成html页面
 function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
-  // 生成页面配置
-  let config = {
-    // 项目根目录
-    root: "/src",
-    // 项目入口文件
-    entry: "home",
-    // 页面标题
-    title: '页面',
-    // 输出目录
-    outFolder: "./dist",
-    // 资源目录
-    resourceFolder: "./src/resource",
-    // head属性清单
-    headList: [
-      {
-        'http-equiv': 'content-type',
-        content: 'text/html; charset=UTF-8',
-      },
-      {
-        name: 'viewport',
-        content: 'initial-scale=1,user-scalable=no,maximum-scale=1',
-      }
-    ],
-    // 使用到的外部脚本清单
-    scriptList: [],
-    // 使用到的样式列表
-    styleList: [],
-    // 页面清单
-    pageList: [
-      {
-        // 是否为页面主入口
-        main: true,
-        isPage: true,
-        name: 'home',
-        src: tempUrl
-      }
-    ],
-    // 输出配置
-    outPut: {
-      // 是否压缩css
-      minifyCss: true,
-      // 是否压缩js
-      minifyJs: true,
-      // 输出文件自动追加版本号，可以用来消除缓存
-      addVersion: true,
-    }
-  }
   
-
-  // 读取入口模板文件(一次性读取到内存中)
-  const templeFile = path.join(__dirname, 'index.html')
-  let htmlTemple = fs.readFileSync(templeFile, 'utf8')
-  // console.log(config)
-  const dom = ozzx(htmlTemple, config)
-  let htmlData = dom.html
-  // 替换样式
-  dom.needReplaceCssList.forEach(element => {
-    dom.style = replaceAll(dom.style, element[0], element[1])
-  })
-
-  let outPutStyle = ''
-  let outPutScript = ''
-  // 替换style
-  scriptList.forEach(script => {
-    // 从style列表中取出此项的url
-    scriptListDB.forEach(scriptItem => {
-      if (scriptItem['name'] == script) {
-        outPutScript += `<script src="${scriptItem.url}"></script>\r\n`
-      }
-    })
-  })
-  
-  outPutScript += `<script>${dom.script}\r\n</script>`
-  // 增加main.js
-  outPutScript += `<script>${loadFile(path.join(corePath, 'main.js'))}\r\n</script>`
-  // 增加SinglePage.js
-  outPutScript += `<script>${loadFile(path.join(corePath, 'SinglePage.js'))}\r\n</script>`
-  outPutScript = outPutScript.replace(/\\n  /g, '\r\n ')
-  let coreScript = ''
-  // 处理使用到的方法
-  // console.log(htmlTemple)
-  let toolList = Cut.stringArray(outPutScript, 'ozzx.tool.', '(')
-  let toolList2 = Cut.stringArray(outPutScript, '$tool.', '(')
-  // 数组去重
-  toolList = new Set(toolList.concat(toolList2))
-  toolList.forEach(element => {
-    // console.log(element)
-    coreScript += Tool.loadFile(path.join(corePath, 'tool', `${element}.js`))
-  })
-
-  outPutScript += `<script>${coreScript}\r\n</script>`
-
-  styleLsit.forEach(style => {
-    // 从style列表中取出此项的url
-    styleListDB.forEach(styleItem => {
-      if (styleItem['name'] == style) {
-        outPutStyle += `<link rel="stylesheet" href="${styleItem.url}">\r\n`
-      }
-    })
-  })
-  outPutStyle += `<style>${dom.style}\r\n</style>`
-
-  htmlData = htmlData.replace('<!-- css-output -->', outPutStyle)
-  htmlData = htmlData.replace('<!-- script-output -->', outPutScript)
-  fs.writeFileSync('./temp/' + templateID + '.html', htmlData)
-}
-
-app.get('/getTemplateListByType', (req, res) => {
-  const connection = mysql.createConnection({
-    host     : 'cdb-iphpadts.cd.tencentcdb.com',
-    port     : 10035,
-    user     : 'ozzx',
-    password : 'ozzx',
-    database : 'ozzx'
-  })
-  connection.connect()
-  connection.query(`SELECT * FROM template WHERE type='${req.query.type}'`, (templateError, templateResults, typeFields) => {
-    connection.end()
-    if (templateError) throw templateError
-    res.send({
-      err: 0,
-      data: templateResults
-    })
-  })
-})
-
-app.get('/typeList', (req, res) => {
-  const connection = mysql.createConnection({
-    host     : 'cdb-iphpadts.cd.tencentcdb.com',
-    port     : 10035,
-    user     : 'ozzx',
-    password : 'ozzx',
-    database : 'ozzx'
-  })
-  connection.connect()
-  // 查询类型列表
-  connection.query('SELECT * FROM type', (typeError, typeResults, typeFields) => {
-    if (typeError) throw typeError;
-    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults, typeFields) => {
-      connection.end()
-      if (templateError) throw templateError;
-      res.send({
-        err: 0,
-        data: {
-          template: templateResults,
-          type: typeResults
-        }
-      })
-    })
-  })
 })
 
 app.all('/creatTemplate', jsonParser, function(req, res){
@@ -306,9 +157,9 @@ app.get('/getInfo', (req, res) => {
   const connection = mysql.createConnection({
     host     : 'cdb-iphpadts.cd.tencentcdb.com',
     port     : 10035,
-    user     : 'ozzx',
-    password : 'ozzx',
-    database : 'ozzx'
+    user     : 'owo',
+    password : 'owo',
+    database : 'owo'
   })
   connection.connect()
   connection.query(`SELECT * FROM type`, (error, typeResults, typeFields) => {

@@ -17,7 +17,7 @@
       tag: {{--tag--}}
     },
     created: () => {
-      let screenWidth = ozzx.tool.getScreenInfo().clientWidth
+      let screenWidth = owo.tool.getScreenInfo().clientWidth
       // 最大宽度800
       if (screenWidth > 1000) screenWidth = 800
       document.getElementById('myCanvas').width = screenWidth 
