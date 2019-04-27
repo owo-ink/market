@@ -108,15 +108,17 @@ export default {
   height: 40px
   background-color: white
   padding: 0 10px
+  font-size: 1rem
   border-bottom: 1px solid #ccc
 .edit
   overflow-x: hidden
   overflow-y: auto
-  height: calc(100% - 288px)
+  height: calc(100% - 296px)
   border: none
   padding: 0
   width: 100%
   resize: none
+  padding: 5px
 select
   width: 100%
   border: none

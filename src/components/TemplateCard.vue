@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     getUrl: (data) => {
-      return 'https://' + window.location.host + '/' + data.template + '.page'
+      return 'https://' + window.location.host + '/public/' + data.template + '.page'
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)

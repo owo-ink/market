@@ -1,12 +1,12 @@
 <template lang="pug">
   .home
     .type-bar
-      .type-item(v-for="value in typeList", @click="changeType(value.value)") {{value.name}}
+      .type-item(v-for="value in typeList", :class="{active: activeType === value.value}" @click="changeType(value.value)") {{value.name}}
     .content-bar
       .left
         .card-box
           TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
-            iframe(:src="'/' + value.template + '.html'")
+            iframe(:src="'/public/' + value.template + '.html'")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       .control-bar(:class="{active: activeID !== null}")
@@ -28,13 +28,13 @@
               .label {{item.label}}
               .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
               .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-          WaterRipple.add-tag(text="添加标签", @onClick="showAddTagBox = !showAddTagBox")
+          WaterRipple.add-tag(text="添加标签", @onClick="showAddNewBox")
     .add-tag-box(v-show="showAddTagBox || editTagID !== null")
       .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
       .add-box
         .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
         AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
-        AutoEntry(name="标签类型", v-model="addTag.type", :type="String")
+        SelectEntry(text="标签类型", v-model="addTag.type", :option="typeSelectList", def="string")
         AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
         TextareaEntry(name="标签数值", v-model="addTag.value")
         WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
@@ -45,11 +45,13 @@
 // @ is an alias to /src
 import WaterRipple from 'waterripple'
 import AutoEntry from '@/components/#entry/AutoEntry'
+import SelectEntry from '@/components/#entry/SelectEntry'
 import ColorEntry from '@/components/#entry/ColorEntry'
 import JsonEntry from '@/components/#entry/JsonEntry'
 import TextareaEntry from '@/components/#entry/TextareaEntry'
 import TemplateCard from '@/components/TemplateCard.vue'
 import axios from 'axios'
+import { type } from 'os';
 
 export default {
   name: 'home',
@@ -64,6 +66,15 @@ export default {
       controlModel: 'value',
       showAddTagBox: false,
       editTagID: null,
+      // 当前选中的模式
+      activeType: null,
+      typeSelectList: [
+        {value: 'string', text: '字符串'},
+        {value: 'array', text: '数组'},
+        {value: 'color', text: '颜色'},
+        {value: 'object', text: '对象'},
+        {value: 'numnber', text: '数字'}
+      ],
       addTag: {
         name: "",
         type: "",
@@ -77,12 +88,15 @@ export default {
       const data = response.data.data
       this.templateList = data.template
       this.typeList = data.type
+      // 默认选中第一个模式
+      this.activeType = data.type[0].value
     })
   },
   components: {
     ColorEntry,
     AutoEntry,
     JsonEntry,
+    SelectEntry,
     WaterRipple,
     TemplateCard,
     TextareaEntry
@@ -101,6 +115,7 @@ export default {
       })
     },
     changeType: function (type) {
+      this.activeType = type
       axios.get(`/getTemplateListByType?type=${type}`).then((response) => {
         this.templateList = response.data.data
       })
@@ -108,7 +123,8 @@ export default {
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
       let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
-      if (this.addTag.type === 'array' || this.addTag.type === 'object') {
+      console.log(addTagCopy)
+      if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
         addTagCopy.value = JSON.parse(addTagCopy.value)
       }
       
@@ -142,12 +158,21 @@ export default {
       }
     },
     showEditTagBox: function (item, ind) {
+      const valueType = typeof item.value
+      if (valueType === 'object' || valueType === 'array') {
+        item.value = JSON.stringify(item.value)
+      }
       this.addTag = item
       this.editTagID = ind
     },
     editTag: function () {
       let copyData = JSON.parse(JSON.stringify(this.templateControl))
+      console.log(copyData)
+      
       copyData.control[this.editTagID] = this.addTag
+      if (this.addTag.type === 'array' || this.addTag.type === 'object') {
+        copyData.control[this.editTagID].value = JSON.parse(copyData.control[this.editTagID].value)
+      }
       this.templateControl = copyData
       axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
         // console.log(response.data)
@@ -156,6 +181,16 @@ export default {
           alert('修改成功!')
         }
       })
+    },
+    showAddNewBox: function () {
+      // 清除历史输入数据
+      this.addTag = {
+        name: "",
+        type: "",
+        label: "",
+        value: ""
+      }
+      this.showAddTagBox = !this.showAddTagBox
     }
   }
 }
@@ -176,6 +211,8 @@ export default {
       line-height: 30px
       margin: 5px
       cursor: pointer
+    .active
+      background-color: coral
   .content-bar
     height: calc(100% - 40px)
     width: 100%

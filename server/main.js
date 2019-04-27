@@ -24,7 +24,8 @@ app.all('*', function (req, res, next) {
 })
 
 // 静态目录
-app.use('/', express.static('temp'))
+app.use('/', express.static('static'))
+app.use('/public', express.static('temp'))
 
 let styleListDB = []
 let scriptListDB = []
@@ -72,7 +73,7 @@ function loadFile (path) {
   if (fs.existsSync(path)) {
     return fs.readFileSync(path, 'utf8')
   } else {
-    log.error(`file does not exist: ${path}`)
+    console.error(`file does not exist: ${path}`)
     return ''
   }
 }
