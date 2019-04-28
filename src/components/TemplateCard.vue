@@ -67,6 +67,7 @@ export default {
     text-align: center;
     line-height: 25px;
     background-color: white;
+    position: relative;
   }
   .title-bar .name {
     width: 140px;
