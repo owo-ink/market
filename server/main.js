@@ -255,9 +255,9 @@ app.get('/getInfo', (req, res) => {
   const connection = mysql.createConnection({
     host     : 'cdb-iphpadts.cd.tencentcdb.com',
     port     : 10035,
-    user     : 'owo',
-    password : 'owo',
-    database : 'owo'
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
   })
   connection.connect()
   connection.query(`SELECT * FROM type`, (error, typeResults, typeFields) => {
