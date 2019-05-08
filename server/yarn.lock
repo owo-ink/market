@@ -142,10 +142,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@owo/owo@^1.2.9":
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/@owo/owo/-/owo-1.2.9.tgz#8902bccbcb29e25622db919dbafaf0c6afd5cb39"
-  integrity sha512-g5ftdyy2I8qdSfUshyOGp1FG3lC4/vew6DEdm3CefA3QymH3GdITJ8+FeP99MPXxGqCmfqRBA+Bi9XSJP8g0xQ==
+"@owo/owo@^1.2.12":
+  version "1.2.12"
+  resolved "https://registry.yarnpkg.com/@owo/owo/-/owo-1.2.12.tgz#714d7d46e0896d74c69c804771697e503fa9f585"
+  integrity sha512-nbz5cZVZfUAOZ/w4UzP9OrO/PXx3HlwdvDC5KctWwXzax9IH43XfLwQdL8I6RKMCClfPhJve9XygDOlrFoV/Aw==
   dependencies:
     "@babel/core" "^7.2.2"
     autoprefixer "^9.4.7"

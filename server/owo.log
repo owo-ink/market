@@ -1,70 +1,30 @@
-22:58:08.257 INFO  --------------------------- 开始编译 --------------------------- 
-22:58:08.257 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
-22:58:08.257 INFO  首次启动! 
-22:58:08.257 INFO  生成版本号: 3mvbkpe5yxc 
-22:58:08.260 INFO  清理资源文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:08.260 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:08.260 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:08.260 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
-22:58:08.261 DEBUG 读取网页标题: 页面 
-22:58:08.261 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
-22:58:08.261 DEBUG 处理模板: ./temp/dad019e4831e2922c9c31c618bd35e52.page 
-22:58:08.417 DEBUG 缓存模板: ./temp/dad019e4831e2922c9c31c618bd35e52.page 
-22:58:08.418 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\resource 
-22:58:08.418 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\resource 
-22:58:08.418 INFO  css中的资源处理完毕! 
-22:58:08.564 INFO  正在处理script! 
-22:58:08.565 INFO  工程中只有一个页面! 
-22:58:08.566 DEBUG 页面中不包含切换动画! 
-22:58:09.433 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\js 
-22:58:09.433 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\js 
-22:58:09.449 INFO  js中的资源处理完毕! 
-22:58:09.450 DEBUG 处理引用脚本: [{"name":"swiper-2.7.0","src":"https://cunchu.site/ozzx/script/idangerous.swiper2.7.0.min.js"}] 
-22:58:09.450 DEBUG 外部脚本数量: 1 
-22:58:09.450 DEBUG 处理脚本: swiper-2.7.0 
-22:58:09.450 DEBUG 网络脚本: swiper-2.7.0 
-22:58:09.450 DEBUG 完成外部脚本引用处理! 
-22:58:09.450 DEBUG 输出scriptData 
-22:58:09.450 DEBUG 判断是否可以输出Html! 
-22:58:09.450 DEBUG 还有没有经过处理的资源! 
-22:58:09.511 DEBUG 需要经过特殊处理的css: [[".o-home .swiper-box ",".o-home "]] 
-22:58:09.511 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\css 
-22:58:09.512 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\css 
-22:58:09.512 DEBUG 判断是否可以输出Html! 
-22:58:09.512 DEBUG 准备输出html! 
-22:58:09.512 DEBUG 开始美化html 
-22:58:36.699 INFO  --------------------------- 开始编译 --------------------------- 
-22:58:36.699 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
-22:58:36.699 INFO  首次启动! 
-22:58:36.699 INFO  生成版本号: 0hs5vmbqmk3v 
-22:58:36.701 INFO  清理资源文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:36.701 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:36.701 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static 
-22:58:36.702 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
-22:58:36.702 DEBUG 读取网页标题: 页面 
-22:58:36.702 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
-22:58:36.702 DEBUG 处理模板: ./temp/dad019e4831e2922c9c31c618bd35e52.page 
-22:58:36.727 DEBUG 缓存模板: ./temp/dad019e4831e2922c9c31c618bd35e52.page 
-22:58:36.727 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\resource 
-22:58:36.727 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\resource 
-22:58:36.727 INFO  css中的资源处理完毕! 
-22:58:36.730 INFO  正在处理script! 
-22:58:36.730 INFO  工程中只有一个页面! 
-22:58:36.731 DEBUG 页面中不包含切换动画! 
-22:58:36.848 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\js 
-22:58:36.848 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\js 
-22:58:36.858 INFO  js中的资源处理完毕! 
-22:58:36.859 DEBUG 处理引用脚本: [{"name":"swiper-2.7.0","src":"https://cunchu.site/ozzx/script/idangerous.swiper2.7.0.min.js"}] 
-22:58:36.859 DEBUG 外部脚本数量: 1 
-22:58:36.859 DEBUG 处理脚本: swiper-2.7.0 
-22:58:36.859 DEBUG 网络脚本: swiper-2.7.0 
-22:58:36.859 DEBUG 完成外部脚本引用处理! 
-22:58:36.859 DEBUG 输出scriptData 
-22:58:36.859 DEBUG 判断是否可以输出Html! 
-22:58:36.859 DEBUG 还有没有经过处理的资源! 
-22:58:36.868 DEBUG 需要经过特殊处理的css: [[".o-home .swiper-box ",".o-home "]] 
-22:58:36.869 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\css 
-22:58:36.869 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\dad019e4831e2922c9c31c618bd35e52\static\css 
-22:58:36.869 DEBUG 判断是否可以输出Html! 
-22:58:36.869 DEBUG 准备输出html! 
-22:58:36.869 DEBUG 开始美化html 
+11:12:18.025 INFO  --------------------------- 开始编译 --------------------------- 
+11:12:18.025 INFO  程序运行目录: /root/market/server 
+11:12:18.025 INFO  首次启动! 
+11:12:18.025 INFO  生成版本号: j4g79891mc8 
+11:12:18.026 INFO  清理资源文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+11:12:18.026 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+11:12:18.026 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+11:12:18.026 INFO  读取模板文件: /root/market/server/node_modules/@owo/owo/lib/index.html 
+11:12:18.026 DEBUG 读取网页标题: 页面 
+11:12:18.026 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+11:12:18.027 DEBUG 处理模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
+11:12:18.065 DEBUG 缓存模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
+11:12:18.066 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/resource 
+11:12:18.066 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/resource 
+11:12:18.067 INFO  css中的资源处理完毕! 
+11:12:18.240 INFO  正在处理script! 
+11:12:18.240 INFO  工程中只有一个页面! 
+11:12:18.241 DEBUG 页面中不包含切换动画! 
+11:12:18.864 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/js 
+11:12:18.864 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/js 
+11:12:18.871 INFO  js中的资源处理完毕! 
+11:12:18.871 DEBUG 处理引用脚本: [] 
+11:12:18.871 DEBUG 没有使用到外部脚本! 
+11:12:18.872 DEBUG 输出scriptData 
+11:12:18.872 DEBUG 判断是否可以输出Html! 
+11:12:18.872 DEBUG 还有没有经过处理的资源! 
+11:12:18.944 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
+11:12:18.944 DEBUG 判断是否可以输出Html! 
+11:12:18.944 DEBUG 准备输出html! 
+11:12:18.944 DEBUG 开始美化html 
