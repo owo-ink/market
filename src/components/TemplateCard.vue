@@ -38,6 +38,7 @@ export default {
     font-size: 12px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    position: relative;
   }
   .attribute-bar {
     background-color: white;
