@@ -1,8 +1,9 @@
 <template>
-  <div class="template-card" @click.stop="$emit('onClick')">
+  <div class="template-card">
     <div class="title-bar">
       <div class="name">{{data.name}}</div>
       <div class="url">{{getUrl(data)}}</div>
+      <div class="icon config-icon" @click.stop="$emit('onClick')">&#xe68d;</div>
       <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
     </div>
     <div class="attribute-bar">
@@ -17,9 +18,13 @@
 </template>
 
 <script>
+import Deformation from 'deformation'
 export default {
   props: {
     data: Object
+  },
+  components: {
+    Deformation
   },
   methods: {
     getUrl: (data) => {
@@ -62,6 +67,7 @@ export default {
     box-sizing: border-box;
     background-color: #f2f2f2;
     height: 300px;
+    position: relative;
   }
   .title-bar {
     display: flex;

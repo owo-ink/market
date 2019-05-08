@@ -9,10 +9,20 @@
             iframe(:src="'/public/' + value.template + '/index.html'")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
-      .control-bar(:class="{active: activeID !== null}")
-        .control-title-bar
-          .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
-          .title-bar-item(@click="controlModel = 'tag'", :class="{active: controlModel === 'tag'}") 标签管理
+      //- 属性控制
+      Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
+        .title-bar
+          .title 属性管理
+          .title-button-box
+            .preview.title-button-box-item(@click="creatTemplate")
+              .icon &#xe642;
+              span 预览
+            .close.title-button-box-item(@click="creatTemplate")
+              .icon &#xe642;
+              span 关闭
+        //- .control-title-bar
+        //-   .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
+        //-   .title-bar-item(@click="controlModel = 'tag'", :class="{active: controlModel === 'tag'}") 标签管理
         template(v-if="controlModel === 'value'")
           .input-box
             .control-item(v-for="control in templateControl.control")
@@ -21,14 +31,15 @@
               JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
               AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
               ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
-          WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
+          //- WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
         template(v-else)
           .tag-list
             .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
               .label {{item.label}}
               .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
               .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-          WaterRipple.add-tag(text="添加标签", @onClick="showAddNewBox")
+      //- 属性管理
+      //- Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
     .add-tag-box(v-show="showAddTagBox || editTagID !== null")
       .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
       .add-box
@@ -43,6 +54,7 @@
 
 <script>
 // @ is an alias to /src
+import Deformation from 'deformation'
 import WaterRipple from 'waterripple'
 import AutoEntry from '@/components/#entry/AutoEntry'
 import SelectEntry from '@/components/#entry/SelectEntry'
@@ -98,7 +110,8 @@ export default {
     SelectEntry,
     WaterRipple,
     TemplateCard,
-    TextareaEntry
+    TextareaEntry,
+    Deformation
   },
   methods: {
     templateClick: function (value, ind) {
@@ -220,7 +233,7 @@ export default {
     height: 100%
     overflow-y: auto
     position: relative
-    width: calc(100% - 300px)
+    width: 100%
     .card-box
       width: 100%
       height: 100%
@@ -233,17 +246,42 @@ export default {
       color: chocolate
   .control-bar
     position: fixed
-    overflow: auto
-    width: 300px
-    height: 100%
-    right: -300px
+    overflow: hidden
     top: 0
-    transition: right 0.5s
-    border-left: 1px solid #ccc
+    opacity: 0
+    background-color: white
     .input-box
       height: calc(100% - 40px)
       overflow-x: hidden
       overflow-y: auto
+    .title
+      height: 40px
+      background-color: #2b303b
+      line-height: 40px
+      padding: 0 10px
+      color: white
+    .title-button-box
+      position: absolute
+      top: 0
+      right: 0
+      line-height: 40px
+      display: flex
+      font-size: 14px
+      color: #87ceeb
+      height: 40px
+      overflow: hidden
+      // 属性管理标题栏按钮
+      .title-button-box-item
+        display: flex
+        padding: 0 5px
+      span
+        display: block
+      .icon
+        height: 40px
+        margin: 0 5px
+        line-height: 40px
+        font-size: 20px
+        color: skyblue
   .control-title-bar
     height: 40px
     display: flex
@@ -259,7 +297,7 @@ export default {
     background-color: white
     color: #333
   .active
-    right: 0
+    opacity: 1
 
   .creat, .add-tag
     background-color: #009fe9
@@ -299,6 +337,7 @@ export default {
       text-align: center
       line-height: 40px
       border-bottom: 1px solid #ccc
+      
     .close
       position: absolute
       right: 10px
