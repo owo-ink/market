@@ -43,4 +43,8 @@ html, body, .app {
   border-radius: 5px;
   background: #EDEDED;
 }
+#attribute {
+  border: none;
+  box-shadow: 1px 1px 5px #b0a8cc;
+}
 </style>

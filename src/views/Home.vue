@@ -10,13 +10,10 @@
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       //- 属性控制
-      Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
+      Deformation.control-bar#attribute(:class="{active: activeID !== null}", :w="320", :h="760")
         .title-bar
           .title 属性管理
           .title-button-box
-            .preview.title-button-box-item(@click="creatTemplate")
-              .icon &#xe642;
-              span 预览
             .close.title-button-box-item(@click="creatTemplate")
               .icon &#xe642;
               span 关闭
@@ -31,7 +28,7 @@
               JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
               AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
               ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
-          //- WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
+          WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
         template(v-else)
           .tag-list
             .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
@@ -246,7 +243,6 @@ export default {
       color: chocolate
   .control-bar
     position: fixed
-    overflow: hidden
     top: 0
     opacity: 0
     background-color: white
@@ -307,7 +303,7 @@ export default {
     position: absolute
     bottom: 0
     width: 100%
-
+    border-radius: 0
   iframe
     width: 100%
     height: 100%
