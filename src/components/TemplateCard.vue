@@ -18,13 +18,9 @@
 </template>
 
 <script>
-import Deformation from 'deformation'
 export default {
   props: {
     data: Object
-  },
-  components: {
-    Deformation
   },
   methods: {
     getUrl: (data) => {

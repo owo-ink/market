@@ -1,6 +1,5 @@
 'use strict'
 const fs = require('fs')
-const path = require('path')
 const express = require('./node_modules/express')
 const app = express()
 const crypto = require('crypto')

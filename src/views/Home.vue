@@ -10,11 +10,11 @@
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       //- 属性控制
-      Deformation.control-bar#attribute(:class="{active: activeID !== null}", :w="320", :h="760")
-        .title-bar
+      Deformation.control-bar#attribute(:class="{active: activeID !== null}", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760")
+        .title-bar.drag-bar
           .title 属性管理
           .title-button-box
-            .close.title-button-box-item(@click="creatTemplate")
+            .close.title-button-box-item(@click="activeID = null")
               .icon &#xe642;
               span 关闭
         //- .control-title-bar

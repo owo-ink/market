@@ -1,108 +1,37 @@
-16:27:32.755 INFO  --------------------------- 开始编译 --------------------------- 
-16:27:32.755 INFO  程序运行目录: C:\Users\PG\Documents\GitHub\market\server 
-16:27:32.755 INFO  首次启动! 
-16:27:32.755 INFO  生成版本号: 1i4n8zm083a 
-16:27:32.759 INFO  清理资源文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:27:32.759 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:27:32.760 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:27:32.760 INFO  读取模板文件: C:\Users\PG\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
-16:27:32.760 DEBUG 读取网页标题: 页面 
-16:27:32.760 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
-16:27:32.760 DEBUG 处理模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-16:27:32.788 DEBUG 缓存模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-16:27:32.790 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-16:27:32.790 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-16:27:32.790 INFO  css中的资源处理完毕! 
-16:27:32.930 INFO  正在处理script! 
-16:27:32.930 INFO  工程中只有一个页面! 
-16:27:32.931 DEBUG 页面中不包含切换动画! 
-16:27:33.734 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-16:27:33.735 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-16:27:33.743 INFO  js中的资源处理完毕! 
-16:27:33.744 DEBUG 处理引用脚本: [] 
-16:27:33.744 DEBUG 没有使用到外部脚本! 
-16:27:33.744 DEBUG 输出scriptData 
-16:27:33.744 DEBUG 判断是否可以输出Html! 
-16:27:33.745 DEBUG 还有没有经过处理的资源! 
-16:27:33.806 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
-16:27:33.806 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-16:27:33.807 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-16:27:33.807 INFO  读取文件: C:\Users\PG\Documents\GitHub\market\server\market.css 
-16:27:33.807 INFO  附属css中的资源不需要处理! 
-16:27:33.807 DEBUG 判断是否可以输出Html! 
-16:27:33.807 DEBUG 准备输出html! 
-16:27:33.807 DEBUG 开始美化html 
-16:27:33.840 INFO  读取成功: C:\Users\PG\Documents\GitHub\market\server\market.css 
-16:27:33.865 INFO  写入文件: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css\market.css 
-16:55:02.211 INFO  --------------------------- 开始编译 --------------------------- 
-16:55:02.211 INFO  程序运行目录: C:\Users\PG\Documents\GitHub\market\server 
-16:55:02.211 INFO  首次启动! 
-16:55:02.211 INFO  生成版本号: ck16fh0ki1 
-16:55:02.215 INFO  清理资源文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:55:02.215 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:55:02.216 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-16:55:02.216 INFO  读取模板文件: C:\Users\PG\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
-16:55:02.216 DEBUG 读取网页标题: 页面 
-16:55:02.216 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
-16:55:02.216 DEBUG 处理模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-16:55:02.225 DEBUG 缓存模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-16:55:02.226 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-16:55:02.226 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-16:55:02.226 INFO  css中的资源处理完毕! 
-16:55:02.227 INFO  正在处理script! 
-16:55:02.228 INFO  工程中只有一个页面! 
-16:55:02.228 DEBUG 页面中不包含切换动画! 
-16:55:02.352 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-16:55:02.354 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-16:55:02.359 INFO  js中的资源处理完毕! 
-16:55:02.360 DEBUG 处理引用脚本: [] 
-16:55:02.360 DEBUG 没有使用到外部脚本! 
-16:55:02.360 DEBUG 输出scriptData 
-16:55:02.360 DEBUG 判断是否可以输出Html! 
-16:55:02.360 DEBUG 还有没有经过处理的资源! 
-16:55:02.369 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
-16:55:02.369 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-16:55:02.369 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-16:55:02.369 INFO  读取文件: C:\Users\PG\Documents\GitHub\market\server\market.css 
-16:55:02.369 INFO  附属css中的资源不需要处理! 
-16:55:02.369 DEBUG 判断是否可以输出Html! 
-16:55:02.370 DEBUG 准备输出html! 
-16:55:02.371 DEBUG 开始美化html 
-16:55:02.381 INFO  读取成功: C:\Users\PG\Documents\GitHub\market\server\market.css 
-16:55:02.385 INFO  写入文件: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css\market.css 
-17:03:33.561 INFO  --------------------------- 开始编译 --------------------------- 
-17:03:33.561 INFO  程序运行目录: C:\Users\PG\Documents\GitHub\market\server 
-17:03:33.561 INFO  首次启动! 
-17:03:33.561 INFO  生成版本号: 31oyz0wls2y 
-17:03:33.564 INFO  清理资源文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-17:03:33.565 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-17:03:33.565 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static 
-17:03:33.565 INFO  读取模板文件: C:\Users\PG\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
-17:03:33.565 DEBUG 读取网页标题: 页面 
-17:03:33.565 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
-17:03:33.565 DEBUG 处理模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-17:03:33.571 DEBUG 缓存模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
-17:03:33.572 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-17:03:33.572 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\resource 
-17:03:33.572 INFO  css中的资源处理完毕! 
-17:03:33.573 INFO  正在处理script! 
-17:03:33.573 INFO  工程中只有一个页面! 
-17:03:33.574 DEBUG 页面中不包含切换动画! 
-17:03:33.632 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-17:03:33.634 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\js 
-17:03:33.639 INFO  js中的资源处理完毕! 
-17:03:33.640 DEBUG 处理引用脚本: [] 
-17:03:33.640 DEBUG 没有使用到外部脚本! 
-17:03:33.640 DEBUG 输出scriptData 
-17:03:33.640 DEBUG 判断是否可以输出Html! 
-17:03:33.640 DEBUG 还有没有经过处理的资源! 
-17:03:33.648 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
-17:03:33.648 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-17:03:33.649 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css 
-17:03:33.649 INFO  读取文件: C:\Users\PG\Documents\GitHub\market\server\market.css 
-17:03:33.649 INFO  附属css中的资源不需要处理! 
-17:03:33.649 DEBUG 判断是否可以输出Html! 
-17:03:33.649 DEBUG 准备输出html! 
-17:03:33.650 DEBUG 开始美化html 
-17:03:33.657 INFO  读取成功: C:\Users\PG\Documents\GitHub\market\server\market.css 
-17:03:33.662 INFO  写入文件: C:\Users\PG\Documents\GitHub\market\server\temp\7d7233398a2d8e3dbfe0c51db7158223\static\css\market.css 
+22:59:03.436 INFO  --------------------------- 开始编译 --------------------------- 
+22:59:03.436 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
+22:59:03.436 INFO  首次启动! 
+22:59:03.436 INFO  生成版本号: j2yy55tbpwr 
+22:59:03.436 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2 
+22:59:03.436 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2 
+22:59:03.436 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static 
+22:59:03.437 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static 
+22:59:03.437 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+22:59:03.438 DEBUG 读取网页标题: 页面 
+22:59:03.438 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+22:59:03.438 DEBUG 处理模板: ./temp/a4c8c5f7bef5df03540c9719f36893b2.page 
+22:59:03.473 DEBUG 缓存模板: ./temp/a4c8c5f7bef5df03540c9719f36893b2.page 
+22:59:03.478 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\resource 
+22:59:03.478 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\resource 
+22:59:03.478 INFO  css中的资源处理完毕! 
+22:59:03.638 INFO  正在处理script! 
+22:59:03.639 INFO  工程中只有一个页面! 
+22:59:03.641 DEBUG 页面中不包含切换动画! 
+22:59:04.605 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\js 
+22:59:04.606 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\js 
+22:59:04.616 INFO  js中的资源处理完毕! 
+22:59:04.617 DEBUG 处理引用脚本: [] 
+22:59:04.617 DEBUG 没有使用到外部脚本! 
+22:59:04.617 DEBUG 输出scriptData 
+22:59:04.617 DEBUG 判断是否可以输出Html! 
+22:59:04.617 DEBUG 还有没有经过处理的资源! 
+22:59:04.681 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
+22:59:04.681 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\css 
+22:59:04.681 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\css 
+22:59:04.682 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\market.css 
+22:59:04.682 INFO  附属css中的资源不需要处理! 
+22:59:04.682 DEBUG 判断是否可以输出Html! 
+22:59:04.682 DEBUG 准备输出html! 
+22:59:04.682 DEBUG 开始美化html 
+22:59:04.711 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\market.css 
+22:59:04.716 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\temp\a4c8c5f7bef5df03540c9719f36893b2\static\css\market.css 
