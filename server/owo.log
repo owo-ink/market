@@ -28,3 +28,33 @@
 11:12:18.944 DEBUG 判断是否可以输出Html! 
 11:12:18.944 DEBUG 准备输出html! 
 11:12:18.944 DEBUG 开始美化html 
+13:06:11.297 INFO  --------------------------- 开始编译 --------------------------- 
+13:06:11.297 INFO  程序运行目录: /root/market/server 
+13:06:11.297 INFO  首次启动! 
+13:06:11.297 INFO  生成版本号: xf5y5wvsvwi 
+13:06:11.297 INFO  清理资源文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+13:06:11.297 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+13:06:11.297 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static 
+13:06:11.297 INFO  读取模板文件: /root/market/server/node_modules/@owo/owo/lib/index.html 
+13:06:11.297 DEBUG 读取网页标题: 页面 
+13:06:11.297 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+13:06:11.297 DEBUG 处理模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
+13:06:11.307 DEBUG 缓存模板: ./temp/7d7233398a2d8e3dbfe0c51db7158223.page 
+13:06:11.307 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/resource 
+13:06:11.307 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/resource 
+13:06:11.307 INFO  css中的资源处理完毕! 
+13:06:11.308 INFO  正在处理script! 
+13:06:11.309 INFO  工程中只有一个页面! 
+13:06:11.309 DEBUG 页面中不包含切换动画! 
+13:06:11.460 INFO  文件夹不存在: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/js 
+13:06:11.460 INFO  创建文件夹: /root/market/server/temp/7d7233398a2d8e3dbfe0c51db7158223/static/js 
+13:06:11.465 INFO  js中的资源处理完毕! 
+13:06:11.465 DEBUG 处理引用脚本: [] 
+13:06:11.465 DEBUG 没有使用到外部脚本! 
+13:06:11.465 DEBUG 输出scriptData 
+13:06:11.465 DEBUG 判断是否可以输出Html! 
+13:06:11.465 DEBUG 还有没有经过处理的资源! 
+13:06:11.473 DEBUG 需要经过特殊处理的css: [[".o-home .title-bar ",".o-home "]] 
+13:06:11.473 DEBUG 判断是否可以输出Html! 
+13:06:11.473 DEBUG 准备输出html! 
+13:06:11.473 DEBUG 开始美化html 

@@ -51,7 +51,6 @@ import JsonEntry from '@/components/#entry/JsonEntry'
 import TextareaEntry from '@/components/#entry/TextareaEntry'
 import TemplateCard from '@/components/TemplateCard.vue'
 import axios from 'axios'
-import { type } from 'os';
 
 export default {
   name: 'home',

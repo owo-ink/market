@@ -57,7 +57,12 @@ const mysql      = require('./node_modules/mysql');
 // 生成html页面
 function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
   console.log(styleLsit, scriptList)
-  let styleArr = []
+  let styleArr = [
+    {
+      name: "market",
+      src: "./market.css"
+    }
+  ]
   let scriptArr = []
   styleLsit.forEach(style => {
     // 从style列表中取出此项的url
