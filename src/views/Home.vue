@@ -10,7 +10,7 @@
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       //- 属性控制
-      Deformation.control-bar#attribute(:class="{active: activeID !== null}", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760")
+      Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760")
         .title-bar.drag-bar
           .title 属性管理
           .title-button-box
@@ -132,7 +132,7 @@ export default {
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
       let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
-      console.log(addTagCopy)
+      // console.log(addTagCopy)
       if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
         addTagCopy.value = JSON.parse(addTagCopy.value)
       }
@@ -176,7 +176,7 @@ export default {
     },
     editTag: function () {
       let copyData = JSON.parse(JSON.stringify(this.templateControl))
-      console.log(copyData)
+      // console.log(copyData)
       
       copyData.control[this.editTagID] = this.addTag
       if (this.addTag.type === 'array' || this.addTag.type === 'object') {
@@ -212,16 +212,17 @@ export default {
   .type-bar
     height: 40px
     display: flex
+    background-color: #262626
     .type-item
-      background-color: #009fe9
-      color: white
-      width: 80px
+      color: #bbb
+      width: 60px
       text-align: center
       line-height: 30px
-      margin: 5px
+      padding: 5px
       cursor: pointer
+      font-size: 14px
     .active
-      background-color: coral
+      color: #3d91ff
   .content-bar
     height: calc(100% - 40px)
     width: 100%
@@ -243,8 +244,7 @@ export default {
       color: chocolate
   .control-bar
     position: fixed
-    top: 0
-    opacity: 0
+    top: 2%
     background-color: white
     .input-box
       height: calc(100% - 40px)
@@ -270,6 +270,8 @@ export default {
       .title-button-box-item
         display: flex
         padding: 0 5px
+      .close
+        cursor: pointer
       span
         display: block
       .icon

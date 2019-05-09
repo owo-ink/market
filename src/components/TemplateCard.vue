@@ -3,8 +3,10 @@
     <div class="title-bar">
       <div class="name">{{data.name}}</div>
       <div class="url">{{getUrl(data)}}</div>
-      <div class="icon config-icon" @click.stop="$emit('onClick')">&#xe68d;</div>
-      <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
+      <div class="icon-bar">
+        <div class="icon config-icon" @click.stop="$emit('onClick')">&#xe68d;</div>
+        <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
+      </div>
     </div>
     <div class="attribute-bar">
       <span class="attribute-bar-item">{{data.browser}}</span>
@@ -79,12 +81,17 @@ export default {
   .title-bar .url {
     width: calc(100% - 140px);
   }
-  .edit-icon {
+  .icon-bar {
+    position: absolute;
+    right: 0;
+  }
+  .icon-bar .icon {
     width: 25px;
     line-height: 25px;
-    position: absolute;
-    right: 10px;
-    color: darkgreen;
     font-size: 1.4em;
+  }
+  .edit-icon {
+    color: darkgreen;
+    
   }
 </style>
