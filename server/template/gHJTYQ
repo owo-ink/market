@@ -22,6 +22,7 @@
   background-repeat: no-repeat;
   background-position: 90px 15px;
   width: 270px;
+  height: 149px;
 }
 .title-bar {
   display: block;

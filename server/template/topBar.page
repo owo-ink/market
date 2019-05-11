@@ -2,7 +2,7 @@
   <div class="title-bar">
     <div class="content">
       <a class="content-item" href="http://www.people.com.cn/">
-        <img class="logo" src="{{--logo--}}"/>
+        <img class="logo" src="{{prop.logo}}"/>
       </a>
     </div>
   </div>
@@ -10,7 +10,8 @@
 
 <style>
 .title-bar {
-  background-color: {{--bgColor--}};
+  height: 40px;
+  background-color: {{prop.bgColor}};
 }
 .content {
   width: 1000px;

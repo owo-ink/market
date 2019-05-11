@@ -2,7 +2,7 @@
   <div class="swiper-box">
     <div class="swiper-container" id="auto-swiper">
       <div class="swiper-wrapper">
-        <div class="swiper-slide card" @for="value in swiperList">
+        <div class="swiper-slide card" @for="value in data.swiperList">
           <div class="swiper-item" >
             <a href="#">
               <img src="{{value.image}}"/>
@@ -20,6 +20,7 @@
 <script>
   module.exports = {
     created: function () {
+      console.log('sd')
       this.data.swiper = new Swiper('#auto-swiper', {{--swiperSetting--}})
     },
     data: {
@@ -39,6 +40,8 @@
 
 <style lang="less">
   .swiper-box {
+    height: 200px;
+    width: 100%;
     background-color: {{--bgColor--}};
     .swiper-container {
       margin: 15px 40px;

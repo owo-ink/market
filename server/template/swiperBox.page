@@ -2,7 +2,7 @@
 .swiper-box
   .right.float-left.swiper-container-pPX8XxuUyIehAAEu
     .swiper-wrapper
-      .swiper-slide(@for="item in swiperBoxList")
+      .swiper-slide(@for="item in data.swiperBoxList")
         img(src="{{item.src}}")
         .text {{item.text}}
     .pagination-pPX8XxuUyIehAAEu

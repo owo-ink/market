@@ -54,7 +54,7 @@ const mysql      = require('./node_modules/mysql');
 }
 
 // 生成html页面
-function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
+function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
   console.log(styleLsit, scriptList)
   let styleArr = [
     {
@@ -121,6 +121,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList) {
         main: true,
         isPage: true,
         name: 'home',
+        prop: controlList,
         src: tempUrl
       }
     ],
@@ -191,13 +192,14 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     console.log(`读取文件: ./template/${body['templateFile']}`)
     let templateData = fs.readFileSync(`./template/${body['templateFile']}`, 'utf8')
     // 控制列表
-    const controlList = body['control']
-    if (controlList) {
-      controlList.forEach(control => {
+    let controlList = {}
+    if (body['control']) {
+      body['control'].forEach(control => {
         if (typeof control['value'] === 'object') {
-          control['value'] = JSON.stringify(control['value'])
+          controlList[control.name] = JSON.stringify(control['value'])
+        } else {
+          controlList[control.name] = control['value']
         }
-        templateData = templateData.replace('{{--' + control['name'] + '--}}', control['value'])
       })
     }
     // 计算MD5
@@ -215,7 +217,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     if (!body['scriptList']) body['scriptList'] = []
     if (typeof body['styleList'] === 'string') body['styleList'] = JSON.parse(body['styleList'])
     if (typeof body['scriptList'] === 'string') body['scriptList'] = JSON.parse(body['scriptList'])
-    creatHtml(tempPath, md5Data, body['styleList'], body['scriptList'])
+    creatHtml(tempPath, md5Data, body['styleList'], body['scriptList'], controlList)
     res.end(JSON.stringify({
       err: 0,
       templateID: md5Data
