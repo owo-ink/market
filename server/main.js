@@ -195,11 +195,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     let controlList = {}
     if (body['control']) {
       body['control'].forEach(control => {
-        if (typeof control['value'] === 'object') {
-          controlList[control.name] = JSON.stringify(control['value'])
-        } else {
-          controlList[control.name] = control['value']
-        }
+        controlList[control.name] = control['value']
       })
     }
     // 计算MD5
