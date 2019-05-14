@@ -4,7 +4,8 @@
       <div class="name">{{data.name}}</div>
       <div class="url">{{getUrl(data)}}</div>
       <div class="icon-bar">
-        <div class="icon config-icon" @click.stop="$emit('onClick')">&#xe68d;</div>
+        <div class="icon config-icon" @click.stop="$emit('changeConfig')">&#xe68d;</div>
+        <div class="icon config-icon" @click.stop="$emit('changeAttribute')">&#xe68d;</div>
         <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
       </div>
     </div>

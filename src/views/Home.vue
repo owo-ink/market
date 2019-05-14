@@ -5,7 +5,7 @@
     .content-bar
       .left
         .card-box
-          TemplateCard(v-for="(value, ind) in templateList", :data="value", @onClick="templateClick(value, ind)", :key="value.id")
+          TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", @changeAttribute="showAttribute(value, ind)", :key="value.id")
             iframe(:src="'/public/' + value.template + '/index.html'")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
@@ -117,6 +117,9 @@ export default {
       this.activeID = ind
       this.activeTemplate = value
       this.templateControl = value
+    },
+    showAttribute: function (value, ind) {
+      this.controlModel = 'tag'
     },
     creatTemplate: function () {
       axios.post('/creatTemplate', {data: this.templateControl}).then((response) => {
