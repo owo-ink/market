@@ -4,8 +4,11 @@
       <div class="name">{{data.name}}</div>
       <div class="url">{{getUrl(data)}}</div>
       <div class="icon-bar">
+        <!-- 新窗口打开 -->
+        <div class="icon copy" :data-clipboard-text="getUrl(data)">&#xe800;</div>
+        <a class="icon preview" target="_blank" :href="getShowUrl(data)">&#xe604;</a>
         <div class="icon config-icon" @click.stop="$emit('changeConfig')">&#xe68d;</div>
-        <div class="icon config-icon" @click.stop="$emit('changeAttribute')">&#xe68d;</div>
+        <div class="icon config-icon" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
         <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
       </div>
     </div>
@@ -21,13 +24,20 @@
 </template>
 
 <script>
+import ClipboardJS from 'clipboard'
 export default {
   props: {
     data: Object
   },
+  created: function () {
+    new ClipboardJS('.copy')
+  },
   methods: {
     getUrl: (data) => {
       return 'https://' + window.location.host + '/public/' + data.template + '.page'
+    },
+    getShowUrl: (data) => {
+      return 'https://' + window.location.host + '/public/' + data.template + '/index.html'
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)

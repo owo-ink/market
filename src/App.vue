@@ -15,12 +15,12 @@ html, body, .app {
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1131144 */
-  src: url('//at.alicdn.com/t/font_1131144_aknxed63w0i.eot');
-  src: url('//at.alicdn.com/t/font_1131144_aknxed63w0i.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1131144_aknxed63w0i.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1131144_aknxed63w0i.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1131144_aknxed63w0i.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1131144_aknxed63w0i.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.eot');
+  src: url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1131144_2sy1rrn9ve5.svg#iconfont') format('svg');
 }
 .icon {
   font-family: "iconfont";
@@ -46,5 +46,9 @@ html, body, .app {
 #attribute {
   border: none;
   box-shadow: 1px 1px 5px #b0a8cc;
+}
+a {
+  text-decoration: none;
+  color: unset;
 }
 </style>

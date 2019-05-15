@@ -13,6 +13,7 @@
     "@puge/highlight": "^1.1.8",
     "axios": "^0.18.0",
     "body-parser": "1.19.0",
+    "clipboard": "^2.0.4",
     "crypto": "^1.0.1",
     "deformation": "^1.1.2",
     "express": "^4.16.4",

@@ -117,8 +117,10 @@ export default {
       this.activeID = ind
       this.activeTemplate = value
       this.templateControl = value
+      this.controlModel = 'value'
     },
     showAttribute: function (value, ind) {
+      this.activeID = ind
       this.controlModel = 'tag'
     },
     creatTemplate: function () {

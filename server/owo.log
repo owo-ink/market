@@ -1,0 +1,53 @@
+14:38:25.600 INFO  --------------------------- 开始编译 --------------------------- 
+14:38:25.600 INFO  程序运行目录: C:\Users\PG\Documents\GitHub\market\server 
+14:38:25.600 INFO  首次启动! 
+14:38:25.600 INFO  生成版本号: viht7uzi8q 
+14:38:25.600 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71 
+14:38:25.600 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71 
+14:38:25.600 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static 
+14:38:25.601 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static 
+14:38:25.601 INFO  读取模板文件: C:\Users\PG\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+14:38:25.601 DEBUG 读取网页标题: 页面 
+14:38:25.601 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+14:38:25.601 DEBUG 处理模板: ./temp/171db4e43c6883c3f79382421d96dc71.page 
+14:38:25.629 DEBUG 缓存模板: ./temp/171db4e43c6883c3f79382421d96dc71.page 
+14:38:25.651 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\resource 
+14:38:25.651 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\resource 
+14:38:25.652 INFO  css中的资源处理完毕! 
+14:38:25.811 INFO  正在处理script! 
+14:38:25.812 INFO  工程中只有一个页面! 
+14:38:25.828 DEBUG 页面中不包含切换动画! 
+14:38:28.087 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\js 
+14:38:28.088 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\js 
+14:38:28.121 INFO  js中的资源处理完毕! 
+14:38:28.122 DEBUG 处理引用脚本: [] 
+14:38:28.122 DEBUG 没有使用到外部脚本! 
+14:38:28.122 DEBUG 输出scriptData 
+14:38:28.123 DEBUG 判断是否可以输出Html! 
+14:38:28.123 DEBUG 还有没有经过处理的资源! 
+14:38:37.871 INFO  --------------------------- 开始编译 --------------------------- 
+14:38:37.871 INFO  程序运行目录: C:\Users\PG\Documents\GitHub\market\server 
+14:38:37.871 INFO  首次启动! 
+14:38:37.871 INFO  生成版本号: 0swoqmqpt1ml 
+14:38:37.874 INFO  清理资源文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static 
+14:38:37.874 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static 
+14:38:37.874 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static 
+14:38:37.874 INFO  读取模板文件: C:\Users\PG\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+14:38:37.874 DEBUG 读取网页标题: 页面 
+14:38:37.874 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/html; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+14:38:37.874 DEBUG 处理模板: ./temp/171db4e43c6883c3f79382421d96dc71.page 
+14:38:37.882 DEBUG 缓存模板: ./temp/171db4e43c6883c3f79382421d96dc71.page 
+14:38:37.882 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\resource 
+14:38:37.882 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\resource 
+14:38:37.882 INFO  css中的资源处理完毕! 
+14:38:37.883 INFO  正在处理script! 
+14:38:37.883 INFO  工程中只有一个页面! 
+14:38:37.884 DEBUG 页面中不包含切换动画! 
+14:38:37.938 INFO  文件夹不存在: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\js 
+14:38:37.938 INFO  创建文件夹: C:\Users\PG\Documents\GitHub\market\server\temp\171db4e43c6883c3f79382421d96dc71\static\js 
+14:38:37.941 INFO  js中的资源处理完毕! 
+14:38:37.944 DEBUG 处理引用脚本: [] 
+14:38:37.944 DEBUG 没有使用到外部脚本! 
+14:38:37.944 DEBUG 输出scriptData 
+14:38:37.944 DEBUG 判断是否可以输出Html! 
+14:38:37.944 DEBUG 还有没有经过处理的资源! 
