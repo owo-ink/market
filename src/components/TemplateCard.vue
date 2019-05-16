@@ -3,9 +3,9 @@
     <div class="title-bar">
       <div class="name">{{data.name}}</div>
       <div class="url">{{getUrl(data)}}</div>
-      <div class="icon-bar">
+      <div class="icon-bar" v-once>
         <!-- 新窗口打开 -->
-        <div class="icon copy" :data-clipboard-text="getUrl(data)">&#xe800;</div>
+        <div class="icon copy" :data-clipboard-text="getCopyUrl(data)">&#xe800;</div>
         <a class="icon preview" target="_blank" :href="getShowUrl(data)">&#xe604;</a>
         <div class="icon config-icon" @click.stop="$emit('changeConfig')">&#xe68d;</div>
         <div class="icon config-icon" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
@@ -41,6 +41,19 @@ export default {
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
+    },
+    getCopyUrl: function (data) {
+      console.log(data)
+      const control = JSON.parse(data.control)
+      let parameter = ''
+      if (control) {
+        for (let ind = 0; ind < control.length; ind++) {
+          const item = control[ind]
+          parameter += `${item.name}=${JSON.stringify(item.value)} `
+        }
+      }
+      const temp = `<temple name="${data.templateFile}" ${parameter} src="https://${window.location.host}/public/${data.template}.page"></temple>`
+      return temp
     }
   }
 }
