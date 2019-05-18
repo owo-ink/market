@@ -10,7 +10,7 @@
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       //- 属性控制
-      Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760")
+      Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
         .title-bar.drag-bar
           .title 属性管理
           .title-button-box
@@ -94,7 +94,7 @@ export default {
         type: "",
         label: "",
         value: "",
-        model: ""
+        model: "template"
       }
     }
   },
@@ -128,6 +128,8 @@ export default {
     },
     showAttribute: function (value, ind) {
       this.activeID = ind
+      this.activeTemplate = value
+      this.templateControl = value
       this.controlModel = 'tag'
     },
     creatTemplate: function () {
@@ -157,7 +159,8 @@ export default {
             name: "",
             type: "",
             label: "",
-            value: ""
+            value: "",
+            model: "template"
           }
           this.templateControl['control'] = templateControlCopy
           alert('添加成功!')

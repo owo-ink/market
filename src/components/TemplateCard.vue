@@ -5,11 +5,11 @@
       <div class="url">{{getUrl(data)}}</div>
       <div class="icon-bar" v-once>
         <!-- 新窗口打开 -->
-        <div class="icon copy" :data-clipboard-text="getCopyUrl(data)">&#xe800;</div>
-        <a class="icon preview" target="_blank" :href="getShowUrl(data)">&#xe604;</a>
-        <div class="icon config-icon" @click.stop="$emit('changeConfig')">&#xe68d;</div>
-        <div class="icon config-icon" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
-        <div class="icon edit-icon" @click="edit(data.id)">&#xe64f;</div>
+        <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl(data)">&#xe800;</div>
+        <a class="icon preview" title="预览模板" target="_blank" :href="getShowUrl(data)">&#xe604;</a>
+        <div class="icon config-icon" title="配置管理" @click.stop="$emit('changeConfig')">&#xe68d;</div>
+        <div class="icon config-icon" title="标签管理" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
+        <div class="icon edit-icon" title="编辑模板" @click="edit(data.id)">&#xe64f;</div>
       </div>
     </div>
     <div class="attribute-bar">
@@ -115,9 +115,9 @@ export default {
     width: 25px;
     line-height: 25px;
     font-size: 1.4em;
+    color: dimgray;
   }
-  .edit-icon {
-    color: darkgreen;
-    
+  .icon-bar .icon:hover {
+    color: skyblue;
   }
 </style>
