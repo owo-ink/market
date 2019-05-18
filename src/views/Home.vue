@@ -44,6 +44,7 @@
         .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
         AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
         SelectEntry(text="标签类型", v-model="addTag.type", :option="typeSelectList", def="string")
+        SelectEntry(text="标签模式", v-model="addTag.model", :option="modelSelectList", def="template")
         AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
         TextareaEntry(name="标签数值", v-model="addTag.value")
         WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
@@ -84,11 +85,16 @@ export default {
         {value: 'object', text: '对象'},
         {value: 'numnber', text: '数字'}
       ],
+      modelSelectList: [
+        {value: 'template', text: '模板插值'},
+        {value: 'prop', text: 'prop传值'},
+      ],
       addTag: {
         name: "",
         type: "",
         label: "",
-        value: ""
+        value: "",
+        model: ""
       }
     }
   },

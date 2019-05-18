@@ -43,13 +43,15 @@ export default {
       this.$router.push(`/edit/${id}`)
     },
     getCopyUrl: function (data) {
-      console.log(data)
       const control = JSON.parse(data.control)
       let parameter = ''
       if (control) {
         for (let ind = 0; ind < control.length; ind++) {
           const item = control[ind]
-          parameter += `${item.name}=${JSON.stringify(item.value)} `
+          // 判断不是模板插值情况
+          if (item.model !== 'template') {
+            parameter += `${item.name}=${JSON.stringify(item.value)} `
+          }
         }
       }
       const temp = `<temple name="${data.templateFile}" ${parameter} src="https://${window.location.host}/public/${data.template}.page"></temple>`
