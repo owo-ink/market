@@ -206,7 +206,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
         // 第一次模板处理
         templateData = replaceAll(templateData, `<<${control.name}>>`, control['value'])
 
-        if (templateData.includes(`{{${control.name}}}`)) {
+        if (templateData.includes(`{{prop.${control.name}}}`)) {
           controlList[control.name] = control['value']
         }
       })
