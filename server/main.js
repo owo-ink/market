@@ -23,6 +23,13 @@ app.use('/public', express.static('temp'))
 let styleListDB = []
 let scriptListDB = []
 
+// 全替换方法
+function replaceAll (str, substr, newstr) {
+  substr = substr.replace(/[.\\[\]{}()|^$?*+]/g, "\\$&")
+  const re = new RegExp(substr, "g")
+  return str.replace(re, newstr)
+}
+
 // 连接数据库
 const mysql      = require('./node_modules/mysql');
 {
@@ -195,7 +202,13 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     let controlList = {}
     if (body['control']) {
       body['control'].forEach(control => {
-        controlList[control.name] = control['value']
+        
+        // 第一次模板处理
+        templateData = replaceAll(templateData, `<<${control.name}>>`, control['value'])
+
+        if (templateData.includes(`{{${control.name}}}`)) {
+          controlList[control.name] = control['value']
+        }
       })
     }
     // 计算MD5

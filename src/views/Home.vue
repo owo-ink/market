@@ -35,6 +35,7 @@
               .label {{item.label}}
               .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
               .delete.icon(@click="deleteTag(item, ind)") &#xe686;
+            WaterRipple.creat(text="添加标签", @onClick="showAddTagBox = true")
       //- 属性管理
       //- Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
     .add-tag-box(v-show="showAddTagBox || editTagID !== null")
