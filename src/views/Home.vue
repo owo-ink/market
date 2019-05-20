@@ -127,6 +127,7 @@ export default {
       this.controlModel = 'value'
     },
     showAttribute: function (value, ind) {
+      if (typeof value.control === 'string') value.control = JSON.parse(value.control)
       this.activeID = ind
       this.activeTemplate = value
       this.templateControl = value
