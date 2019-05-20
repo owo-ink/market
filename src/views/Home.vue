@@ -91,7 +91,7 @@ export default {
       ],
       addTag: {
         name: "",
-        type: "",
+        type: "string",
         label: "",
         value: "",
         model: "template"
@@ -159,7 +159,7 @@ export default {
         if (response.data.err === 0) {
           this.addTag = {
             name: "",
-            type: "",
+            type: "string",
             label: "",
             value: "",
             model: "template"
