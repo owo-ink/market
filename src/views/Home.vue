@@ -145,6 +145,7 @@ export default {
     },
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
+      if (!templateControlCopy) templateControlCopy = []
       let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
       // console.log(addTagCopy)
       if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
