@@ -26,7 +26,7 @@
               TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
               JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
               JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
-              AutoEntry(v-else-if="control.type === 'number'", :name="control.label", v-model="control.value")
+              AutoEntry(v-else-if="control.type === 'number'", :type="Number" :name="control.label", v-model="control.value")
               ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
           WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
         template(v-else)
@@ -83,7 +83,7 @@ export default {
         {value: 'array', text: '数组'},
         {value: 'color', text: '颜色'},
         {value: 'object', text: '对象'},
-        {value: 'numnber', text: '数字'}
+        {value: 'number', text: '数字'}
       ],
       modelSelectList: [
         {value: 'template', text: '模板插值'},
@@ -151,6 +151,8 @@ export default {
       // console.log(addTagCopy)
       if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
         addTagCopy.value = JSON.parse(addTagCopy.value)
+      } else if (addTagCopy.type === 'number') {
+        addTagCopy.value = parseInt(addTagCopy.value)
       }
       
       templateControlCopy.push(addTagCopy)

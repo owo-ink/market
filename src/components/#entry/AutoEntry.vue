@@ -3,9 +3,9 @@
     span.auto-text {{name}}
     .input-box(:class="{ number: type === Number && step !== 0}")
       template(v-if="type === Number")
-        .icon.add(v-if="step !== 0", @click="changeValue(value + step)") &#xe603;
+        .icon.reduce(v-if="step !== 0", @click="changeValue(value - step)") -
         input.auto-input(type="number", :value="value", :placeholder="def", @change="updateValue($event)")
-        .icon.reduce(v-if="step !== 0", @click="changeValue(value - step)") &#xe7ac;
+        .icon.add(v-if="step !== 0", @click="changeValue(value + step)") +
       input.auto-input(v-else, type="text", :value="value", :placeholder="def", @change="updateValue($event)")
 </template>
 
