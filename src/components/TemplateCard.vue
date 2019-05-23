@@ -2,11 +2,11 @@
   <div class="template-card">
     <div class="title-bar">
       <div class="name">{{data.name}}</div>
-      <div class="url">{{getUrl(data)}}</div>
-      <div class="icon-bar" v-once>
+      <div class="url">{{getUrl()}}</div>
+      <div class="icon-bar">
         <!-- 新窗口打开 -->
-        <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl(data)">&#xe800;</div>
-        <a class="icon preview" title="预览模板" target="_blank" :href="getShowUrl(data)">&#xe604;</a>
+        <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl()">&#xe800;</div>
+        <a class="icon preview" title="预览模板" target="_blank" :href="getShowUrl()">&#xe604;</a>
         <div class="icon config-icon" title="配置管理" @click.stop="$emit('changeConfig')">&#xe68d;</div>
         <div class="icon config-icon" title="标签管理" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
         <div class="icon edit-icon" title="编辑模板" @click="edit(data.id)">&#xe64f;</div>
@@ -33,17 +33,17 @@ export default {
     new ClipboardJS('.copy')
   },
   methods: {
-    getUrl: (data) => {
-      return 'https://' + window.location.host + '/public/' + data.template + '.page'
+    getUrl: function () {
+      return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
     },
-    getShowUrl: (data) => {
-      return 'https://' + window.location.host + '/public/' + data.template + '/index.html'
+    getShowUrl: function () {
+      return 'https://' + window.location.host + '/public/' + this.data.template + '/index.html'
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
     },
-    getCopyUrl: function (data) {
-      const control = JSON.parse(data.control)
+    getCopyUrl: function () {
+      const control = this.data.control
       let parameter = ''
       if (control) {
         for (let ind = 0; ind < control.length; ind++) {
@@ -54,7 +54,7 @@ export default {
           }
         }
       }
-      const temp = `<temple name="${data.templateFile}" ${parameter} src="https://${window.location.host}/public/${data.template}.page"></temple>`
+      const temp = `<temple name="${this.data.templateFile}" ${parameter} src="https://${window.location.host}/public/${this.data.template}.page"></temple>`
       return temp
     }
   }
