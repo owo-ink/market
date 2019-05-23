@@ -194,6 +194,8 @@ app.get('/typeList', (req, res) => {
 
 app.all('/creatTemplate', jsonParser, function(req, res){
   const body = req.body.data
+  console.log('请求创建模块:')
+  console.log(body)
   if (body) {
     // 读取模板文件
     console.log(`读取文件: ./template/${body['templateFile']}`)

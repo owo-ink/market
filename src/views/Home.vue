@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 // @ is an alias to /src
 import Deformation from 'deformation'
 import WaterRipple from 'waterripple'
@@ -98,7 +99,11 @@ export default {
       }
     }
   },
+  ...mapState({
+    position: store => store
+  }),
   created: function () {
+    console.log(this)
     axios.get('/typeList').then((response) => {
       const data = response.data.data
       this.templateList = data.template
