@@ -204,7 +204,7 @@ app.all('/creatTemplate', jsonParser, function(req, res){
     let controlList = {}
     if (body['control']) {
       body['control'].forEach(control => {
-        
+        if (typeof control['value'] === 'object') control['value'] = JSON.stringify(control['value'])
         // 第一次模板处理
         templateData = replaceAll(templateData, `<<${control.name}>>`, control['value'])
 
