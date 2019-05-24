@@ -7,6 +7,8 @@
         .card-box
           TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", @changeAttribute="showAttribute(value, ind)", :key="value.id")
             iframe(:src="'/public/' + value.template + '/index.html'")
+          // 页码
+          PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
         // 添加模板按钮
         .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
       //- 属性控制
@@ -62,6 +64,7 @@ import ColorEntry from '@/components/#entry/ColorEntry'
 import JsonEntry from '@/components/#entry/JsonEntry'
 import TextareaEntry from '@/components/#entry/TextareaEntry'
 import TemplateCard from '@/components/TemplateCard.vue'
+import PaginationBox from '@/components/PaginationBox'
 import axios from 'axios'
 
 export default {
@@ -77,6 +80,12 @@ export default {
       controlModel: 'value',
       showAddTagBox: false,
       editTagID: null,
+      // 模板总数
+      templateNumber: 0,
+      // 页码总数
+      paginationNum: 1,
+      // 当前活跃页码
+      activePaginationNum: 1,
       // 当前选中的模式
       activeType: null,
       typeSelectList: [
@@ -111,12 +120,24 @@ export default {
         this.$store.commit('changeType', data.type)
         // 默认选中第一个模式
         this.activeType = data.type[0].value
+        // 获取页码总数
+        axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
+          console.log(`获取到模板总数: ${response.data.data}`)
+          this.templateNumber = response.data.data
+          this.paginationNum = Math.ceil(response.data.data / 5)
+        })
       })
     } else {
       this.activeType = this.$store.state.activeType
       this.typeList = this.$store.state.type
-      axios.get(`/getTemplateListByType?type=${this.activeType}`).then((response) => {
+      axios.get(`/getTemplateListByType?type=${this.activeType}&page=0&num=5`).then((response) => {
         this.templateList = response.data.data
+      })
+      // 获取页码总数
+      axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
+        console.log(`获取到模板总数: ${response.data.data}`)
+        this.templateNumber = response.data.data
+        this.paginationNum = Math.ceil(response.data.data / 5)
       })
     }
   },
@@ -128,7 +149,8 @@ export default {
     WaterRipple,
     TemplateCard,
     TextareaEntry,
-    Deformation
+    Deformation,
+    PaginationBox
   },
   methods: {
     templateClick: function (value, ind) {
@@ -152,10 +174,18 @@ export default {
       })
     },
     changeType: function (type) {
+      // 清除活跃页码
+      this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
       this.activeType = type
-      axios.get(`/getTemplateListByType?type=${type}`).then((response) => {
+      axios.get(`/getTemplateListByType?type=${type}&page=0&num=5`).then((response) => {
         this.templateList = response.data.data
+        // 获取页码总数
+        axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
+          console.log(`获取到模板总数: ${response.data.data}`)
+          this.templateNumber = response.data.data
+          this.paginationNum = Math.ceil(response.data.data / 5)
+        })
       })
     },
     addNewTag: function () {
@@ -233,6 +263,15 @@ export default {
         value: ""
       }
       this.showAddTagBox = !this.showAddTagBox
+    },
+    // 变更页码
+    changePageNum: function (num) {
+      console.log(`跳转到页码: ${num}`)
+      // 设置活跃页码
+      this.activePaginationNum = num
+      axios.get(`/getTemplateListByType?type=${this.activeType}&page=${(num - 1) * 5}&num=5`).then((response) => {
+        this.templateList = response.data.data
+      })
     }
   }
 }
