@@ -16,7 +16,7 @@
 }
 
 /* 让内容居中显示 */
-.o-home {
+[template=home] {
   position: absolute;
   left: 0;
   right: 0;
