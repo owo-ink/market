@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import Store from '@/store.js'
 // @ is an alias to /src
 import Deformation from 'deformation'
 import WaterRipple from 'waterripple'
@@ -99,18 +99,26 @@ export default {
       }
     }
   },
-  ...mapState({
-    position: store => store
-  }),
   created: function () {
-    console.log(this)
-    axios.get('/typeList').then((response) => {
-      const data = response.data.data
-      this.templateList = data.template
-      this.typeList = data.type
-      // 默认选中第一个模式
-      this.activeType = data.type[0].value
-    })
+    if (this.$store.state.activeType === null) {
+      axios.get('/typeList').then((response) => {
+        // 默认选中header
+        this.$store.commit('changeActiveType', 'header')
+        
+        const data = response.data.data
+        this.templateList = data.template
+        this.typeList = data.type
+        this.$store.commit('changeType', data.type)
+        // 默认选中第一个模式
+        this.activeType = data.type[0].value
+      })
+    } else {
+      this.activeType = this.$store.state.activeType
+      this.typeList = this.$store.state.type
+      axios.get(`/getTemplateListByType?type=${this.activeType}`).then((response) => {
+        this.templateList = response.data.data
+      })
+    }
   },
   components: {
     ColorEntry,
@@ -144,6 +152,7 @@ export default {
       })
     },
     changeType: function (type) {
+      this.$store.commit('changeActiveType', type)
       this.activeType = type
       axios.get(`/getTemplateListByType?type=${type}`).then((response) => {
         this.templateList = response.data.data
