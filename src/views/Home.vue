@@ -194,6 +194,14 @@ export default {
       let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
       // console.log(addTagCopy)
       if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
+        // 数据清洗
+        addTagCopy.value = addTagCopy.value.replace(/\r/g, '')
+        addTagCopy.value = addTagCopy.value.replace(/\n/g, '')
+        addTagCopy.value = addTagCopy.value.replace(/ /g, '')
+        addTagCopy.value = addTagCopy.value.replace(/},]/g, '}]')
+        addTagCopy.value = addTagCopy.value.replace(/],]/g, ']]')
+        addTagCopy.value = addTagCopy.value.replace(/},}/g, '}}')
+
         addTagCopy.value = JSON.parse(addTagCopy.value)
       } else if (addTagCopy.type === 'number') {
         addTagCopy.value = parseInt(addTagCopy.value)
@@ -243,6 +251,14 @@ export default {
       
       copyData.control[this.editTagID] = this.addTag
       if (this.addTag.type === 'array' || this.addTag.type === 'object') {
+        // 数据清洗
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/\r/g, '')
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/\n/g, '')
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/ /g, '')
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/},]/g, '}]')
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/},}/g, '}}')
+        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/],]/g, ']]')
+
         copyData.control[this.editTagID].value = JSON.parse(copyData.control[this.editTagID].value)
       }
       this.templateControl = copyData
