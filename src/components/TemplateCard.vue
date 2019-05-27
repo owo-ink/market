@@ -5,6 +5,7 @@
       <div class="url">{{getUrl()}}</div>
       <div class="icon-bar">
         <!-- 新窗口打开 -->
+        <div class="icon set-default" title="设置为默认模板" @click.stop="setDefault()">&#xe795;</div>
         <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl()">&#xe800;</div>
         <a class="icon preview" title="预览模板" target="_blank" :href="getShowUrl()">&#xe604;</a>
         <div class="icon config-icon" title="配置管理" @click.stop="$emit('changeConfig')">&#xe68d;</div>
@@ -24,7 +25,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import ClipboardJS from 'clipboard'
+import { type } from 'os';
+
 export default {
   props: {
     data: Object
@@ -43,19 +47,30 @@ export default {
       this.$router.push(`/edit/${id}`)
     },
     getCopyUrl: function () {
-      const control = this.data.control
+      const control = JSON.parse(this.data.control)
       let parameter = ''
       if (control) {
         for (let ind = 0; ind < control.length; ind++) {
           const item = control[ind]
           // 判断不是模板插值情况
           if (item.model !== 'template') {
+            console.log(item)
             parameter += `${item.name}=${JSON.stringify(item.value)} `
           }
         }
       }
       const temp = `<temple name="${this.data.templateFile}" ${parameter} src="https://${window.location.host}/public/${this.data.template}.page"></temple>`
       return temp
+    },
+    setDefault: function () {
+      console.log('更新默认模板!')
+      axios.get(`/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
+        if (response.data.err === 0) {
+          alert('更新成功!')
+        } else {
+          alert('更新失败!')
+        }
+      })
     }
   }
 }

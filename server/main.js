@@ -169,6 +169,27 @@ app.get('/getNumByType', (req, res) => {
   })
 })
 
+// 重新设置默认页面
+app.get('/setDefault', (req, res) => {
+  const connection = mysql.createConnection({
+    host     : 'cdb-iphpadts.cd.tencentcdb.com',
+    port     : 10035,
+    user     : 'ozzx',
+    password : 'ozzx',
+    database : 'ozzx'
+  })
+  connection.connect()
+  const sql = `UPDATE template SET template = '${req.query.template}' WHERE id = '${req.query.id}'`
+  console.log(`执行sql: ${sql}`)
+  connection.query(sql, (numError, numResults, typeFields) => {
+    connection.end()
+    if (numError) throw numError
+    res.send({
+      err: 0
+    })
+  })
+})
+
 
 app.get('/getTemplateListByType', (req, res) => {
   const connection = mysql.createConnection({
