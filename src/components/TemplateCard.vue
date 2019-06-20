@@ -1,13 +1,12 @@
 <template>
   <div class="template-card">
-    <div class="title-bar">
+    <div class="title-bar" :class="{compatible: data.browser === '兼容所有浏览器'}">
       <div class="name">{{data.name}}</div>
-      <div class="url">{{getUrl()}}</div>
+      <a class="url" title="预览模板" target="_blank" :href="getShowUrl()">{{getShowUrl()}}</a>
       <div class="icon-bar">
         <!-- 新窗口打开 -->
         <div class="icon set-default" title="设置为默认模板" @click.stop="setDefault()">&#xe795;</div>
         <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl()">&#xe800;</div>
-        <a class="icon preview" title="预览模板" target="_blank" :href="getShowUrl()">&#xe604;</a>
         <div class="icon config-icon" title="配置管理" @click.stop="$emit('changeConfig')">&#xe68d;</div>
         <div class="icon config-icon" title="标签管理" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
         <div class="icon edit-icon" title="编辑模板" @click="edit(data.id)">&#xe64f;</div>
@@ -41,7 +40,7 @@ export default {
       return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
     },
     getShowUrl: function () {
-      return 'https://' + window.location.host + '/public/' + this.data.template + '/index.html'
+      return 'https://' + window.location.host + '/public/' + this.data.template
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
@@ -54,7 +53,7 @@ export default {
           const item = control[ind]
           // 判断不是模板插值情况
           if (item.model !== 'template') {
-            console.log(item)
+            // console.log(item)
             parameter += `${item.name}=${JSON.stringify(item.value)} `
           }
         }
@@ -76,7 +75,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .template-card {
     margin: 10px;
     font-size: 12px;
@@ -112,8 +111,8 @@ export default {
     display: flex;
     text-align: center;
     line-height: 25px;
-    background-color: white;
     position: relative;
+    background-color: antiquewhite;
   }
   .title-bar .name {
     width: 140px;
@@ -134,5 +133,10 @@ export default {
   }
   .icon-bar .icon:hover {
     color: skyblue;
+  }
+  .compatible {
+    .title-bar {
+      background-color: lightgreen;
+    }
   }
 </style>
