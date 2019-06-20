@@ -134,12 +134,13 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
     ],
     // 输出配置
     outPut: {
+      merge: false,
       // 是否压缩css
-      minifyCss: true,
+      minifyCss: false,
       // 是否压缩js
-      minifyJs: true,
+      minifyJs: false,
       // 输出文件自动追加版本号，可以用来消除缓存
-      addVersion: true,
+      addVersion: false,
     }
   }
   console.log(styleArr, scriptArr)
