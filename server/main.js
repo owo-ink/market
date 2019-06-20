@@ -134,7 +134,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
     ],
     // 输出配置
     outPut: {
-      merge: false,
+      merge: true,
       // 是否压缩css
       minifyCss: false,
       // 是否压缩js
