@@ -113,12 +113,12 @@ export default {
 .edit
   overflow-x: hidden
   overflow-y: auto
-  height: calc(100% - 296px)
+  height: calc(100% - 292px)
   border: none
-  padding: 0
-  width: 100%
+  width: calc(100% - 10px)
   resize: none
   padding: 5px
+  display: block
 select
   width: 100%
   border: none
@@ -135,6 +135,8 @@ select
   line-height: 40px
 .check-box
   height: 40px
+  overflow-y: hidden
+  overflow-x: scroll
   .check-item
     line-height: 40px
     float: left

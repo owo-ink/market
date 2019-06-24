@@ -1,60 +1,61 @@
 <template lang="pug">
   .home
-    .type-bar
-      .type-item(v-for="value in typeList", :class="{active: activeType === value.value}" @click="changeType(value.value)") {{value.name}}
-    .content-bar
-      .left
-        .card-box
-          TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", @changeAttribute="showAttribute(value, ind)", :key="value.id")
-            iframe(:src="'/public/' + value.template + '/index.html'")
-          // 页码
-          PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
-        // 添加模板按钮
-        .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
-      //- 属性控制
-      Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
-        .title-bar.drag-bar
-          .title 属性管理
-          .title-button-box
-            .close.title-button-box-item(@click="activeID = null")
-              .icon &#xe642;
-              span 关闭
-        //- .control-title-bar
-        //-   .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
-        //-   .title-bar-item(@click="controlModel = 'tag'", :class="{active: controlModel === 'tag'}") 标签管理
-        template(v-if="controlModel === 'value'")
-          .input-box
-            .control-item(v-for="control in templateControl.control")
-              TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
-              JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
-              JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
-              AutoEntry(v-else-if="control.type === 'number'", :type="Number" :name="control.label", v-model="control.value")
-              ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
-          WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
-        template(v-else)
-          .tag-list
-            .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
-              .label {{item.label}}
-              .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
-              .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-            WaterRipple.creat(text="添加标签", @onClick="showAddTagBox = true")
-      //- 属性管理
-      //- Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
-    .add-tag-box(v-show="showAddTagBox || editTagID !== null")
-      .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
-      .add-box
-        .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
-        AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
-        SelectEntry(text="标签类型", v-model="addTag.type", :option="typeSelectList", def="string")
-        SelectEntry(text="标签模式", v-model="addTag.model", :option="modelSelectList", def="template")
-        AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
-        TextareaEntry(name="标签数值", v-model="addTag.value")
-        WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
-        WaterRipple.add-tag(v-else, text="确定修改", @onClick="editTag")
+    .loading-box(v-if="loading")
+    template(v-else)
+      .type-bar
+        .type-item(v-for="value in typeList", :class="{active: activeType === value.value}" @click="changeType(value.value)") {{value.name}}
+      .content-bar
+        .left
+          .card-box
+            TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", @changeAttribute="showAttribute(value, ind)", :key="value.id")
+              iframe(:src="'/public/' + value.template + '/index.html'")
+            // 页码
+            PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
+          // 添加模板按钮
+          .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
+        //- 属性控制
+        Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
+          .title-bar.drag-bar
+            .title 属性管理
+            .title-button-box
+              .close.title-button-box-item(@click="activeID = null")
+                .icon &#xe642;
+                span 关闭
+          //- .control-title-bar
+          //-   .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
+          //-   .title-bar-item(@click="controlModel = 'tag'", :class="{active: controlModel === 'tag'}") 标签管理
+          template(v-if="controlModel === 'value'")
+            .input-box
+              .control-item(v-for="control in templateControl.control")
+                TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
+                JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
+                JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
+                AutoEntry(v-else-if="control.type === 'number'", :type="Number" :name="control.label", v-model="control.value")
+                ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
+            WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
+          template(v-else)
+            .tag-list
+              .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
+                .label {{item.label}}
+                .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
+                .delete.icon(@click="deleteTag(item, ind)") &#xe686;
+              WaterRipple.creat(text="添加标签", @onClick="showAddTagBox = true")
+        //- 属性管理
+        //- Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
+      .add-tag-box(v-show="showAddTagBox || editTagID !== null")
+        .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
+        .add-box
+          .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
+          AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
+          SelectEntry(text="标签类型", v-model="addTag.type", :option="typeSelectList", def="string")
+          SelectEntry(text="标签模式", v-model="addTag.model", :option="modelSelectList", def="template")
+          AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
+          TextareaEntry(name="标签数值", v-model="addTag.value")
+          WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
+          WaterRipple.add-tag(v-else, text="确定修改", @onClick="editTag")
 </template>
 
 <script>
-import Store from '@/store.js'
 // @ is an alias to /src
 import Deformation from 'deformation'
 import WaterRipple from 'waterripple'
@@ -71,6 +72,7 @@ export default {
   name: 'home',
   data: function () {
     return {
+      loading: true,
       src: '',
       activeID: null,
       activeTemplate: null,
@@ -109,6 +111,7 @@ export default {
     }
   },
   created: function () {
+    // 判断是否有记录
     if (this.$store.state.activeType === null) {
       axios.get('/typeList').then((response) => {
         // 默认选中header
@@ -120,24 +123,16 @@ export default {
         this.$store.commit('changeType', data.type)
         // 默认选中第一个模式
         this.activeType = data.type[0].value
-        // 获取页码总数
-        axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
-          console.log(`获取到模板总数: ${response.data.data}`)
-          this.templateNumber = response.data.data
-          this.paginationNum = Math.ceil(response.data.data / 5)
-        })
+        // 获取页码
+        this.getNumByType()
       })
     } else {
       this.activeType = this.$store.state.activeType
       this.typeList = this.$store.state.type
       axios.get(`/getTemplateListByType?type=${this.activeType}&page=0&num=5`).then((response) => {
         this.templateList = response.data.data
-      })
-      // 获取页码总数
-      axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
-        console.log(`获取到模板总数: ${response.data.data}`)
-        this.templateNumber = response.data.data
-        this.paginationNum = Math.ceil(response.data.data / 5)
+        // 获取页码
+        this.getNumByType()
       })
     }
   },
@@ -174,6 +169,7 @@ export default {
       })
     },
     changeType: function (type) {
+      this.loading = true
       // 清除活跃页码
       this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
@@ -181,11 +177,7 @@ export default {
       axios.get(`/getTemplateListByType?type=${type}&page=0&num=5`).then((response) => {
         this.templateList = response.data.data
         // 获取页码总数
-        axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
-          console.log(`获取到模板总数: ${response.data.data}`)
-          this.templateNumber = response.data.data
-          this.paginationNum = Math.ceil(response.data.data / 5)
-        })
+        this.getNumByType()
       })
     },
     addNewTag: function () {
@@ -285,8 +277,18 @@ export default {
       console.log(`跳转到页码: ${num}`)
       // 设置活跃页码
       this.activePaginationNum = num
+      this.loading = true
       axios.get(`/getTemplateListByType?type=${this.activeType}&page=${(num - 1) * 5}&num=5`).then((response) => {
         this.templateList = response.data.data
+        this.loading = false
+      })
+    },
+    getNumByType: function () {
+      axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
+        console.log(`获取到模板总数: ${response.data.data}`)
+        this.templateNumber = response.data.data
+        this.paginationNum = Math.ceil(response.data.data / 5)
+        this.loading = false
       })
     }
   }
@@ -451,4 +453,10 @@ export default {
         right: 0
         color: white
         background-color: teal
+.loading-box
+  width: 100%
+  height: 100%
+  background-image: url('../assets/loading.svg')
+  background-repeat: no-repeat
+  background-position: center
 </style>

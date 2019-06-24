@@ -26,7 +26,6 @@
 <script>
 import axios from 'axios'
 import ClipboardJS from 'clipboard'
-import { type } from 'os';
 
 export default {
   props: {
