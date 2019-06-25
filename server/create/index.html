@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>{{title}}</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        user-select: text;
+        font: normal 12px/180% "SimSun";
+        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        overflow-x: hidden;
+        min-height: 100%;
+      }
+      body {
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center 40px;
+        min-width: 1200px;
+      }
+      html {
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-color: white;
+      }
+      h1, h2, h3, h4, h5, input {
+        margin: 0;
+        padding: 0;
+      }
+      .fl {
+        float: left;
+      }
+      ul, li {
+        list-style-type: none;
+      }
+
+      a {
+        color: unset;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td{
+        margin:0;
+        padding:0;
+      }
+
+      .clear:after {
+        content: "";
+        height: 0;
+        line-height: 0;
+        display: block;
+        visibility: hidden;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const ws = new WebSocket("ws://" + window.location.host)
+      ws.onopen = function() {
+        ws.send(JSON.stringify({
+          type: "init"
+        }))
+      }
+    </script>
+  </body>
+</html>

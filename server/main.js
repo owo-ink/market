@@ -7,8 +7,10 @@ const owo = require('@owo/owo')
 const bodyParser = require('./node_modules/body-parser')
 
 const jsonParser = bodyParser.json() // 获取JSON解析器中间件
+// 使express处理ws请求
+const wsServe = require('express-ws')(app)
 
-//设置允许跨域访问该服务.
+// 设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Methods', '*')
@@ -19,6 +21,7 @@ app.all('*', function (req, res, next) {
 // 静态目录
 app.use('/', express.static('static'))
 app.use('/public', express.static('temp'))
+app.use('/create', express.static('create'))
 
 let styleListDB = []
 let scriptListDB = []
@@ -413,6 +416,14 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
   } else {
     res.end('{"err":1,"message": "数据不能为空!"}')
   }
+})
+
+// 页面之间通信
+app.ws('/', function(ws, req) {
+  ws.on('message', function(msg) {
+    const data = JSON.parse(msg)
+    console.log(data)
+  })
 })
 
 app.listen(8004, () => console.log('服务运行于8004端口!'))

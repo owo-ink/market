@@ -22,3 +22,4 @@ yarn-error.log*
 *.sw*
 server/template/
 *.page
+*/owo.log
