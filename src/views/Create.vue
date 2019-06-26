@@ -18,7 +18,6 @@ export default {
         type: "init"
       }))
     }
-    
   }
 }
 </script>

@@ -3,7 +3,7 @@
     .loading-box(v-if="loading")
     template(v-else)
       .type-bar
-        .type-item(v-for="value in typeList", :class="{active: activeType === value.value}" @click="changeType(value.value)") {{value.name}}
+        .type-item(v-for="value in typeList", :class="{active: $route.params.type === value.value}" @click="changeType(value.value)") {{value.name}}
       .content-bar
         .left
           .card-box
@@ -88,8 +88,6 @@ export default {
       paginationNum: 1,
       // 当前活跃页码
       activePaginationNum: 1,
-      // 当前选中的模式
-      activeType: null,
       typeSelectList: [
         {value: 'string', text: '字符串'},
         {value: 'array', text: '数组'},
@@ -111,30 +109,9 @@ export default {
     }
   },
   created: function () {
+    console.log(this.$route.params)
     // 判断是否有记录
-    if (this.$store.state.activeType === null) {
-      axios.get('/typeList').then((response) => {
-        // 默认选中header
-        this.$store.commit('changeActiveType', 'header')
-        
-        const data = response.data.data
-        this.templateList = data.template
-        this.typeList = data.type
-        this.$store.commit('changeType', data.type)
-        // 默认选中第一个模式
-        this.activeType = data.type[0].value
-        // 获取页码
-        this.getNumByType()
-      })
-    } else {
-      this.activeType = this.$store.state.activeType
-      this.typeList = this.$store.state.type
-      axios.get(`/getTemplateListByType?type=${this.activeType}&page=0&num=5`).then((response) => {
-        this.templateList = response.data.data
-        // 获取页码
-        this.getNumByType()
-      })
-    }
+    this.load()
   },
   components: {
     ColorEntry,
@@ -148,6 +125,30 @@ export default {
     PaginationBox
   },
   methods: {
+    load: function () {
+      if (!this.$route.params.type) {
+        axios.get('/typeList').then((response) => {
+          // 默认选中header
+          this.$store.commit('changeActiveType', 'header')
+          
+          const data = response.data.data
+          this.templateList = data.template
+          this.typeList = data.type
+          this.$store.commit('changeType', data.type)
+          // 获取页码
+          this.getNumByType()
+        })
+      } else {
+        const type = this.$route.params.type
+        const page = this.$route.params.page
+        this.typeList = this.$store.state.type
+        axios.get(`/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+          this.templateList = response.data.data
+          // 获取页码
+          this.getNumByType()
+        })
+      }
+    },
     templateClick: function (value, ind) {
       // 特殊处理
       if (typeof value.control === 'string') value.control = JSON.parse(value.control)
@@ -173,12 +174,7 @@ export default {
       // 清除活跃页码
       this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
-      this.activeType = type
-      axios.get(`/getTemplateListByType?type=${type}&page=0&num=5`).then((response) => {
-        this.templateList = response.data.data
-        // 获取页码总数
-        this.getNumByType()
-      })
+      this.$router.push(`/${type}/0`)
     },
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
@@ -278,18 +274,23 @@ export default {
       // 设置活跃页码
       this.activePaginationNum = num
       this.loading = true
-      axios.get(`/getTemplateListByType?type=${this.activeType}&page=${(num - 1) * 5}&num=5`).then((response) => {
+      axios.get(`/getTemplateListByType?type=${this.$route.params.type}&page=${(num - 1) * 5}&num=5`).then((response) => {
         this.templateList = response.data.data
         this.loading = false
       })
     },
     getNumByType: function () {
-      axios.get(`/getNumByType?type=${this.activeType}`).then((response) => {
+      axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
         console.log(`获取到模板总数: ${response.data.data}`)
         this.templateNumber = response.data.data
         this.paginationNum = Math.ceil(response.data.data / 5)
         this.loading = false
       })
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.load()
     }
   }
 }
