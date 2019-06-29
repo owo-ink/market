@@ -8,7 +8,7 @@ const bodyParser = require('./node_modules/body-parser')
 
 const jsonParser = bodyParser.json() // 获取JSON解析器中间件
 // 使express处理ws请求
-const wsServe = require('express-ws')(app)
+const wss = require('express-ws')(app)
 
 // 设置允许跨域访问该服务.
 app.all('*', function (req, res, next) {
@@ -47,14 +47,14 @@ const mysql      = require('./node_modules/mysql');
   connection.connect()
   
   // 获取样式列表
-  connection.query('SELECT * FROM style', (error, results, fields) => {
+  connection.query('SELECT * FROM style', (error, results) => {
     if (error) throw error
     console.log('获取样式列表成功!')
     styleListDB = results
   })
   
   // 获取脚本列表
-  connection.query('SELECT * FROM script', (error, results, fields) => {
+  connection.query('SELECT * FROM script', (error, results) => {
     if (error) throw error
     console.log('获取脚本列表成功!')
     scriptListDB = results
@@ -113,7 +113,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
     headList: [
       {
         'http-equiv': 'content-type',
-        content: 'text/html; charset=UTF-8',
+        content: 'text/htmlText; charset=UTF-8',
       },
       {
         name: 'viewport',
@@ -146,7 +146,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
       addVersion: false,
     }
   }
-  console.log(styleArr, scriptArr)
+  // console.log(styleArr, scriptArr)
   const pack = new owo(config, () => {})
   pack.pack()
 }
@@ -163,7 +163,7 @@ app.get('/getNumByType', (req, res) => {
   connection.connect()
   const sql = `SELECT Count(*) as value FROM template WHERE type='${req.query.type}'`
   console.log(`执行sql: SELECT Count(*) as value FROM template WHERE type='${req.query.type}'`)
-  connection.query(sql, (numError, numResults, typeFields) => {
+  connection.query(sql, (numError, numResults) => {
     connection.end()
     if (numError) throw numError
     res.send({
@@ -185,7 +185,7 @@ app.get('/setDefault', (req, res) => {
   connection.connect()
   const sql = `UPDATE template SET template = '${req.query.template}' WHERE id = '${req.query.id}'`
   console.log(`执行sql: ${sql}`)
-  connection.query(sql, (numError, numResults, typeFields) => {
+  connection.query(sql, (numError) => {
     connection.end()
     if (numError) throw numError
     res.send({
@@ -204,7 +204,7 @@ app.get('/getTemplateListByType', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  connection.query(`SELECT * FROM template WHERE type='${req.query.type}' limit ${req.query.page}, ${req.query.num}`, (templateError, templateResults, typeFields) => {
+  connection.query(`SELECT * FROM template WHERE type='${req.query.type}' limit ${req.query.page}, ${req.query.num}`, (templateError, templateResults) => {
     connection.end()
     if (templateError) throw templateError
     res.send({
@@ -224,9 +224,9 @@ app.get('/typeList', (req, res) => {
   })
   connection.connect()
   // 查询类型列表
-  connection.query('SELECT * FROM type', (typeError, typeResults, typeFields) => {
+  connection.query('SELECT * FROM type', (typeError, typeResults) => {
     if (typeError) throw typeError;
-    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults, typeFields) => {
+    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults) => {
       connection.end()
       if (templateError) throw templateError;
       res.send({
@@ -300,7 +300,7 @@ app.all('/changeControl', jsonParser, function(req, res){
     
     console.log(`收到数据:`, body["data"])
     console.log(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`)
-    connection.query(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`, (error, results, fields) => {
+    connection.query(`UPDATE template SET control = '${JSON.stringify(body["data"])}' WHERE id = '${body["id"]}'`, (error, results) => {
       connection.end()
       if (error) throw error
       res.send({
@@ -325,12 +325,12 @@ app.get('/getInfo', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  connection.query(`SELECT * FROM type`, (error, typeResults, typeFields) => {
+  connection.query(`SELECT * FROM type`, (error, typeResults) => {
     // 判断是否为修改
     if (req.query && req.query.id) {
       console.log(`根据ID查找模板: ${req.query.id}`)
       // 根据id查找对应模板
-      connection.query(`SELECT * FROM template WHERE id=${req.query.id}`, (error, templateData, typeFields) => {
+      connection.query(`SELECT * FROM template WHERE id=${req.query.id}`, (error, templateData) => {
         connection.end()
         if (error) throw error
         // console.log(templateData)
@@ -376,7 +376,7 @@ app.all('/saveTemplateFile', jsonParser, function(req, res){
     connection.connect()
     const sql = `INSERT INTO template (name, templateFile, styleList, scriptList, browser, type) VALUES ('${body.name}', '${body.templateFile}', '${body.styleList}', '${body.scriptList}', '${body.browser}', '${body.type}')`
     // console.log(sql)
-    connection.query(sql, (error, results, fields) => {
+    connection.query(sql, (error, results) => {
       connection.end()
       if (error) throw error
       console.log(results)
@@ -405,7 +405,7 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
     connection.connect()
     const sql = `UPDATE template SET name = "${body.name}", styleList = '${body.styleList}', scriptList = '${body.scriptList}',  browser = "${body. browser}", type = "${body.type}"  WHERE id = '${body.id}'`
     console.log(`执行SQL：${sql}`)
-    connection.query(sql, (error, results, fields) => {
+    connection.query(sql, (error) => {
       connection.end()
       if (error) throw error
       fs.writeFileSync(`./template/${body.templateFile}`, body.value)
@@ -418,11 +418,110 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
   }
 })
 
+// function creatDom (data) {
+
+// }
+
+// 创建页面
+function createHtml (data) {
+  // console.log(data)
+  let htmlText = `<${data.type} owo-id="${data.id}">${data.text}`
+  // 生成owo代码
+  if (data.children && data.children.length > 0) {
+    data.children.forEach(element => {
+      htmlText += createHtml(element)
+    })
+  }
+  htmlText += `</${data.type}>`
+  return htmlText
+}
+
 // 页面之间通信
-app.ws('/', function(ws, req) {
+app.ws('/', function(ws) {
   ws.on('message', function(msg) {
-    const data = JSON.parse(msg)
-    console.log(data)
+    const message = JSON.parse(msg)
+    // 判断消息类型
+    switch (message.type) {
+      case 'create':
+        fs.writeFileSync('./create/page.owo', `
+        <template>${createHtml(message.data)}<div class="owo-build-info">${(new Date()).valueOf()}</div></template>
+      `)
+        // htmlText
+        // 生成页面配置
+        let config = {
+          // 项目根目录
+          root: "/src",
+          // 项目入口文件
+          entry: "home",
+          // 页面标题
+          title: '页面',
+          // 输出目录
+          outFolder: './create',
+          // 资源目录
+          resourceFolder: "./src/resource",
+          // head属性清单
+          headList: [
+            {
+              'http-equiv': 'content-type',
+              content: 'text/htmlText; charset=UTF-8',
+            },
+            {
+              name: 'viewport',
+              content: 'initial-scale=1,user-scalable=no,maximum-scale=1',
+            }
+          ],
+          // 使用到的外部脚本清单
+          scriptList: [
+            {
+              name: 'main',
+              src: './create/main.js'
+            }
+          ],
+          // 使用到的样式列表
+          styleList: [
+            {
+              name: 'main',
+              src: './create/main.css'
+            }
+          ],
+          // 页面清单
+          pageList: [
+            {
+              // 是否为页面主入口
+              main: true,
+              isPage: true,
+              name: 'home',
+              src: './create/page.owo'
+            }
+          ],
+          // 输出配置
+          outPut: {
+            merge: true,
+            // 是否压缩css
+            minifyCss: false,
+            // 是否压缩js
+            minifyJs: false,
+            // 输出文件自动追加版本号，可以用来消除缓存
+            addVersion: false,
+          }
+        }
+        // console.log(styleArr, scriptArr)
+        new owo(config, () => {}).pack()
+        // 发送重新刷新命令
+        wss.getWss().clients.forEach(function each(client) {
+          if (client.readyState === 1) {
+            const sendData = JSON.stringify({
+              type: 'reload'
+            })
+            console.log(sendData)
+            client.send(sendData)
+          }
+        })
+        break;
+      default:
+        console.log(message)
+        break;
+    }
   })
 })
 

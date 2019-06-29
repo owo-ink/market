@@ -1,73 +1,84 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <title>{{title}}</title>
-    <style>
-      body, html {
-        margin: 0;
-        padding: 0;
-        user-select: text;
-        font: normal 12px/180% "SimSun";
-        -webkit-overflow-scrolling: touch;
-        width: 100%;
-        overflow-x: hidden;
-        min-height: 100%;
-      }
-      body {
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: center 40px;
-        min-width: 1200px;
-      }
-      html {
-        background-position: center bottom;
-        background-repeat: no-repeat;
-        background-color: white;
-      }
-      h1, h2, h3, h4, h5, input {
-        margin: 0;
-        padding: 0;
-      }
-      .fl {
-        float: left;
-      }
-      ul, li {
-        list-style-type: none;
-      }
 
-      a {
-        color: unset;
-        cursor: pointer;
-        display: block;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
+<head>
+  <title>页面</title>
+  <!-- 页面的元信息 -->
+  <meta http-equiv="content-type" content="text/htmlText; charset=UTF-8" />
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1" />
+  <!-- 页面主样式文件 -->
+  <style>
+    body,
+    html,
+    .ox {
+      padding: 0;
+      margin: 0;
+    }
 
-      h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td{
-        margin:0;
-        padding:0;
-      }
+    .owo-animation {
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+    }
 
-      .clear:after {
-        content: "";
-        height: 0;
-        line-height: 0;
-        display: block;
-        visibility: hidden;
-        clear: both;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      const ws = new WebSocket("ws://" + window.location.host)
-      ws.onopen = function() {
-        ws.send(JSON.stringify({
-          type: "init"
-        }))
-      }
-    </script>
-  </body>
+    a:link,
+    a:visited {
+      text-decoration: none;
+    }
+
+    /* 清除浮动 */
+    .clear:after {
+      content: "";
+      height: 0;
+      line-height: 0;
+      display: block;
+      visibility: hidden;
+      clear: both;
+      zoom: 1;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+  </style>
+  <!-- 附属css文件 -->
+  <link rel="stylesheet" href="./static/css/main.css" charset="utf-8">
+
+</head>
+
+<body>
+  <!-- 页面区域 -->
+  <div template="home" class="ox" id="o-home">
+    <div owo-id="root">
+      <h1 owo-id="5hd5376xawg000">asdasdasd</h1>
+    </div>
+    <div class="owo-build-info">1561825558353</div>
+  </div>
+  <!-- owo框架代码 -->
+  <script>
+    "use strict";
+
+    window.owo = {
+      // 页面数据和方法
+      script: {
+        "home": {}
+      },
+      // 页面默认入口
+      entry: "home"
+    };
+  </script>
+  <!-- 框架script文件 -->
+  <script src="./static/js/owo.main.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="./static/js/main.js" type="text/javascript" charset="UTF-8"></script>
+</body>
+
 </html>

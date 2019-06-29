@@ -1,0 +1,144 @@
+00:24:56.795 INFO  --------------------------- 开始编译 --------------------------- 
+00:24:56.795 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
+00:24:56.795 INFO  首次启动! 
+00:24:56.795 INFO  生成版本号: fcjw9qyg8g8 
+00:24:56.797 INFO  清理资源文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:24:56.797 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:24:56.798 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:24:56.798 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+00:24:56.798 DEBUG 读取网页标题: 页面 
+00:24:56.798 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/htmlText; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+00:24:56.799 INFO  开始处理模块: home 
+00:24:56.799 DEBUG 处理模板: ./create/page.owo 
+00:24:56.808 INFO  模块: home 不包含script 
+00:24:56.836 DEBUG 缓存模板: home./create/page.owo 
+00:24:56.836 DEBUG 模板home处理用时: 37 毫秒! 
+00:24:56.837 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:24:56.838 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:24:56.838 INFO  css中的资源处理完毕! 
+00:24:56.838 DEBUG 使用postcss处理样式，使用了1个插件! 
+00:24:56.881 INFO  正在处理script! 
+00:24:56.882 INFO  工程中只有一个页面! 
+00:24:56.883 DEBUG 页面中不包含切换动画! 
+00:24:57.537 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:24:57.538 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:24:57.538 DEBUG 选择将js合并到html中! 
+00:24:57.553 INFO  js中的资源处理完毕! 
+00:24:57.553 DEBUG 处理引用脚本: [{"name":"main","src":"./create/main.js"}] 
+00:24:57.553 DEBUG 外部脚本数量: 1 
+00:24:57.553 DEBUG 处理脚本: main 
+00:24:57.553 DEBUG 不使用bable处理脚本! 
+00:24:57.553 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:24:57.554 DEBUG 输出scriptData 
+00:24:57.554 DEBUG 判断是否可以输出Html! 
+00:24:57.554 DEBUG 还有没有经过处理的资源! 
+00:24:57.566 INFO  使用postcss处理完毕! 用时: 728 毫秒 
+00:24:57.566 DEBUG 需要经过特殊处理的css: [] 
+00:24:57.566 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:24:57.566 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:24:57.567 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:24:57.567 INFO  附属css中的资源不需要处理! 
+00:24:57.567 DEBUG 判断是否可以输出Html! 
+00:24:57.567 DEBUG 准备输出html! 
+00:24:57.567 DEBUG 开始美化html 
+00:24:57.595 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:24:57.595 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:24:57.595 INFO  主要逻辑文件写出成功! 
+00:24:57.597 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\js\main.js 
+00:24:57.597 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\css\main.css 
+00:25:39.421 INFO  --------------------------- 开始编译 --------------------------- 
+00:25:39.421 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
+00:25:39.421 INFO  首次启动! 
+00:25:39.421 INFO  生成版本号: hubcq5mwcvd 
+00:25:39.423 INFO  清理资源文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:39.423 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:39.424 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:39.424 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+00:25:39.424 DEBUG 读取网页标题: 页面 
+00:25:39.424 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/htmlText; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+00:25:39.424 INFO  开始处理模块: home 
+00:25:39.424 DEBUG 处理模板: ./create/page.owo 
+00:25:39.428 INFO  模块: home 不包含script 
+00:25:39.436 DEBUG 缓存模板: home./create/page.owo 
+00:25:39.436 DEBUG 模板home处理用时: 12 毫秒! 
+00:25:39.437 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:25:39.437 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:25:39.437 INFO  css中的资源处理完毕! 
+00:25:39.437 DEBUG 使用postcss处理样式，使用了1个插件! 
+00:25:39.440 INFO  正在处理script! 
+00:25:39.440 INFO  工程中只有一个页面! 
+00:25:39.441 DEBUG 页面中不包含切换动画! 
+00:25:39.586 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:25:39.586 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:25:39.586 DEBUG 选择将js合并到html中! 
+00:25:39.600 INFO  js中的资源处理完毕! 
+00:25:39.600 DEBUG 处理引用脚本: [{"name":"main","src":"./create/main.js"}] 
+00:25:39.600 DEBUG 外部脚本数量: 1 
+00:25:39.600 DEBUG 处理脚本: main 
+00:25:39.600 DEBUG 不使用bable处理脚本! 
+00:25:39.600 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:25:39.600 DEBUG 输出scriptData 
+00:25:39.600 DEBUG 判断是否可以输出Html! 
+00:25:39.600 DEBUG 还有没有经过处理的资源! 
+00:25:39.604 INFO  使用postcss处理完毕! 用时: 166 毫秒 
+00:25:39.604 DEBUG 需要经过特殊处理的css: [] 
+00:25:39.604 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:25:39.604 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:25:39.604 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:25:39.604 INFO  附属css中的资源不需要处理! 
+00:25:39.604 DEBUG 判断是否可以输出Html! 
+00:25:39.604 DEBUG 准备输出html! 
+00:25:39.604 DEBUG 开始美化html 
+00:25:39.615 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:25:39.615 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:25:39.616 INFO  主要逻辑文件写出成功! 
+00:25:39.617 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\js\main.js 
+00:25:39.617 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\css\main.css 
+00:25:58.354 INFO  --------------------------- 开始编译 --------------------------- 
+00:25:58.354 INFO  程序运行目录: C:\Users\my\Documents\GitHub\market\server 
+00:25:58.354 INFO  首次启动! 
+00:25:58.354 INFO  生成版本号: mtf4slg8kdm 
+00:25:58.356 INFO  清理资源文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:58.356 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:58.357 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static 
+00:25:58.357 INFO  读取模板文件: C:\Users\my\Documents\GitHub\market\server\node_modules\@owo\owo\lib\index.html 
+00:25:58.357 DEBUG 读取网页标题: 页面 
+00:25:58.357 DEBUG 处理页面源信息: [{"http-equiv":"content-type","content":"text/htmlText; charset=UTF-8"},{"name":"viewport","content":"initial-scale=1,user-scalable=no,maximum-scale=1"}] 
+00:25:58.357 INFO  开始处理模块: home 
+00:25:58.357 DEBUG 处理模板: ./create/page.owo 
+00:25:58.361 INFO  模块: home 不包含script 
+00:25:58.364 DEBUG 缓存模板: home./create/page.owo 
+00:25:58.364 DEBUG 模板home处理用时: 7 毫秒! 
+00:25:58.365 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:25:58.365 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\resource 
+00:25:58.365 INFO  css中的资源处理完毕! 
+00:25:58.365 DEBUG 使用postcss处理样式，使用了1个插件! 
+00:25:58.366 INFO  正在处理script! 
+00:25:58.367 INFO  工程中只有一个页面! 
+00:25:58.368 DEBUG 页面中不包含切换动画! 
+00:25:58.458 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:25:58.459 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\js 
+00:25:58.459 DEBUG 选择将js合并到html中! 
+00:25:58.471 INFO  js中的资源处理完毕! 
+00:25:58.471 DEBUG 处理引用脚本: [{"name":"main","src":"./create/main.js"}] 
+00:25:58.471 DEBUG 外部脚本数量: 1 
+00:25:58.471 DEBUG 处理脚本: main 
+00:25:58.471 DEBUG 不使用bable处理脚本! 
+00:25:58.471 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:25:58.471 DEBUG 输出scriptData 
+00:25:58.471 DEBUG 判断是否可以输出Html! 
+00:25:58.471 DEBUG 还有没有经过处理的资源! 
+00:25:58.474 INFO  使用postcss处理完毕! 用时: 109 毫秒 
+00:25:58.474 DEBUG 需要经过特殊处理的css: [] 
+00:25:58.474 INFO  文件夹不存在: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:25:58.474 INFO  创建文件夹: C:\Users\my\Documents\GitHub\market\server\create\static\css 
+00:25:58.474 INFO  读取文件: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:25:58.474 INFO  附属css中的资源不需要处理! 
+00:25:58.474 DEBUG 判断是否可以输出Html! 
+00:25:58.474 DEBUG 准备输出html! 
+00:25:58.474 DEBUG 开始美化html 
+00:25:58.482 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.js 
+00:25:58.482 INFO  读取成功: C:\Users\my\Documents\GitHub\market\server\create\main.css 
+00:25:58.482 INFO  主要逻辑文件写出成功! 
+00:25:58.483 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\js\main.js 
+00:25:58.483 INFO  写入文件: C:\Users\my\Documents\GitHub\market\server\create\static\css\main.css 
