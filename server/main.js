@@ -436,6 +436,21 @@ function createHtml (data) {
   return htmlText
 }
 
+function creatStyle (data) {
+  let styleText = `[owo-id="${data.id}"] {`
+  if (!data.style) return ''
+  data.style.forEach(element => {
+    styleText += `${element.name}: ${element.value};\r\n`
+  })
+  styleText += '}'
+  if (data.children && data.children.length > 0) {
+    data.children.forEach(element => {
+      styleText += creatStyle(element)
+    })
+  }
+  return styleText
+}
+
 // 页面之间通信
 app.ws('/', function(ws) {
   ws.on('message', function(msg) {
@@ -443,9 +458,11 @@ app.ws('/', function(ws) {
     // 判断消息类型
     switch (message.type) {
       case 'create':
+        console.log(creatStyle(message.data))
         fs.writeFileSync('./create/page.owo', `
-        <template>${createHtml(message.data)}<div class="owo-build-info">${(new Date()).valueOf()}</div></template>
-      `)
+          <template>${createHtml(message.data)}<div class="owo-build-info">${(new Date()).valueOf()}</div></template>
+          <style>${creatStyle(message.data)}</style>
+        `)
         // htmlText
         // 生成页面配置
         let config = {
@@ -518,6 +535,19 @@ app.ws('/', function(ws) {
           }
         })
         break;
+      case "check":
+        // 发送点击命令
+        wss.getWss().clients.forEach(function each(client) {
+          if (client.readyState === 1) {
+            const sendData = JSON.stringify({
+              type: 'check',
+              data: message.data
+            })
+            console.log(sendData)
+            client.send(sendData)
+          }
+        })
+        break
       default:
         console.log(message)
         break;

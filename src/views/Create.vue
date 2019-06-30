@@ -4,17 +4,30 @@
     .tool
       .add(@click="addDiv") 增加块
       .add(@click="addText") 增加字
+    .control(v-if="active && active.style")
+      template(v-for="item in active.style")
+        AutoEntry(name="标签字段", v-model="item.value", :type="String")
 </template>
 
 <script>
+import AutoEntry from '@/components/#entry/AutoEntry'
 export default {
   name: 'create',
+  components: {
+    AutoEntry
+  },
   data: function () {
     return {
       ws: null,
       body: {
         type: 'div',
         id: "root",
+        style: [
+          {
+            name: "font-size",
+            value: "14px"
+          }
+        ],
         text: '',
         children: []
       },
@@ -29,6 +42,14 @@ export default {
       this.ws.send(JSON.stringify({
         type: "init"
       }))
+      this.ws.onmessage = (e) => {
+        const message = JSON.parse(e.data)
+        if (message.type === 'check') {
+          this.activeID(this.body, message.data)
+        }
+        console.log(`收到消息: `, message)
+        
+      }
     }
   },
   methods: {
@@ -56,6 +77,12 @@ export default {
       this.active.children.push({
         type: 'h1',
         text: "asdasdasd",
+        style: [
+          {
+            name: "font-size",
+            value: "14px"
+          }
+        ],
         id: this.GenNonDuplicateID(8),
         children: []
       })
@@ -63,6 +90,19 @@ export default {
         type: "create",
         data: this.body
       }))
+    },
+    activeID: function (obj, id) {
+      console.log(`查找ID：${id}`)
+      if (obj.id === id) {
+        console.log('符合', obj)
+        this.active = obj
+      } else {
+        if (obj.children) {
+          obj.children.forEach(element => {
+            this.activeID(element, id)
+          })
+        }
+      }
     }
   }
 }
@@ -87,5 +127,13 @@ iframe {
   top: 0;
   background-color: cyan;
   height: 100%;
+}
+.control {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: white;
+  width: 200px;
 }
 </style>

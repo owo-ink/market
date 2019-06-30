@@ -13,3 +13,12 @@ ws.onopen = function() {
     }
   }
 }
+
+document.body.onclick = function (e) {
+  // console.log(ws)
+  // console.log(e.target)
+  ws.send(JSON.stringify({
+    type: "check",
+    data: e.target.getAttribute('owo-id')
+  }))
+}
