@@ -274,7 +274,7 @@ export default {
       // 设置活跃页码
       this.activePaginationNum = num
       this.loading = true
-      this.$router.push(`/${this.$store.activeType}/${num}`)
+      this.$router.push(`/${this.$route.params.type}/${num}`)
     },
     getNumByType: function () {
       axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
