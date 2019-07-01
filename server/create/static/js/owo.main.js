@@ -1,4 +1,5 @@
-// Sun Jun 30 2019 18:00:21 GMT+0800 (GMT+08:00)
+// build by owo frame!
+// Mon Jul 01 2019 15:21:11 GMT+0800 (GMT+08:00)
 
 "use strict";
 
@@ -14,27 +15,10 @@ owo.state = {}; // 框架全局变量
 
 owo.global = {}; // 全局方法变量
 
-owo.tool = {}; // 事件推送方法
+owo.tool = {}; // 便捷的获取工具方法
 
-var $emit = function $emit(eventName) {
-  var event = owo.state.event[eventName];
-  var argumentsList = [];
-
-  for (var ind = 1; ind < arguments.length; ind++) {
-    argumentsList.push(arguments[ind]);
-  }
-
-  event.forEach(function (element) {
-    // 注入运行环境运行
-    element.fun.apply(_owo.assign(element.script, {
-      $el: element.dom,
-      activePage: window.owo.activePage
-    }), argumentsList);
-  });
-}; // 便捷的获取工具方法
-
-
-var $tool = owo.tool; // 框架核心函数
+var $tool = owo.tool;
+var $data = {}; // 框架核心函数
 
 var _owo = {}; // 对象合并方法
 
@@ -72,37 +56,11 @@ if (!document.getElementsByClassName) {
 
     return elements;
   };
-}
-
-_owo.runCreated = function (pageFunction, entryDom) {
-  // 注入运行环境运行
-  pageFunction.created.apply(_owo.assign(pageFunction, {
-    $el: entryDom,
-    data: pageFunction.data,
-    activePage: window.owo.activePage
-  }));
-};
-
-_owo.registerEvent = function (pageFunction, entryDom) {
-  // 判断是否包含事件监听
-  if (pageFunction.event) {
-    if (!window.owo.state.event) window.owo.state.event = {};
-
-    for (var iterator in pageFunction.event) {
-      if (!window.owo.state.event[iterator]) window.owo.state.event[iterator] = [];
-      window.owo.state.event[iterator].push({
-        dom: entryDom,
-        pageName: window.owo.activePage,
-        fun: pageFunction.event[iterator],
-        script: pageFunction
-      });
-    }
-  }
-}; // 运行页面所属的方法
+} // 运行页面所属的方法
 
 
 _owo.handlePage = function (pageName, entryDom) {
-  _owo.handleEvent(entryDom, null, entryDom); // 判断页面是否有自己的方法
+  _owo.handleEvent(entryDom); // 判断页面是否有自己的方法
 
 
   var newPageFunction = window.owo.script[pageName];
@@ -110,11 +68,13 @@ _owo.handlePage = function (pageName, entryDom) {
   // 如果有created方法则执行
 
   if (newPageFunction.created) {
-    _owo.runCreated(newPageFunction, entryDom);
-  } // 注册事件监听
-
-
-  _owo.registerEvent(newPageFunction, entryDom); // 判断页面是否有下属模板,如果有运行所有模板的初始化方法
+    // 注入运行环境
+    newPageFunction.created.apply(_owo.assign(newPageFunction, {
+      $el: entryDom,
+      data: newPageFunction.data,
+      activePage: window.owo.activePage
+    }));
+  } // 判断页面是否有下属模板,如果有运行所有模板的初始化方法
 
 
   for (var key in newPageFunction.template) {
@@ -131,17 +91,19 @@ _owo.handlePage = function (pageName, entryDom) {
 
 
       for (var ind = 0; ind < domList.length; ind++) {
-        _owo.runCreated(templateScript, domList[ind]); // 注册事件监听
-
-
-        _owo.registerEvent(templateScript, domList[ind]);
+        // 为模板注入运行环境
+        templateScript.created.apply(_owo.assign(newPageFunction.template[key], {
+          $el: domList[ind],
+          data: templateScript.data,
+          activePage: window.owo.activePage
+        }));
       }
     }
   }
 }; // owo-name处理
 
 
-_owo.handleEvent = function (tempDom, templateName, entryDom) {
+_owo.handleEvent = function (tempDom, templateName) {
   // console.log(templateName)
   var activePage = window.owo.script[owo.activePage];
 
@@ -171,10 +133,9 @@ _owo.handleEvent = function (tempDom, templateName, entryDom) {
 
           default:
             {
-              // 处理事件 使用bind防止闭包
               tempDom["on" + eventName] = function (event) {
                 // 因为后面会对eventFor进行修改所以使用拷贝的
-                var eventForCopy = this; // 判断页面是否有自己的方法
+                var eventForCopy = eventFor; // 判断页面是否有自己的方法
 
                 var newPageFunction = window.owo.script[window.owo.activePage]; // console.log(this.attributes)
 
@@ -182,6 +143,9 @@ _owo.handleEvent = function (tempDom, templateName, entryDom) {
                   // 如果模板注册到newPageFunction中，那么证明模板没有script那么直接使用eval执行
                   if (newPageFunction.template) {
                     newPageFunction = newPageFunction.template[templateName];
+                  } else {
+                    eval(eventForCopy);
+                    return;
                   }
                 } // 待优化可以单独提出来
                 // 取出参数
@@ -220,45 +184,72 @@ _owo.handleEvent = function (tempDom, templateName, entryDom) {
                   // 绑定window.owo对象
                   // console.log(tempDom)
                   // 待测试不知道这样合并会不会对其它地方造成影响
-                  newPageFunction.$el = entryDom;
+                  newPageFunction.$el = this;
                   newPageFunction.$event = event;
                   newPageFunction[eventForCopy].apply(newPageFunction, parameterArr);
                 } else {
                   // 如果没有此方法则交给浏览器引擎尝试运行
                   eval(eventForCopy);
                 }
-              }.bind(eventFor);
+              };
             }
         }
       }
     }
+  } // 递归处理所有子Dom结点
+
+
+  for (var i = 0; i < tempDom.children.length; i++) {
+    var childrenDom = tempDom.children[i]; // console.log(childrenDom)
+
+    var newTemplateName = templateName;
+
+    if (tempDom.attributes['template'] && tempDom.attributes['template'].textContent) {
+      newTemplateName = tempDom.attributes['template'].textContent;
+    } // console.log(newTemplateName)
+
+
+    _owo.handleEvent(childrenDom, newTemplateName);
   }
-
-  if (tempDom.children) {
-    // 递归处理所有子Dom结点
-    for (var i = 0; i < tempDom.children.length; i++) {
-      var childrenDom = tempDom.children[i]; // console.log(childrenDom)
-
-      var newTemplateName = templateName;
-
-      if (tempDom.attributes['template'] && tempDom.attributes['template'].textContent) {
-        newTemplateName = tempDom.attributes['template'].textContent;
-      } // 待修复，逻辑太混乱了
+}; // 便捷选择器
 
 
-      var _temp = tempDom.attributes['template'] ? tempDom : entryDom;
+if (window.jQuery == undefined) {
+  window.$ = function (query) {
+    var type = _typeof(query);
 
-      if (newTemplateName === owo.entry) {
-        _owo.handleEvent(childrenDom, null, _temp);
-      } else {
-        _owo.handleEvent(childrenDom, newTemplateName, _temp);
-      }
+    switch (type) {
+      // 如果是一个函数,那么代表这个函数需要在页面加载完毕后运行
+      case 'function':
+        {
+          setTimeout(function () {
+            // 将需要运行的函数添加到待运行队列中
+            if (window.owo.state.created == undefined) window.owo.state.created = [];
+            window.owo.state.created.push(query); // 如果页面已经处于准备就绪状态,那么直接运行代码
+
+            if (window.owo.state.isRrady) {
+              query();
+            }
+          }, 1000);
+          break;
+        }
+
+      case 'string':
+        {
+          var domList = document.querySelectorAll(query);
+          return domList ? domList : [];
+        }
     }
-  } else {
-    console.info('元素不存在子节点!');
-    console.info(tempDom);
-  }
-}; // 跳转到指定页面
+  };
+} else {
+  // 因为jquery没有foreach方法 所以需要给他加上
+  jQuery.fn.forEach = function (objec) {
+    for (var index = 0; index < this.length; index++) {
+      var element = this[index];
+      objec(element);
+    }
+  };
+} // 跳转到指定页面
 
 
 function $go(pageName, inAnimation, outAnimation, param) {
@@ -305,7 +296,9 @@ function $change(key, value) {
 
 _owo.ready = function () {
   var page = owo.entry;
-  window.owo.activePage = page;
+  window.owo.activePage = page; // 更改$data链接
+
+  $data = owo.script[page].data;
   var entryDom = document.getElementById('o-' + page);
 
   if (entryDom) {
@@ -408,7 +401,9 @@ function switchPage(oldUrlParam, newUrlParam) {
     return;
   }
 
-  window.owo.activePage = newPage;
+  window.owo.activePage = newPage; // 更改$data链接
+
+  $data = owo.script[newPage].data;
 
   _owo.handlePage(newPage, newDom);
 }

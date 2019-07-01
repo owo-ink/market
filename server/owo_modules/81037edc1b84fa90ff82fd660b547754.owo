@@ -1,0 +1,49 @@
+<template>
+  <!-- 右侧信息条 -->
+  <div class="erwm">
+    <span class="gray2">
+      <img src="http://sports.people.com.cn/NMediaFile/2018/0226/MAIN201802261117372471615072238.png" width="147" height="147" border="0" alt="扫码下载人民体育客户端">
+      人民太极微博
+    </span>
+    <span class="gray2">
+      <img src="http://sports.people.com.cn/NMediaFile/2018/0226/MAIN201802261120268327536804169.png" width="147" height="147" border="0" alt="人民体育微信公号">
+      人民体育微信公号
+    </span>
+    <a title="返回顶部" class="go_top" href="#"></a>
+  </div>
+</template>
+
+<style>
+  .erwm {
+    position: fixed;
+    background-position: 0 -40px;
+    display: block;
+    width: 175px;
+    height: 493px;
+    right: 2%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 99;
+    color: #7a7a7a;
+    font-size: 12px;
+  }
+  .erwm span {
+    text-align: center;
+    line-height: 18px;
+    background: #eeeeee;
+    padding: 15px 15px 5px 15px;
+    display: block;
+  }
+  .go_top {
+    background-position: 0 -40px;
+    display: block;
+    width: 175px;
+    height: 115px;
+    background: url(http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon_gotop.gif) no-repeat;
+    right: 13px;
+    bottom: 110px;
+    filter: alpha(opacity=80);
+    z-index: 100;
+  }
+</style>

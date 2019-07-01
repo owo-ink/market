@@ -286,7 +286,8 @@ export default {
     }
   },
   watch: {
-    '$route' (to, from) {
+    '$route' () {
+      // 加载新数据
       this.load()
     }
   }

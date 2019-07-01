@@ -2,40 +2,70 @@
   .create-box
     iframe(src="http://127.0.0.1:8004/create/")
     .tool
-      .add(@click="addDiv") 增加块
-      .add(@click="addText") 增加字
+      .add(@click="addDiv") DIV
+      .add(@click="addText") H1
+      .add(@click="addOWO") OWO
+    .dom-check
+      .item html
+      .item body
     .control(v-if="active && active.style")
       template(v-for="item in active.style")
-        AutoEntry(name="标签字段", v-model="item.value", :type="String")
+        AutoEntry(v-if="item.type === 'string'", :name="item.name", v-model="item.value", @input="create()", :type="String")
+        SelectEntry(v-else-if="item.type === 'option'", :text="item.name", v-model="item.value", @input="create()", :option="item.option", def="string")
+        ColorEntry(v-else-if="item.type === 'color'", :name="item.name", @input="create()", v-model="item.value")
+      TextareaEntry(v-if="active.text", name="文本", @input="create()", v-model="active.text")
 </template>
 
 <script>
 import AutoEntry from '@/components/#entry/AutoEntry'
+import ColorEntry from '@/components/#entry/ColorEntry'
+import SelectEntry from '@/components/#entry/SelectEntry'
+import TextareaEntry from '@/components/#entry/TextareaEntry'
 export default {
   name: 'create',
   components: {
-    AutoEntry
+    AutoEntry,
+    ColorEntry,
+    SelectEntry,
+    TextareaEntry
   },
   data: function () {
     return {
       ws: null,
-      body: {
+      domData: {
         type: 'div',
         id: "root",
         style: [
           {
-            name: "font-size",
+            name: "字体大小",
+            type: "string",
+            key: "font-size",
             value: "14px"
-          }
+          },
+          {
+            name: "高度",
+            type: "string",
+            key: "height",
+            value: "100%"
+          },
+          {
+            name: "宽度",
+            type: "string",
+            key: "width",
+            value: "100%"
+          },
         ],
         text: '',
         children: []
+      },
+      bodyStyle: {
+
       },
       active: {}
     }
   },
   created: function () {
-    this.active = this.body
+    this.active = this.domData
     // this.ws = new WebSocket("ws://" + window.location.host)
     this.ws = new WebSocket("ws://127.0.0.1:8004")
     this.ws.onopen = () => {
@@ -45,10 +75,9 @@ export default {
       this.ws.onmessage = (e) => {
         const message = JSON.parse(e.data)
         if (message.type === 'check') {
-          this.activeID(this.body, message.data)
+          this.activeID(this.domData, message.data)
         }
         console.log(`收到消息: `, message)
-        
       }
     }
   },
@@ -64,12 +93,32 @@ export default {
       this.active.children.push({
         type: 'div',
         text: '',
+        style: [
+          {
+            name: "高度",
+            type: "string",
+            key: "height",
+            value: "200px"
+          },
+          {
+            name: "宽度",
+            type: "string",
+            key: "width",
+            value: "100%"
+          },
+          {
+            name: "背景颜色",
+            type: "color",
+            key: "background-color",
+            value: "#ffffff"
+          }
+        ],
         id: this.GenNonDuplicateID(8),
         children: []
       })
       this.ws.send(JSON.stringify({
         type: "create",
-        data: this.body
+        data: this.domData
       }))
     },
     addText: function () {
@@ -79,16 +128,44 @@ export default {
         text: "asdasdasd",
         style: [
           {
-            name: "font-size",
+            name: "字体大小",
+            type: "string",
+            key: "font-size",
             value: "14px"
+          },
+          {
+            name: "对齐方向",
+            type: "option",
+            key: "text-align",
+            option: [
+              {value: 'left', text: '居左'},
+              {value: 'center', text: '居中'},
+              {value: 'right', text: '居右'},
+            ],
+            value: "left"
           }
         ],
         id: this.GenNonDuplicateID(8),
         children: []
       })
+      this.create()
+    },
+    addOWO: function () {
+      var word = prompt("请输入owo代码","");
+      if (word) {
+        this.active.children.push({
+          type: 'owo',
+          value: word,
+          id: this.GenNonDuplicateID(8),
+          children: []
+        })
+        this.create()
+      }
+    },
+    create: function () {
       this.ws.send(JSON.stringify({
         type: "create",
-        data: this.body
+        data: this.domData
       }))
     },
     activeID: function (obj, id) {
@@ -127,6 +204,22 @@ iframe {
   top: 0;
   background-color: cyan;
   height: 100%;
+  width: 60px;
+  .add {
+    color: white;
+    text-align: center;
+    margin: 5px;
+    height: 50px;
+    cursor: pointer;
+    line-height: 50px;
+    box-shadow: 2px 2px 3px #87b5b1;
+    background-color: darkorchid;
+  }
+}
+.dom-check {
+  position: fixed;
+  left: 100px;
+  bottom: 100px;
 }
 .control {
   position: fixed;
@@ -134,6 +227,6 @@ iframe {
   right: 0;
   height: 100%;
   background-color: white;
-  width: 200px;
+  width: 300px;
 }
 </style>

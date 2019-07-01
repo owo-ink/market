@@ -425,6 +425,9 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
 // 创建页面
 function createHtml (data) {
   // console.log(data)
+  if (data.type === 'owo') {
+    return data.value
+  }
   let htmlText = `<${data.type} owo-id="${data.id}">${data.text}`
   // 生成owo代码
   if (data.children && data.children.length > 0) {
@@ -440,7 +443,7 @@ function creatStyle (data) {
   let styleText = `[owo-id="${data.id}"] {`
   if (!data.style) return ''
   data.style.forEach(element => {
-    styleText += `${element.name}: ${element.value};\r\n`
+    styleText += `${element.key}: ${element.value};\r\n`
   })
   styleText += '}'
   if (data.children && data.children.length > 0) {
