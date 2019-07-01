@@ -17,6 +17,12 @@ ws.onopen = function() {
 document.body.onclick = function (e) {
   // console.log(ws)
   // console.log(e.target)
+  // 去除所有活跃状态
+  const owoList = document.querySelectorAll('[owo-id]')
+  owoList.forEach(element => {
+    element.classList.remove('owo-active')
+  })
+  e.target.classList.add('owo-active')
   ws.send(JSON.stringify({
     type: "check",
     data: e.target.getAttribute('owo-id')

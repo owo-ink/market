@@ -15,11 +15,6 @@
       margin: 0;
     }
 
-    /* 清除浮动 */
-    .clear {
-      clear: both;
-    }
-
     .owo-animation {
       overflow: hidden;
       -webkit-backface-visibility: hidden;
@@ -32,7 +27,6 @@
 
     a:link,
     a:visited {
-      color: #333;
       text-decoration: none;
     }
 
@@ -44,41 +38,16 @@
       display: block;
       visibility: hidden;
       clear: both;
+      zoom: 1;
     }
 
-    .erwm[template=Qj0JzJ] {
-      position: fixed;
-      background-position: 0 -40px;
-      display: block;
-      width: 175px;
-      height: 493px;
-      right: 2%;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      z-index: 99;
-      color: #7a7a7a;
-      font-size: 12px;
+    ul {
+      margin: 0;
+      padding: 0;
     }
 
-    .erwm[template=Qj0JzJ] span {
-      text-align: center;
-      line-height: 18px;
-      background: #eeeeee;
-      padding: 15px 15px 5px 15px;
-      display: block;
-    }
-
-    [template=Qj0JzJ] .go_top {
-      background-position: 0 -40px;
-      display: block;
-      width: 175px;
-      height: 115px;
-      background: url(http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon_gotop.gif) no-repeat;
-      right: 13px;
-      bottom: 110px;
-      filter: alpha(opacity=80);
-      z-index: 100;
+    li {
+      list-style: none;
     }
 
     [template=home] [owo-id="root"] {
@@ -87,10 +56,34 @@
       width: 100%;
     }
 
-    [template=home] [owo-id="3b8bfrhc80m000"] {
+    [template=home] [owo-id="2pz5uqexqvu000"] {
       height: 200px;
       width: 100%;
       background-color: #ffffff;
+      position: static;
+      top: unset;
+      right: unset;
+      bottom: unset;
+      left: unset;
+      margin-top: unset;
+      margin-right: unset;
+      margin-bottom: unset;
+      margin-left: unset;
+    }
+
+    [template=home] [owo-id="11m73no1zu8000"] {
+      height: 200px;
+      width: 100%;
+      background-color: #ffffff;
+      position: static;
+      top: unset;
+      right: unset;
+      bottom: unset;
+      left: unset;
+      margin-top: unset;
+      margin-right: unset;
+      margin-bottom: unset;
+      margin-left: unset;
     }
   </style>
   <!-- 附属css文件 -->
@@ -102,20 +95,10 @@
   <!-- 页面区域 -->
   <div template="home" class="ox" id="o-home">
     <div owo-id="root">
-      <div class="erwm" template="Qj0JzJ">
-        <span class="gray2">
-          <img src="http://sports.people.com.cn/NMediaFile/2018/0226/MAIN201802261117372471615072238.png" width="147" height="147" border="0" alt="扫码下载人民体育客户端">
-          人民太极微博
-        </span>
-        <span class="gray2">
-          <img src="http://sports.people.com.cn/NMediaFile/2018/0226/MAIN201802261120268327536804169.png" width="147" height="147" border="0" alt="人民体育微信公号">
-          人民体育微信公号
-        </span>
-        <a title="返回顶部" class="go_top" href="#"></a>
-      </div>
-      <div owo-id="3b8bfrhc80m000"></div>
+      <div owo-id="2pz5uqexqvu000"></div>
+      <div owo-id="11m73no1zu8000"></div>
     </div>
-    <div class="owo-build-info">1561965671632</div>
+    <div class="owo-build-info">1561991822855</div>
   </div>
   <!-- owo框架代码 -->
   <script>
@@ -124,15 +107,7 @@
     window.owo = {
       // 页面数据和方法
       script: {
-        "home": {
-          "prop": {}
-        },
-        "Qj0JzJ": {
-          "prop": {
-            "name": "Qj0JzJ",
-            "src": "https://owo.ink/public/e6ab7da94b30399ecf828f1c8c704521.page"
-          }
-        }
+        "home": {}
       },
       // 页面默认入口
       entry: "home"

@@ -53,7 +53,7 @@ export default {
             type: "string",
             key: "width",
             value: "100%"
-          },
+          }
         ],
         text: '',
         children: []
@@ -111,7 +111,67 @@ export default {
             type: "color",
             key: "background-color",
             value: "#ffffff"
-          }
+          },
+          {
+            name: "定位类型",
+            type: "option",
+            key: "position",
+            option: [
+              {value: 'static', text: '无定位'},
+              {value: 'absolute', text: '绝对定位(父元素)'},
+              {value: 'fixed', text: '绝对定位(浏览器窗口)'},
+              {value: 'relative', text: '相对定位'},
+            ],
+            value: "static"
+          },
+          {
+            name: "上边距",
+            type: "string",
+            key: "top",
+            value: "unset"
+          },
+          {
+            name: "右边距",
+            type: "string",
+            key: "right",
+            value: "unset"
+          },
+          {
+            name: "底边距",
+            type: "string",
+            key: "bottom",
+            value: "unset"
+          },
+          {
+            name: "左边距",
+            type: "string",
+            key: "left",
+            value: "unset"
+          },
+          {
+            name: "上外边距",
+            type: "string",
+            key: "margin-top",
+            value: "unset"
+          },
+          {
+            name: "右外边距",
+            type: "string",
+            key: "margin-right",
+            value: "unset"
+          },
+          {
+            name: "底外边距",
+            type: "string",
+            key: "margin-bottom",
+            value: "unset"
+          },
+          {
+            name: "左外边距",
+            type: "string",
+            key: "margin-left",
+            value: "unset"
+          },
         ],
         id: this.GenNonDuplicateID(8),
         children: []
@@ -134,6 +194,12 @@ export default {
             value: "14px"
           },
           {
+            name: "行高",
+            type: "string",
+            key: "line-height",
+            value: "20px"
+          },
+          {
             name: "对齐方向",
             type: "option",
             key: "text-align",
@@ -143,7 +209,55 @@ export default {
               {value: 'right', text: '居右'},
             ],
             value: "left"
-          }
+          },
+          {
+            name: "上边距",
+            type: "string",
+            key: "top",
+            value: "unset"
+          },
+          {
+            name: "右边距",
+            type: "string",
+            key: "right",
+            value: "unset"
+          },
+          {
+            name: "底边距",
+            type: "string",
+            key: "bottom",
+            value: "unset"
+          },
+          {
+            name: "左边距",
+            type: "string",
+            key: "left",
+            value: "unset"
+          },
+          {
+            name: "上外边距",
+            type: "string",
+            key: "margin-top",
+            value: "unset"
+          },
+          {
+            name: "右外边距",
+            type: "string",
+            key: "margin-right",
+            value: "unset"
+          },
+          {
+            name: "底外边距",
+            type: "string",
+            key: "margin-bottom",
+            value: "unset"
+          },
+          {
+            name: "左外边距",
+            type: "string",
+            key: "margin-left",
+            value: "unset"
+          },
         ],
         id: this.GenNonDuplicateID(8),
         children: []
@@ -228,5 +342,8 @@ iframe {
   height: 100%;
   background-color: white;
   width: 300px;
+  .box-item {
+    position: relative;
+  }
 }
 </style>
