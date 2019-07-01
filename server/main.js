@@ -204,7 +204,7 @@ app.get('/getTemplateListByType', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  connection.query(`SELECT * FROM template WHERE type='${req.query.type}' limit ${req.query.page}, ${req.query.num}`, (templateError, templateResults) => {
+  connection.query(`SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`, (templateError, templateResults) => {
     connection.end()
     if (templateError) throw templateError
     res.send({
