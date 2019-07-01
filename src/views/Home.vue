@@ -174,7 +174,7 @@ export default {
       // 清除活跃页码
       this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
-      this.$router.push(`/${type}/1`)
+      this.$router.push(`/home/${type}/1`)
     },
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
@@ -274,7 +274,7 @@ export default {
       // 设置活跃页码
       this.activePaginationNum = num
       this.loading = true
-      this.$router.push(`/${this.$route.params.type}/${num}`)
+      this.$router.push(`/home/${this.$route.params.type}/${num}`)
     },
     getNumByType: function () {
       axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
