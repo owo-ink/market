@@ -140,7 +140,7 @@ export default {
         })
       } else {
         const type = this.$route.params.type
-        const page = this.$route.params.page
+        const page = parseInt(this.$route.params.page) - 1
         this.typeList = this.$store.state.type
         axios.get(`/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
           this.templateList = response.data.data
@@ -174,7 +174,7 @@ export default {
       // 清除活跃页码
       this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
-      this.$router.push(`/${type}/0`)
+      this.$router.push(`/${type}/1`)
     },
     addNewTag: function () {
       let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
@@ -274,10 +274,7 @@ export default {
       // 设置活跃页码
       this.activePaginationNum = num
       this.loading = true
-      axios.get(`/getTemplateListByType?type=${this.$route.params.type}&page=${(num - 1) * 5}&num=5`).then((response) => {
-        this.templateList = response.data.data
-        this.loading = false
-      })
+      this.$router.push(`/${this.$store.activeType}/${num}`)
     },
     getNumByType: function () {
       axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
