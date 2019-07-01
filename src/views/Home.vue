@@ -140,7 +140,7 @@ export default {
         })
       } else {
         const type = this.$route.params.type
-        const page = parseInt(this.$route.params.page) - 1
+        const page = this.$route.params.page
         this.typeList = this.$store.state.type
         axios.get(`/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
           this.templateList = response.data.data
