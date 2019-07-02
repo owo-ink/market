@@ -15,7 +15,7 @@
         AutoEntry(v-else-if="key === 'font-size'", name="字体大小", v-model="active.style[key]", @input="create()", :type="String")
         ColorEntry(v-else-if="key === 'background-color'", name="背景颜色", @input="create()", v-model="active.style[key]")
         SelectEntry(v-else-if="key === 'text-align'", text="对齐方式", v-model="active.style[key]", @input="create()", :option="textAlignOption", def="string")
-        
+
       TextareaEntry(v-if="active.text", name="文本", @input="create()", v-model="active.text")
 </template>
 
@@ -52,6 +52,12 @@ export default {
         {value: 'left', text: '居左'},
         {value: 'center', text: '居中'},
         {value: 'right', text: '居右'},
+      ],
+      positionOption: [
+        {value: 'static', text: '无定位'},
+        {value: 'absolute', text: '绝对定位(父元素)'},
+        {value: 'fixed', text: '绝对定位(浏览器窗口)'},
+        {value: 'relative', text: '相对定位'},
       ]
     }
   },
@@ -88,7 +94,16 @@ export default {
           "font-size": "14px",
           "height": "200px",
           "width": "100%",
-          "background-color": "#ffffff"
+          "background-color": "#ffffff",
+          "position": "unset",
+          "top": "unset",
+          "right": "unset",
+          "bottom": "unset",
+          "left": "unset",
+          "margin-top": "unset",
+          "margin-right": "unset",
+          "margin-bottom": "unset",
+          "margin-left": "unset"
         },
         id: this.GenNonDuplicateID(8),
         children: []
@@ -105,7 +120,16 @@ export default {
         text: "asdasdasd",
         style: {
           "font-size": "14px",
-          "text-align": "left"
+          "text-align": "left",
+          "position": "unset",
+          "top": "unset",
+          "right": "unset",
+          "bottom": "unset",
+          "left": "unset",
+          "margin-top": "unset",
+          "margin-right": "unset",
+          "margin-bottom": "unset",
+          "margin-left": "unset"
         },
         id: this.GenNonDuplicateID(8),
         children: []
@@ -190,5 +214,8 @@ iframe {
   height: 100%;
   background-color: white;
   width: 300px;
+  .box-item {
+    position: relative;
+  }
 }
 </style>
