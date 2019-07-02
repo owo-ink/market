@@ -9,10 +9,13 @@
       .item html
       .item body
     .control(v-if="active && active.style")
-      template(v-for="item in active.style")
-        AutoEntry(v-if="item.type === 'string'", :name="item.name", v-model="item.value", @input="create()", :type="String")
-        SelectEntry(v-else-if="item.type === 'option'", :text="item.name", v-model="item.value", @input="create()", :option="item.option", def="string")
-        ColorEntry(v-else-if="item.type === 'color'", :name="item.name", @input="create()", v-model="item.value")
+      template(v-for="(item, key) in active.style")
+        AutoEntry(v-if="key === 'width'", name="宽度", v-model="active.style[key]", @input="create()", :type="String")
+        AutoEntry(v-else-if="key === 'height'", name="高度", v-model="active.style[key]", @input="create()", :type="String")
+        AutoEntry(v-else-if="key === 'font-size'", name="字体大小", v-model="active.style[key]", @input="create()", :type="String")
+        ColorEntry(v-else-if="key === 'background-color'", name="背景颜色", @input="create()", v-model="active.style[key]")
+        SelectEntry(v-else-if="key === 'text-align'", text="对齐方式", v-model="active.style[key]", @input="create()", :option="textAlignOption", def="string")
+        
       TextareaEntry(v-if="active.text", name="文本", @input="create()", v-model="active.text")
 </template>
 
@@ -35,33 +38,21 @@ export default {
       domData: {
         type: 'div',
         id: "root",
-        style: [
-          {
-            name: "字体大小",
-            type: "string",
-            key: "font-size",
-            value: "14px"
-          },
-          {
-            name: "高度",
-            type: "string",
-            key: "height",
-            value: "100%"
-          },
-          {
-            name: "宽度",
-            type: "string",
-            key: "width",
-            value: "100%"
-          },
-        ],
+        style: {
+          "font-size": "14px",
+          "height": "100%",
+          "width": "100%",
+        },
         text: '',
         children: []
       },
-      bodyStyle: {
-
-      },
-      active: {}
+      bodyStyle: {},
+      active: {},
+      textAlignOption: [
+        {value: 'left', text: '居左'},
+        {value: 'center', text: '居中'},
+        {value: 'right', text: '居右'},
+      ]
     }
   },
   created: function () {
@@ -93,26 +84,12 @@ export default {
       this.active.children.push({
         type: 'div',
         text: '',
-        style: [
-          {
-            name: "高度",
-            type: "string",
-            key: "height",
-            value: "200px"
-          },
-          {
-            name: "宽度",
-            type: "string",
-            key: "width",
-            value: "100%"
-          },
-          {
-            name: "背景颜色",
-            type: "color",
-            key: "background-color",
-            value: "#ffffff"
-          }
-        ],
+        style: {
+          "font-size": "14px",
+          "height": "200px",
+          "width": "100%",
+          "background-color": "#ffffff"
+        },
         id: this.GenNonDuplicateID(8),
         children: []
       })
@@ -126,25 +103,10 @@ export default {
       this.active.children.push({
         type: 'h1',
         text: "asdasdasd",
-        style: [
-          {
-            name: "字体大小",
-            type: "string",
-            key: "font-size",
-            value: "14px"
-          },
-          {
-            name: "对齐方向",
-            type: "option",
-            key: "text-align",
-            option: [
-              {value: 'left', text: '居左'},
-              {value: 'center', text: '居中'},
-              {value: 'right', text: '居右'},
-            ],
-            value: "left"
-          }
-        ],
+        style: {
+          "font-size": "14px",
+          "text-align": "left"
+        },
         id: this.GenNonDuplicateID(8),
         children: []
       })

@@ -442,9 +442,12 @@ function createHtml (data) {
 function creatStyle (data) {
   let styleText = `[owo-id="${data.id}"] {`
   if (!data.style) return ''
-  data.style.forEach(element => {
-    styleText += `${element.key}: ${element.value};\r\n`
-  })
+  for (const key in data.style) {
+    if (data.style.hasOwnProperty(key)) {
+      const element = data.style[key];
+      styleText += `${key}: ${element};\r\n`
+    }
+  }
   styleText += '}'
   if (data.children && data.children.length > 0) {
     data.children.forEach(element => {
