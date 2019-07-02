@@ -1,64 +1,54 @@
-<<<<<<< HEAD
-// build by owo frame!
-// Tue Jul 02 2019 09:29:59 GMT+0800 (GMT+08:00)
-=======
-// Mon Jul 01 2019 22:37:02 GMT+0800 (GMT+08:00)
->>>>>>> 411cc18700a157ea42f628dd685b2065333a22f7
+// Tue Jul 02 2019 14:26:11 GMT+0800 (GMT+08:00)
 
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* 方法合集 */
+var _owo = {
+  /* 对象合并方法 */
+  assign: function assign(a, b) {
+    var newObj = {};
 
-if (!owo) {
-  console.error('没有找到owo核心!');
-} // 注册owo默认变量
-// 框架状态变量
+    for (var key in a) {
+      newObj[key] = a[key];
+    }
 
+    for (var key in b) {
+      newObj[key] = b[key];
+    }
 
-owo.state = {}; // 框架全局变量
+    return newObj;
+  },
 
-owo.global = {}; // 全局方法变量
-
-owo.tool = {}; // 事件推送方法
-
-var $emit = function $emit(eventName) {
-  var event = owo.state.event[eventName];
-  var argumentsList = [];
-
-  for (var ind = 1; ind < arguments.length; ind++) {
-    argumentsList.push(arguments[ind]);
-  }
-
-  event.forEach(function (element) {
-    // 注入运行环境运行
-    element.fun.apply(_owo.assign(element.script, {
-      $el: element.dom,
+  /* 运行页面初始化方法 */
+  runCreated: function runCreated(pageFunction, entryDom) {
+    pageFunction.created.apply(_owo.assign(pageFunction, {
+      $el: entryDom,
+      data: pageFunction.data,
       activePage: window.owo.activePage
-    }), argumentsList);
-  });
-}; // 便捷的获取工具方法
+    }));
+  },
 
+  /* 注册事件监听 */
+  registerEvent: function registerEvent(pageFunction, entryDom) {
+    // 判断是否包含事件监听
+    if (pageFunction.event) {
+      if (!window.owo.state.event) window.owo.state.event = {};
 
-var $tool = owo.tool; // 框架核心函数
-
-var _owo = {}; // 对象合并方法
-
-_owo.assign = function (a, b) {
-  var newObj = {};
-
-  for (var key in a) {
-    newObj[key] = a[key];
+      for (var iterator in pageFunction.event) {
+        if (!window.owo.state.event[iterator]) window.owo.state.event[iterator] = [];
+        window.owo.state.event[iterator].push({
+          dom: entryDom,
+          pageName: window.owo.activePage,
+          fun: pageFunction.event[iterator],
+          script: pageFunction
+        });
+      }
+    }
   }
-
-  for (var key in b) {
-    newObj[key] = b[key];
-  }
-
-  return newObj;
-}; // 针对低版本IE浏览器做兼容处理
-
+};
 
 if (!document.getElementsByClassName) {
+  /* 解决低版本浏览器没有getElementsByClassName的问题 */
   document.getElementsByClassName = function (className, element) {
     var children = (element || document).getElementsByTagName('*');
     var elements = new Array();
@@ -78,36 +68,12 @@ if (!document.getElementsByClassName) {
     return elements;
   };
 }
-
-_owo.runCreated = function (pageFunction, entryDom) {
-  // 注入运行环境运行
-  pageFunction.created.apply(_owo.assign(pageFunction, {
-    $el: entryDom,
-    data: pageFunction.data,
-    activePage: window.owo.activePage
-  }));
-};
-
-_owo.registerEvent = function (pageFunction, entryDom) {
-  // 判断是否包含事件监听
-  if (pageFunction.event) {
-    if (!window.owo.state.event) window.owo.state.event = {};
-
-    for (var iterator in pageFunction.event) {
-      if (!window.owo.state.event[iterator]) window.owo.state.event[iterator] = [];
-      window.owo.state.event[iterator].push({
-        dom: entryDom,
-        pageName: window.owo.activePage,
-        fun: pageFunction.event[iterator],
-        script: pageFunction
-      });
-    }
-  }
-}; // 运行页面所属的方法
+/* 运行页面所属的方法 */
 
 
 _owo.handlePage = function (pageName, entryDom) {
-  _owo.handleEvent(entryDom, null, entryDom); // 判断页面是否有自己的方法
+  _owo.handleEvent(entryDom, null, entryDom);
+  /* 判断页面是否有自己的方法 */
 
 
   var newPageFunction = window.owo.script[pageName];
@@ -143,7 +109,8 @@ _owo.handlePage = function (pageName, entryDom) {
       }
     }
   }
-}; // owo-name处理
+};
+/* owo事件处理 */
 
 
 _owo.handleEvent = function (tempDom, templateName, entryDom) {
@@ -263,49 +230,7 @@ _owo.handleEvent = function (tempDom, templateName, entryDom) {
     console.info('元素不存在子节点!');
     console.info(tempDom);
   }
-}; // 跳转到指定页面
-
-
-function $go(pageName, inAnimation, outAnimation, param) {
-  owo.state.animation = {
-    "in": inAnimation,
-    "out": outAnimation
-  };
-  var paramString = '';
-
-  if (param && _typeof(param) == 'object') {
-    paramString += '?'; // 生成URL参数
-
-    for (var paramKey in param) {
-      paramString += paramKey + '=' + param[paramKey] + '&';
-    } // 去掉尾端的&
-
-
-    paramString = paramString.slice(0, -1);
-  }
-
-  window.location.href = paramString + "#" + pageName;
-}
-
-function $change(key, value) {
-  // 更改对应的data
-  owo.script[owo.activePage].data[key] = value; // 当前页面下@show元素列表
-
-  var showList = document.getElementById('o-' + owo.activePage).querySelectorAll('[\\@show]');
-  showList.forEach(function (element) {
-    // console.log(element)
-    var order = element.attributes['@show'].textContent; // console.log(order)
-    // 去掉空格
-
-    order = order.replace(/ /g, '');
-
-    if (order == key + '==' + value) {
-      element.style.display = '';
-    } else {
-      element.style.display = 'none';
-    }
-  });
-} // 页面资源加载完毕事件
+}; // 页面资源加载完毕事件
 
 
 _owo.ready = function () {
@@ -381,7 +306,8 @@ _owo.whenReady = function () {
       funcs.push(fn);
     }
   };
-}();
+}(); // 执行页面加载完毕方法
+
 
 _owo.whenReady(_owo.ready);
 

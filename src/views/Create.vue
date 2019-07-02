@@ -14,9 +14,26 @@
         AutoEntry(v-else-if="key === 'height'", name="高度", v-model="active.style[key]", @input="create()", :type="String")
         AutoEntry(v-else-if="key === 'font-size'", name="字体大小", v-model="active.style[key]", @input="create()", :type="String")
         ColorEntry(v-else-if="key === 'background-color'", name="背景颜色", @input="create()", v-model="active.style[key]")
+        AutoEntry(v-else-if="key === 'background-image'", name="背景图片", @input="create()", v-model="active.style[key]", :type="String")
+        AutoEntry(v-else-if="key === 'background-size'", name="图片大小", @input="create()", v-model="active.style[key]", :type="String")
+        SelectEntry(v-else-if="key === 'background-repeat'", text="背景平铺方式", v-model="active.style[key]", @input="create()", :option="repeatOption", def="string")
         SelectEntry(v-else-if="key === 'text-align'", text="对齐方式", v-model="active.style[key]", @input="create()", :option="textAlignOption", def="string")
-
-      TextareaEntry(v-if="active.text", name="文本", @input="create()", v-model="active.text")
+        SelectEntry(v-else-if="key === 'position'", text="定位方式", v-model="active.style[key]", @input="create()", :option="positionOption", def="string")
+      .position-box.box-show(v-if="active.style.position && active.style.position === 'absolute' || active.style.position === 'fixed'")
+        .title 坐标位置
+        .box
+          input(type="text", class="top", v-model="active.style.top", @blur="create()")
+          input(type="text", class="right", v-model="active.style.right", @blur="create()")
+          input(type="text", class="bottom", v-model="active.style.bottom", @blur="create()")
+          input(type="text", class="left", v-model="active.style.left", @blur="create()")
+      .margin-box.box-show
+        .title 外边距
+        .box
+          input(type="text", class="top", v-model="active.style['margin-top']", @blur="create()")
+          input(type="text", class="right", v-model="active.style['margin-right']", @blur="create()")
+          input(type="text", class="bottom", v-model="active.style['margin-bottom']", @blur="create()")
+          input(type="text", class="left", v-model="active.style['margin-left']", @blur="create()")
+      TextareaEntry(v-if="active.text", name="文本", @blur="create()", v-model="active.text")
 </template>
 
 <script>
@@ -42,6 +59,9 @@ export default {
           "font-size": "14px",
           "height": "100%",
           "width": "100%",
+          "background-image": "unset",
+          "background-size": "unset",
+          "background-repeat": "unset"
         },
         text: '',
         children: []
@@ -58,6 +78,13 @@ export default {
         {value: 'absolute', text: '绝对定位(父元素)'},
         {value: 'fixed', text: '绝对定位(浏览器窗口)'},
         {value: 'relative', text: '相对定位'},
+      ],
+      repeatOption: [
+        {value: 'unset', text: '默认值'},
+        {value: 'repeat', text: '垂直方向和水平方向重复'},
+        {value: 'repeat-x', text: '水平方向重复'},
+        {value: 'repeat-y', text: '垂直方向重复'},
+        {value: 'no-repeat', text: '不重复'}
       ]
     }
   },
@@ -95,7 +122,7 @@ export default {
           "height": "200px",
           "width": "100%",
           "background-color": "#ffffff",
-          "position": "unset",
+          "position": "static",
           "top": "unset",
           "right": "unset",
           "bottom": "unset",
@@ -103,7 +130,10 @@ export default {
           "margin-top": "unset",
           "margin-right": "unset",
           "margin-bottom": "unset",
-          "margin-left": "unset"
+          "margin-left": "unset",
+          "background-image": "unset",
+          "background-size": "unset",
+          "background-repeat": "unset"
         },
         id: this.GenNonDuplicateID(8),
         children: []
@@ -129,7 +159,8 @@ export default {
           "margin-top": "unset",
           "margin-right": "unset",
           "margin-bottom": "unset",
-          "margin-left": "unset"
+          "margin-left": "unset",
+          "background-image": "unset"
         },
         id: this.GenNonDuplicateID(8),
         children: []
@@ -217,5 +248,47 @@ iframe {
   .box-item {
     position: relative;
   }
+  // 盒子
+  .box {
+    height: 200px;
+    width: 200px;
+    position: relative;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+  }
+  input {
+    width: 40px;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    color: #666;
+    height: 15px;
+  }
+  .top {
+    left: 0;
+    right: 0;
+    top: -25px;
+  }
+  .right {
+    top: 0;
+    bottom: 0;
+    right: -47px;
+  }
+  .bottom {
+    left: 0;
+    right: 0;
+    bottom: -25px;
+  }
+  .left {
+    top: 0;
+    bottom: 0;
+    left: -47px;
+  }
+}
+.box-show .title {
+  font-size: 12px;
+  color: #333333;
+  line-height: 40px;
+  margin: 0 20px;
 }
 </style>
