@@ -117,7 +117,6 @@ export default {
     this.load()
     // 默认选中header
     this.$store.commit('changeActiveType', 'header')
-    this.loading = false
   },
   components: {
     ColorEntry,
@@ -141,6 +140,7 @@ export default {
         // 获取页码
         this.templateNumber = data.total
         this.paginationNum = Math.ceil(data.total / 5)
+        this.loading = false
       })
     },
     templateClick: function (value, ind) {
