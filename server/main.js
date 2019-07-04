@@ -204,12 +204,13 @@ app.get('/getTemplateListByType', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  let sql = `SELECT * FROM template WHERE type='${typeResults[0].value}'`
-  if (req.query.type && req.query.page) {
-    sql = `SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`
-  }
+  
   // 查询类型列表
   connection.query('SELECT * FROM type', (typeError, typeResults) => {
+    let sql = `SELECT * FROM template WHERE type='${typeResults[0].value}'`
+    if (req.query.type && req.query.page) {
+      sql = `SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`
+    }
     // 查询模块
     connection.query(sql, (templateError, templateResults) => {
       connection.end()
