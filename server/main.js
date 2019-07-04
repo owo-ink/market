@@ -151,28 +151,6 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
   pack.pack()
 }
 
-// 获取某一类型的总数
-app.get('/getNumByType', (req, res) => {
-  const connection = mysql.createConnection({
-    host     : 'cdb-iphpadts.cd.tencentcdb.com',
-    port     : 10035,
-    user     : 'ozzx',
-    password : 'ozzx',
-    database : 'ozzx'
-  })
-  connection.connect()
-  const sql = `SELECT Count(*) as value FROM template WHERE type='${req.query.type}'`
-  console.log(`执行sql: SELECT Count(*) as value FROM template WHERE type='${req.query.type}'`)
-  connection.query(sql, (numError, numResults) => {
-    connection.end()
-    if (numError) throw numError
-    res.send({
-      err: 0,
-      data: numResults[0].value
-    })
-  })
-})
-
 // 重新设置默认页面
 app.get('/setDefault', (req, res) => {
   const connection = mysql.createConnection({
@@ -208,16 +186,22 @@ app.get('/getTemplateListByType', (req, res) => {
   // 查询类型列表
   connection.query('SELECT * FROM type', (typeError, typeResults) => {
     let sql = `SELECT * FROM template WHERE type='${typeResults[0].value}'`
-    if (req.query.type && req.query.page) {
-      sql = `SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`
+    if (req.query.type) {
+      sql = `SELECT * FROM template WHERE type='${req.query.type}'`
     }
     // 查询模块
     connection.query(sql, (templateError, templateResults) => {
+      const total = templateResults.length
+      if (req.query.page && req.query.num) {
+        const start = (parseInt(req.query.page) - 1) * req.query.num
+        templateResults = templateResults.slice(start, start + req.query.num)
+      }
       connection.end()
       if (templateError) throw templateError
       res.send({
         err: 0,
         data: {
+          total: total,
           template: templateResults,
           type: typeResults
         }

@@ -138,7 +138,8 @@ export default {
         this.templateList = data.template
         this.typeList = data.type
         // 获取页码
-        this.getNumByType()
+        this.templateNumber = data.total
+        this.paginationNum = Math.ceil(data.total / 5)
       })
     },
     templateClick: function (value, ind) {
@@ -267,14 +268,6 @@ export default {
       this.activePaginationNum = num
       this.loading = true
       this.$router.push(`/home/${this.$route.params.type}/${num}`)
-    },
-    getNumByType: function () {
-      axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
-        console.log(`获取到模板总数: ${response.data.data}`)
-        this.templateNumber = response.data.data
-        this.paginationNum = Math.ceil(response.data.data / 5)
-        this.loading = false
-      })
     }
   },
   watch: {
