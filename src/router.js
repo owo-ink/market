@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'start',
+      redirect: '/home/header/1'
     },
     {
       path: '/home/:type/:page',

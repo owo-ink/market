@@ -10,52 +10,31 @@
       .content-bar
         .left
           .card-box
-            TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", @changeAttribute="showAttribute(value, ind)", :key="value.id")
-              iframe(:src="'/public/' + value.template + '/index.html'")
+            TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", :key="value.id")
+              iframe(:src="'https://owo.ink/public/' + value.template + '/index.html'")
             // 页码
             PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
           // 添加模板按钮
           .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
         //- 属性控制
-        Deformation.control-bar#attribute(v-if="activeID !== null", :shouIcon="flase", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
+        Deformation.control-bar#attribute(v-if="activeID !== null", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
           .title-bar.drag-bar
             .title 属性管理
             .title-button-box
               .close.title-button-box-item(@click="activeID = null")
                 .icon &#xe642;
                 span 关闭
-          //- .control-title-bar
-          //-   .title-bar-item(@click="controlModel = 'value'", :class="{active: controlModel === 'value'}") 属性管理
-          //-   .title-bar-item(@click="controlModel = 'tag'", :class="{active: controlModel === 'tag'}") 标签管理
-          template(v-if="controlModel === 'value'")
-            .input-box
-              .control-item(v-for="control in templateControl.control")
-                TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
-                JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
-                JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
-                AutoEntry(v-else-if="control.type === 'number'", :type="Number" :name="control.label", v-model="control.value")
-                ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
-            WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
-          template(v-else)
-            .tag-list
-              .tag-item(v-for="(item, ind) in templateControl.control", v-if="item")
-                .label {{item.label}}
-                .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
-                .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-              WaterRipple.creat(text="添加标签", @onClick="showAddTagBox = true")
+          .input-box(v-if="templateControl.control")
+            .control-item(v-for="control in templateControl.control")
+              TextareaEntry(v-if="control.type === 'string'", :name="control.label", v-model="control.value")
+              JsonEntry(v-else-if="control.type === 'array'", :name="control.label" v-model="control.value")
+              JsonEntry(v-else-if="control.type === 'object'", :name="control.label" v-model="control.value")
+              AutoEntry(v-else-if="control.type === 'number'", :type="Number" :name="control.label", v-model="control.value")
+              ColorEntry( v-else-if="control.type === 'color'", :name="control.label", v-model="control.value")
+          WaterRipple.creat(text="生成预览", @onClick="creatTemplate")
         //- 属性管理
         //- Deformation.control-bar(:class="{active: activeID !== null}", :w="320", :h="760")
-      .add-tag-box(v-show="showAddTagBox || editTagID !== null")
-        .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
-        .add-box
-          .title-bar {{showAddTagBox ? '添加标签' : '修改标签'}}
-          AutoEntry(name="标签字段", v-model="addTag.name", :type="String")
-          SelectEntry(text="标签类型", v-model="addTag.type", :option="typeSelectList", def="string")
-          SelectEntry(text="标签模式", v-model="addTag.model", :option="modelSelectList", def="template")
-          AutoEntry(name="标签名称", v-model="addTag.label", :type="String")
-          TextareaEntry(name="标签数值", v-model="addTag.value")
-          WaterRipple.add-tag(v-if="showAddTagBox", text="确定添加", @onClick="addNewTag")
-          WaterRipple.add-tag(v-else, text="确定修改", @onClick="editTag")
+      
 </template>
 
 <script>
@@ -78,41 +57,20 @@ export default {
       loading: true,
       src: '',
       activeID: null,
-      activeTemplate: null,
       templateControl: [],
       templateList: [],
       typeList: [],
-      controlModel: 'value',
-      showAddTagBox: false,
-      editTagID: null,
+      
       // 模板总数
       templateNumber: 0,
       // 页码总数
       paginationNum: 1,
       // 当前活跃页码
-      activePaginationNum: 1,
-      typeSelectList: [
-        {value: 'string', text: '字符串'},
-        {value: 'array', text: '数组'},
-        {value: 'color', text: '颜色'},
-        {value: 'object', text: '对象'},
-        {value: 'number', text: '数字'}
-      ],
-      modelSelectList: [
-        {value: 'template', text: '模板插值'},
-        {value: 'prop', text: 'prop传值'},
-      ],
-      addTag: {
-        name: "",
-        type: "string",
-        label: "",
-        value: "",
-        model: "template"
-      }
+      activePaginationNum: 1
     }
   },
   created: function () {
-    console.log(this.$route.params)
+    // console.log(this.$route.params)
     // 判断是否有记录
     this.load()
     // 默认选中header
@@ -131,9 +89,11 @@ export default {
   },
   methods: {
     load: function () {
-      const type = this.$route.params.type
-      const page = this.$route.params.page
-      axios.get(`'https://owo.ink/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+      // console.log(this.$route.params.type, this.$route.params.page)
+      const type = this.$route.params.type ? this.$route.params.type : 'header'
+      const page = this.$route.params.page ? this.$route.params.page : 1
+
+      axios.get(`https://owo.ink/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
         const data = response.data.data
         this.templateList = data.template
         this.typeList = data.type
@@ -141,22 +101,15 @@ export default {
         this.templateNumber = data.total
         this.paginationNum = Math.ceil(data.total / 5)
         this.loading = false
+        // 设置活跃页码
+        this.activePaginationNum = parseInt(page)
       })
     },
     templateClick: function (value, ind) {
       // 特殊处理
       if (typeof value.control === 'string') value.control = JSON.parse(value.control)
       this.activeID = ind
-      this.activeTemplate = value
       this.templateControl = value
-      this.controlModel = 'value'
-    },
-    showAttribute: function (value, ind) {
-      if (typeof value.control === 'string') value.control = JSON.parse(value.control)
-      this.activeID = ind
-      this.activeTemplate = value
-      this.templateControl = value
-      this.controlModel = 'tag'
     },
     creatTemplate: function () {
       axios.post('https://owo.ink/creatTemplate', {data: this.templateControl}).then((response) => {
@@ -169,98 +122,6 @@ export default {
       this.activePaginationNum = 1
       this.$store.commit('changeActiveType', type)
       this.$router.push(`/home/${type}/1`)
-    },
-    addNewTag: function () {
-      let templateControlCopy = JSON.parse(JSON.stringify(this.templateControl['control']))
-      if (!templateControlCopy) templateControlCopy = []
-      let addTagCopy = JSON.parse(JSON.stringify(this.addTag))
-      // console.log(addTagCopy)
-      if (addTagCopy.type === 'array' || addTagCopy.type === 'object') {
-        // 数据清洗
-        addTagCopy.value = addTagCopy.value.replace(/\r/g, '')
-        addTagCopy.value = addTagCopy.value.replace(/\n/g, '')
-        addTagCopy.value = addTagCopy.value.replace(/ /g, '')
-        addTagCopy.value = addTagCopy.value.replace(/},]/g, '}]')
-        addTagCopy.value = addTagCopy.value.replace(/],]/g, ']]')
-        addTagCopy.value = addTagCopy.value.replace(/},}/g, '}}')
-
-        addTagCopy.value = JSON.parse(addTagCopy.value)
-      } else if (addTagCopy.type === 'number') {
-        addTagCopy.value = parseInt(addTagCopy.value)
-      }
-      
-      templateControlCopy.push(addTagCopy)
-      axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
-        // console.log(response.data)
-        if (response.data.err === 0) {
-          this.addTag = {
-            name: "",
-            type: "string",
-            label: "",
-            value: "",
-            model: "template"
-          }
-          this.templateControl['control'] = templateControlCopy
-          alert('添加成功!')
-          this.showAddTagBox = false
-        }
-      })
-    },
-    deleteTag: function (item, ind) {
-      const confirm = window.confirm(`确认删除 "${item.label}" 这个标签吗!`)
-      if (confirm) {
-        let copyData = JSON.parse(JSON.stringify(this.templateControl))
-        copyData.control.splice(ind, 1)
-        // 发送删除请求
-        axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
-          if (response.data.err === 0) {
-            this.templateControl = copyData
-          }
-        })
-      }
-    },
-    showEditTagBox: function (item, ind) {
-      const valueType = typeof item.value
-      if (valueType === 'object' || valueType === 'array') {
-        item.value = JSON.stringify(item.value)
-      }
-      this.addTag = item
-      this.editTagID = ind
-    },
-    editTag: function () {
-      let copyData = JSON.parse(JSON.stringify(this.templateControl))
-      // console.log(copyData)
-      
-      copyData.control[this.editTagID] = this.addTag
-      if (this.addTag.type === 'array' || this.addTag.type === 'object') {
-        // 数据清洗
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/\r/g, '')
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/\n/g, '')
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/ /g, '')
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/},]/g, '}]')
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/},}/g, '}}')
-        copyData.control[this.editTagID].value = copyData.control[this.editTagID].value.replace(/],]/g, ']]')
-
-        copyData.control[this.editTagID].value = JSON.parse(copyData.control[this.editTagID].value)
-      }
-      this.templateControl = copyData
-      axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
-        // console.log(response.data)
-        if (response.data.err === 0) {
-          this.editTagID = null
-          alert('修改成功!')
-        }
-      })
-    },
-    showAddNewBox: function () {
-      // 清除历史输入数据
-      this.addTag = {
-        name: "",
-        type: "",
-        label: "",
-        value: ""
-      }
-      this.showAddTagBox = !this.showAddTagBox
     },
     // 变更页码
     changePageNum: function (num) {
@@ -371,73 +232,12 @@ export default {
     color: #333
   .active
     opacity: 1
-
-  .creat, .add-tag
-    background-color: #009fe9
-    line-height: 40px
-    text-align: center
-    color: white
-    position: absolute
-    bottom: 0
-    width: 100%
-    border-radius: 0
   iframe
     width: 100%
     height: 100%
     border: none
   
-  .add-tag-box
-    position: fixed
-    z-index: 99
-    width: 100%
-    height: 100%
-    background-color: rgba(0, 0, 0, 0.80)
-    left: 0
-    top: 0
-    .add-box
-      width: 400px
-      background-color: white
-      position: absolute
-      left: 0
-      right: 0
-      top: 0
-      bottom: 0
-      margin: auto
-      height: 400px
-    .title-bar
-      height: 40px
-      background-color: white
-      text-align: center
-      line-height: 40px
-      border-bottom: 1px solid #ccc
-      
-    .close
-      position: absolute
-      right: 10px
-      top: 10px
-      color: white
-      font-size: 35px
-  .tag-list
-    .tag-item
-      border-bottom: 1px solid #e9e9e9
-      display: flex
-      margin: 0 10px
-      line-height: 40px
-      .icon
-        width: 40px
-        line-height: 40px
-        text-align: center
-        font-size: 1.4em
-        position: absolute
-        cursor: pointer
-      .edit
-        right: 40px
-        color: white
-        background-color: yellowgreen
-      .delete
-        right: 0
-        color: white
-        background-color: teal
+  
 .loading-box
   width: 100%
   height: 100%

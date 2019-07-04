@@ -8,7 +8,6 @@
         <div class="icon set-default" title="设置为默认模板" @click.stop="setDefault()">&#xe795;</div>
         <div class="icon copy" title="复制模板代码" :data-clipboard-text="getCopyUrl()">&#xe800;</div>
         <div class="icon config-icon" title="配置管理" @click.stop="$emit('changeConfig')">&#xe68d;</div>
-        <div class="icon config-icon" title="标签管理" @click.stop="$emit('changeAttribute')">&#xe63d;</div>
         <div class="icon edit-icon" title="编辑模板" @click="edit(data.id)">&#xe64f;</div>
       </div>
     </div>
@@ -36,10 +35,12 @@ export default {
   },
   methods: {
     getUrl: function () {
-      return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
+      // return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
+      return 'https://owo.ink/public/' + this.data.template + '.page'
     },
     getShowUrl: function () {
-      return 'https://' + window.location.host + '/public/' + this.data.template
+      // return 'https://' + window.location.host + '/public/' + this.data.template
+      return 'https://owo.ink/public/' + this.data.template
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)

@@ -17,13 +17,17 @@
         input(type="checkbox", :id="'script' + ind" :value="item.name", v-model="checkScript")
         label.text(:for="'script' + ind") {{item.name}}
       .clear
-    textarea.edit(v-model="value")
-    WaterRipple.send(text="发布", @onClick="send")
+    .edit
+      .left
+        textarea(v-model="value")
+        WaterRipple.send(text="发布", @onClick="send")
+      editTag(v-model="control")
 </template>
 
 <script>
 import axios from 'axios'
 import WaterRipple from 'waterripple'
+import editTag from '@/components/editTag'
 export default {
   name: 'edit',
   data: function () {
@@ -34,11 +38,13 @@ export default {
       browser: "兼容各种浏览器",
       type: "header",
       value: "",
+      control: [],
       checkStyle: [],
       checkScript: []
     }
   },
   components: {
+    editTag,
     WaterRipple
   },
   beforeCreate: function () {
@@ -60,6 +66,7 @@ export default {
           this.templateFile = value.templateInfo.templateFile
           this.value = value.fileData
           this.type = value.templateInfo.type
+          this.control = JSON.parse(value.templateInfo.control)
         }
       })
     }
@@ -82,14 +89,14 @@ export default {
         axios.post('https://owo.ink/saveTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
-            this.$router.push(`/`)
+            window.history.back(-1)
           }
         })
       } else {
         axios.post('https://owo.ink/updataTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
-            this.$router.push(`/`)
+            window.history.back(-1)
           }
         })
       }
@@ -113,12 +120,20 @@ export default {
 .edit
   overflow-x: hidden
   overflow-y: auto
-  height: calc(100% - 292px)
+  height: calc(100% - 242px)
   border: none
-  width: calc(100% - 10px)
-  resize: none
-  padding: 5px
-  display: block
+  width: 100%
+  display: flex
+  .left
+    width: calc(100% - 250px)
+    height: 100%
+  textarea
+    width: 100%
+    height: calc(100% - 40px)
+    resize: none
+    display: block
+    border: none
+    padding: 0
 select
   width: 100%
   border: none

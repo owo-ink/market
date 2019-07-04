@@ -8,9 +8,6 @@ export default {
   props: {
     paginationNum: Number,
     activePaginationNum: Number
-  },
-  created: function () {
-    console.log(this.activePaginationNum)
   }
 }
 </script>
