@@ -9,11 +9,31 @@
       .item html
       .item body
     .control(v-if="active && active.style")
-      template(v-for="item in active.style")
-        AutoEntry(v-if="item.type === 'string'", :name="item.name", v-model="item.value", @input="create()", :type="String")
-        SelectEntry(v-else-if="item.type === 'option'", :text="item.name", v-model="item.value", @input="create()", :option="item.option", def="string")
-        ColorEntry(v-else-if="item.type === 'color'", :name="item.name", @input="create()", v-model="item.value")
-      TextareaEntry(v-if="active.text", name="文本", @input="create()", v-model="active.text")
+      template(v-for="(item, key) in active.style")
+        AutoEntry(v-if="key === 'width'", name="宽度", v-model="active.style[key]", @input="create()", :type="String")
+        AutoEntry(v-else-if="key === 'height'", name="高度", v-model="active.style[key]", @input="create()", :type="String")
+        AutoEntry(v-else-if="key === 'font-size'", name="字体大小", v-model="active.style[key]", @input="create()", :type="String")
+        ColorEntry(v-else-if="key === 'background-color'", name="背景颜色", @input="create()", v-model="active.style[key]")
+        AutoEntry(v-else-if="key === 'background-image'", name="背景图片", @input="create()", v-model="active.style[key]", :type="String")
+        AutoEntry(v-else-if="key === 'background-size'", name="图片大小", @input="create()", v-model="active.style[key]", :type="String")
+        SelectEntry(v-else-if="key === 'background-repeat'", text="背景平铺方式", v-model="active.style[key]", @input="create()", :option="repeatOption", def="string")
+        SelectEntry(v-else-if="key === 'text-align'", text="对齐方式", v-model="active.style[key]", @input="create()", :option="textAlignOption", def="string")
+        SelectEntry(v-else-if="key === 'position'", text="定位方式", v-model="active.style[key]", @input="create()", :option="positionOption", def="string")
+      .position-box.box-show(v-if="active.style.position && active.style.position === 'absolute' || active.style.position === 'fixed'")
+        .title 坐标位置
+        .box
+          input(type="text", class="top", v-model="active.style.top", @blur="create()")
+          input(type="text", class="right", v-model="active.style.right", @blur="create()")
+          input(type="text", class="bottom", v-model="active.style.bottom", @blur="create()")
+          input(type="text", class="left", v-model="active.style.left", @blur="create()")
+      .margin-box.box-show
+        .title 外边距
+        .box
+          input(type="text", class="top", v-model="active.style['margin-top']", @blur="create()")
+          input(type="text", class="right", v-model="active.style['margin-right']", @blur="create()")
+          input(type="text", class="bottom", v-model="active.style['margin-bottom']", @blur="create()")
+          input(type="text", class="left", v-model="active.style['margin-left']", @blur="create()")
+      TextareaEntry(v-if="active.text", name="文本", @blur="create()", v-model="active.text")
 </template>
 
 <script>
@@ -35,33 +55,37 @@ export default {
       domData: {
         type: 'div',
         id: "root",
-        style: [
-          {
-            name: "字体大小",
-            type: "string",
-            key: "font-size",
-            value: "14px"
-          },
-          {
-            name: "高度",
-            type: "string",
-            key: "height",
-            value: "100%"
-          },
-          {
-            name: "宽度",
-            type: "string",
-            key: "width",
-            value: "100%"
-          }
-        ],
+        style: {
+          "font-size": "14px",
+          "height": "100%",
+          "width": "100%",
+          "background-image": "unset",
+          "background-size": "unset",
+          "background-repeat": "unset"
+        },
         text: '',
         children: []
       },
-      bodyStyle: {
-
-      },
-      active: {}
+      bodyStyle: {},
+      active: {},
+      textAlignOption: [
+        {value: 'left', text: '居左'},
+        {value: 'center', text: '居中'},
+        {value: 'right', text: '居右'},
+      ],
+      positionOption: [
+        {value: 'static', text: '无定位'},
+        {value: 'absolute', text: '绝对定位(父元素)'},
+        {value: 'fixed', text: '绝对定位(浏览器窗口)'},
+        {value: 'relative', text: '相对定位'},
+      ],
+      repeatOption: [
+        {value: 'unset', text: '默认值'},
+        {value: 'repeat', text: '垂直方向和水平方向重复'},
+        {value: 'repeat-x', text: '水平方向重复'},
+        {value: 'repeat-y', text: '垂直方向重复'},
+        {value: 'no-repeat', text: '不重复'}
+      ]
     }
   },
   created: function () {
@@ -93,86 +117,24 @@ export default {
       this.active.children.push({
         type: 'div',
         text: '',
-        style: [
-          {
-            name: "高度",
-            type: "string",
-            key: "height",
-            value: "200px"
-          },
-          {
-            name: "宽度",
-            type: "string",
-            key: "width",
-            value: "100%"
-          },
-          {
-            name: "背景颜色",
-            type: "color",
-            key: "background-color",
-            value: "#ffffff"
-          },
-          {
-            name: "定位类型",
-            type: "option",
-            key: "position",
-            option: [
-              {value: 'static', text: '无定位'},
-              {value: 'absolute', text: '绝对定位(父元素)'},
-              {value: 'fixed', text: '绝对定位(浏览器窗口)'},
-              {value: 'relative', text: '相对定位'},
-            ],
-            value: "static"
-          },
-          {
-            name: "上边距",
-            type: "string",
-            key: "top",
-            value: "unset"
-          },
-          {
-            name: "右边距",
-            type: "string",
-            key: "right",
-            value: "unset"
-          },
-          {
-            name: "底边距",
-            type: "string",
-            key: "bottom",
-            value: "unset"
-          },
-          {
-            name: "左边距",
-            type: "string",
-            key: "left",
-            value: "unset"
-          },
-          {
-            name: "上外边距",
-            type: "string",
-            key: "margin-top",
-            value: "unset"
-          },
-          {
-            name: "右外边距",
-            type: "string",
-            key: "margin-right",
-            value: "unset"
-          },
-          {
-            name: "底外边距",
-            type: "string",
-            key: "margin-bottom",
-            value: "unset"
-          },
-          {
-            name: "左外边距",
-            type: "string",
-            key: "margin-left",
-            value: "unset"
-          },
-        ],
+        style: {
+          "font-size": "14px",
+          "height": "200px",
+          "width": "100%",
+          "background-color": "#ffffff",
+          "position": "static",
+          "top": "unset",
+          "right": "unset",
+          "bottom": "unset",
+          "left": "unset",
+          "margin-top": "unset",
+          "margin-right": "unset",
+          "margin-bottom": "unset",
+          "margin-left": "unset",
+          "background-image": "unset",
+          "background-size": "unset",
+          "background-repeat": "unset"
+        },
         id: this.GenNonDuplicateID(8),
         children: []
       })
@@ -186,79 +148,20 @@ export default {
       this.active.children.push({
         type: 'h1',
         text: "asdasdasd",
-        style: [
-          {
-            name: "字体大小",
-            type: "string",
-            key: "font-size",
-            value: "14px"
-          },
-          {
-            name: "行高",
-            type: "string",
-            key: "line-height",
-            value: "20px"
-          },
-          {
-            name: "对齐方向",
-            type: "option",
-            key: "text-align",
-            option: [
-              {value: 'left', text: '居左'},
-              {value: 'center', text: '居中'},
-              {value: 'right', text: '居右'},
-            ],
-            value: "left"
-          },
-          {
-            name: "上边距",
-            type: "string",
-            key: "top",
-            value: "unset"
-          },
-          {
-            name: "右边距",
-            type: "string",
-            key: "right",
-            value: "unset"
-          },
-          {
-            name: "底边距",
-            type: "string",
-            key: "bottom",
-            value: "unset"
-          },
-          {
-            name: "左边距",
-            type: "string",
-            key: "left",
-            value: "unset"
-          },
-          {
-            name: "上外边距",
-            type: "string",
-            key: "margin-top",
-            value: "unset"
-          },
-          {
-            name: "右外边距",
-            type: "string",
-            key: "margin-right",
-            value: "unset"
-          },
-          {
-            name: "底外边距",
-            type: "string",
-            key: "margin-bottom",
-            value: "unset"
-          },
-          {
-            name: "左外边距",
-            type: "string",
-            key: "margin-left",
-            value: "unset"
-          },
-        ],
+        style: {
+          "font-size": "14px",
+          "text-align": "left",
+          "position": "unset",
+          "top": "unset",
+          "right": "unset",
+          "bottom": "unset",
+          "left": "unset",
+          "margin-top": "unset",
+          "margin-right": "unset",
+          "margin-bottom": "unset",
+          "margin-left": "unset",
+          "background-image": "unset"
+        },
         id: this.GenNonDuplicateID(8),
         children: []
       })
@@ -345,5 +248,47 @@ iframe {
   .box-item {
     position: relative;
   }
+  // 盒子
+  .box {
+    height: 200px;
+    width: 200px;
+    position: relative;
+    margin: 30px auto;
+    border: 1px solid #ccc;
+  }
+  input {
+    width: 40px;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    color: #666;
+    height: 15px;
+  }
+  .top {
+    left: 0;
+    right: 0;
+    top: -25px;
+  }
+  .right {
+    top: 0;
+    bottom: 0;
+    right: -47px;
+  }
+  .bottom {
+    left: 0;
+    right: 0;
+    bottom: -25px;
+  }
+  .left {
+    top: 0;
+    bottom: 0;
+    left: -47px;
+  }
+}
+.box-show .title {
+  font-size: 12px;
+  color: #333333;
+  line-height: 40px;
+  margin: 0 20px;
 }
 </style>

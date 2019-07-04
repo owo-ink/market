@@ -639,10 +639,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@owo/owo@1.2.21":
-  version "1.2.21"
-  resolved "https://registry.yarnpkg.com/@owo/owo/-/owo-1.2.21.tgz#6ebb870073d7b52162f6715602fba7a26aa162bd"
-  integrity sha512-5FVEdlgZy5clDIWc1yyufLbX1JYFkWXqvQpzB6Bmy+t6JbcgniWq23vC4+yi4tAy2XASejcZPkNkh0er6FZBKw==
+"@owo/owo@1.2.23":
+  version "1.2.23"
+  resolved "https://registry.yarnpkg.com/@owo/owo/-/owo-1.2.23.tgz#525e2157179b9b0317e2b41b214704ce5f4aa295"
+  integrity sha512-4OnppWR+3WZLj/ugpUBqLS2KaYd+47jt298BxMnggvl4Jionc2+59MVoO2H/Nc/4K7VOGkKq8uU+iDgbIqggxQ==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/preset-env" "^7.4.5"

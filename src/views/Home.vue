@@ -1,9 +1,12 @@
 <template lang="pug">
   .home
+    //- 加载动画
     .loading-box(v-if="loading")
     template(v-else)
+      //- 顶部标签栏
       .type-bar
         .type-item(v-for="value in typeList", :class="{active: $route.params.type === value.value}" @click="changeType(value.value)") {{value.name}}
+      //- 模块预览区
       .content-bar
         .left
           .card-box
@@ -112,6 +115,8 @@ export default {
     console.log(this.$route.params)
     // 判断是否有记录
     this.load()
+    // 默认选中header
+    this.$store.commit('changeActiveType', 'header')
   },
   components: {
     ColorEntry,
@@ -126,28 +131,17 @@ export default {
   },
   methods: {
     load: function () {
-      if (!this.$route.params.type) {
-        axios.get('https://owo.ink/typeList').then((response) => {
-          // 默认选中header
-          this.$store.commit('changeActiveType', 'header')
-          
-          const data = response.data.data
-          this.templateList = data.template
-          this.typeList = data.type
-          this.$store.commit('changeType', data.type)
-          // 获取页码
-          this.getNumByType()
-        })
-      } else {
-        const type = this.$route.params.type
-        const page = this.$route.params.page
-        this.typeList = this.$store.state.type
-        axios.get(`https://owo.ink/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
-          this.templateList = response.data.data
-          // 获取页码
-          this.getNumByType()
-        })
-      }
+      const type = this.$route.params.type
+      const page = this.$route.params.page
+      axios.get(`'https://owo.ink/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+        const data = response.data.data
+        this.templateList = data.template
+        this.typeList = data.type
+        // 获取页码
+        this.templateNumber = data.total
+        this.paginationNum = Math.ceil(data.total / 5)
+        this.loading = false
+      })
     },
     templateClick: function (value, ind) {
       // 特殊处理
@@ -275,14 +269,6 @@ export default {
       this.activePaginationNum = num
       this.loading = true
       this.$router.push(`/home/${this.$route.params.type}/${num}`)
-    },
-    getNumByType: function () {
-      axios.get(`https://owo.ink/getNumByType?type=${this.$route.params.type}`).then((response) => {
-        console.log(`获取到模板总数: ${response.data.data}`)
-        this.templateNumber = response.data.data
-        this.paginationNum = Math.ceil(response.data.data / 5)
-        this.loading = false
-      })
     }
   },
   watch: {
