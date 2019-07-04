@@ -117,6 +117,7 @@ export default {
     this.load()
     // 默认选中header
     this.$store.commit('changeActiveType', 'header')
+    this.loading = false
   },
   components: {
     ColorEntry,
