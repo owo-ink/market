@@ -204,31 +204,16 @@ app.get('/getTemplateListByType', (req, res) => {
     database : 'ozzx'
   })
   connection.connect()
-  connection.query(`SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`, (templateError, templateResults) => {
-    connection.end()
-    if (templateError) throw templateError
-    res.send({
-      err: 0,
-      data: templateResults
-    })
-  })
-})
-
-app.get('/typeList', (req, res) => {
-  const connection = mysql.createConnection({
-    host     : 'cdb-iphpadts.cd.tencentcdb.com',
-    port     : 10035,
-    user     : 'ozzx',
-    password : 'ozzx',
-    database : 'ozzx'
-  })
-  connection.connect()
+  let sql = `SELECT * FROM template WHERE type='${typeResults[0].value}'`
+  if (req.query.type && req.query.page) {
+    sql = `SELECT * FROM template WHERE type='${req.query.type}' limit ${(parseInt(req.query.page) - 1) * req.query.num}, ${req.query.num}`
+  }
   // 查询类型列表
   connection.query('SELECT * FROM type', (typeError, typeResults) => {
-    if (typeError) throw typeError;
-    connection.query(`SELECT * FROM template WHERE type='${typeResults[0].value}'`, (templateError, templateResults) => {
+    // 查询模块
+    connection.query(sql, (templateError, templateResults) => {
       connection.end()
-      if (templateError) throw templateError;
+      if (templateError) throw templateError
       res.send({
         err: 0,
         data: {
@@ -417,10 +402,6 @@ app.all('/updataTemplateFile', jsonParser, function(req, res){
     res.end('{"err":1,"message": "数据不能为空!"}')
   }
 })
-
-// function creatDom (data) {
-
-// }
 
 // 创建页面
 function createHtml (data) {
