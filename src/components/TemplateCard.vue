@@ -62,7 +62,7 @@ export default {
     },
     setDefault: function () {
       console.log('更新默认模板!')
-      axios.get(`/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
+      axios.get(`https://owo.ink/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
         if (response.data.err === 0) {
           alert('更新成功!')
         } else {

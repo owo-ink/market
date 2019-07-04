@@ -127,7 +127,7 @@ export default {
   methods: {
     load: function () {
       if (!this.$route.params.type) {
-        axios.get('/typeList').then((response) => {
+        axios.get('https://owo.ink/typeList').then((response) => {
           // 默认选中header
           this.$store.commit('changeActiveType', 'header')
           
@@ -142,7 +142,7 @@ export default {
         const type = this.$route.params.type
         const page = this.$route.params.page
         this.typeList = this.$store.state.type
-        axios.get(`/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+        axios.get(`https://owo.ink/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
           this.templateList = response.data.data
           // 获取页码
           this.getNumByType()
@@ -165,7 +165,7 @@ export default {
       this.controlModel = 'tag'
     },
     creatTemplate: function () {
-      axios.post('/creatTemplate', {data: this.templateControl}).then((response) => {
+      axios.post('https://owo.ink/creatTemplate', {data: this.templateControl}).then((response) => {
         this.templateList[this.activeID].template = response.data.templateID
       })
     },
@@ -196,7 +196,7 @@ export default {
       }
       
       templateControlCopy.push(addTagCopy)
-      axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
+      axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: templateControlCopy}).then((response) => {
         // console.log(response.data)
         if (response.data.err === 0) {
           this.addTag = {
@@ -218,7 +218,7 @@ export default {
         let copyData = JSON.parse(JSON.stringify(this.templateControl))
         copyData.control.splice(ind, 1)
         // 发送删除请求
-        axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+        axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
           if (response.data.err === 0) {
             this.templateControl = copyData
           }
@@ -250,7 +250,7 @@ export default {
         copyData.control[this.editTagID].value = JSON.parse(copyData.control[this.editTagID].value)
       }
       this.templateControl = copyData
-      axios.post('/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
+      axios.post('https://owo.ink/changeControl', {id: this.templateList[this.activeID].id, data: copyData.control}).then((response) => {
         // console.log(response.data)
         if (response.data.err === 0) {
           this.editTagID = null
@@ -277,7 +277,7 @@ export default {
       this.$router.push(`/home/${this.$route.params.type}/${num}`)
     },
     getNumByType: function () {
-      axios.get(`/getNumByType?type=${this.$route.params.type}`).then((response) => {
+      axios.get(`https://owo.ink/getNumByType?type=${this.$route.params.type}`).then((response) => {
         console.log(`获取到模板总数: ${response.data.data}`)
         this.templateNumber = response.data.data
         this.paginationNum = Math.ceil(response.data.data / 5)

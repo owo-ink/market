@@ -22,9 +22,12 @@ document.body.onclick = function (e) {
   owoList.forEach(element => {
     element.classList.remove('owo-active')
   })
-  e.target.classList.add('owo-active')
-  ws.send(JSON.stringify({
-    type: "check",
-    data: e.target.getAttribute('owo-id')
-  }))
+  if (e.target.getAttribute('owo-id')) {
+    e.target.classList.add('owo-active')
+    ws.send(JSON.stringify({
+      type: "check",
+      data: e.target.getAttribute('owo-id')
+    }))
+  }
+  
 }
