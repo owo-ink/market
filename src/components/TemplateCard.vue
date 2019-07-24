@@ -49,6 +49,7 @@ export default {
       this.$router.push(`/edit/${id}`)
     },
     getCopyUrl: function () {
+      console.log(typeof this.data.control)
       const control = typeof this.data.control === 'string' ? JSON.parse(this.data.control) : this.data.control
       let parameter = ''
       if (control) {

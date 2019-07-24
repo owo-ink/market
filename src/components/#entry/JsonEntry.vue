@@ -8,7 +8,7 @@
 import Highlight from '@puge/highlight'
 export default {
   props: {
-    value: Array,
+    value: [Array, Object],
     name: String
   },
   data: function () {
