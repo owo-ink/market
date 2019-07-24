@@ -16,7 +16,10 @@
       <span class="attribute-bar-item attribute-script" v-for="item in JSON.parse(data.scriptList)" :key="'script' + item">{{item}}</span>
       <span class="attribute-bar-item attribute-style" v-for="item in JSON.parse(data.styleList)" :key="'style' + item">{{item}}</span>
     </div>
-    <div class="template-view">
+    <div v-if="data.height" class="template-view" :style="'height: ' + data.height + 'px;'">
+      <slot></slot>
+    </div>
+    <div v-else class="template-view">
       <slot></slot>
     </div>
   </div>
@@ -119,7 +122,10 @@ export default {
     border-right: 1px solid #ccc;
   }
   .title-bar .url {
-    width: calc(100% - 140px);
+    width: calc(100% - 240px);
+  }
+  .title-bar .url:hover {
+    color: cornflowerblue;
   }
   .icon-bar {
     position: absolute;

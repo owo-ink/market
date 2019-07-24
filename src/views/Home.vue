@@ -244,4 +244,13 @@ export default {
   background-image: url('../assets/loading.svg')
   background-repeat: no-repeat
   background-position: center
+.creat
+  position: absolute
+  bottom: 0
+  height: 45px
+  text-align: center
+  line-height: 45px
+  width: 100%
+  background-color: #009fe9
+  color: white
 </style>
