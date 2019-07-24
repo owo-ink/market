@@ -9,28 +9,29 @@
 
 <style lang="less">
   .right-item {
-    width: 360px;
-    margin: 0 10px;
-    height: 160px;
+    width: <<width>>px;
+    height: <<height>>px;
     border-bottom: 1px dotted #ccc;
     padding-bottom: 15px;
+    overflow: hidden;
   }
   .right-item:nth-last-child(1) {
     border: none;
   }
   .title {
     line-height: 40px;
-    font-size: 18px;
+    font-size: <<titleSize>>px;
     font-weight: bold;
-    a {
+    white-space: nowrap;
+    a:hover {
       color: #ce262a;
       text-decoration: none;
     }
   }
   .text {
-    font-size: 14px;
+    font-size: <<textSize>>px;
     color: #595757;
-    line-height: 25px;
+    line-height: <<textLineHeight>>px;
     height: 70px;
     overflow: hidden;
     margin: 0;

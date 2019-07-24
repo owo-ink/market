@@ -51,7 +51,7 @@ module.exports = {
 .banner-box {
   height: 380px;
   width: 550px;
-  padding: 10px 20px;
+  padding: 0 20px;
   position: relative;
 }
 .swiper-slide {
@@ -90,7 +90,8 @@ module.exports = {
     text-align: center;
     height: 45px;
     line-height: 45px;
-    font-size: 19px;
+    font-size: 15px;
+    font-family: \5FAE\8F6F\96C5\9ED1;
   }
 }
 

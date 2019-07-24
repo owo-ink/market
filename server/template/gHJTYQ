@@ -18,7 +18,7 @@
   padding: 0 20px;
   padding-bottom: 20px;
   position: relative;
-  background-image: url(https://puge-10017157.cos.ap-shanghai.myqcloud.com/owo/material/taiji/clould.png);
+  background-image: url(https://cunchu.site/owo/material/taiji/clould.png);
   background-repeat: no-repeat;
   background-position: 90px 15px;
   width: 270px;
@@ -34,7 +34,7 @@
 }
 // 查看更多
 .more {
-  background-image: url('https://puge-10017157.cos.ap-shanghai.myqcloud.com/owo/material/taiji/more.png');
+  background-image: url('https://cunchu.site/owo/material/taiji/more.png');
   width: 50px;
   height: 12px;
   position: absolute;
