@@ -45,6 +45,7 @@ html, body, .app {
 }
 #attribute {
   border: none;
+  z-index: 999;
   box-shadow: 1px 1px 5px #b0a8cc;
 }
 a {
