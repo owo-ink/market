@@ -65,7 +65,9 @@ const mysql      = require('./node_modules/mysql');
 
 // 生成html页面
 function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
-  console.log(styleLsit, scriptList)
+  console.log('创建文件:', styleLsit, scriptList)
+  console.log('传递参数:', controlList)
+  console.log('模板路径:', tempUrl)
   let styleArr = [
     {
       name: "market",
@@ -127,9 +129,6 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
     // 页面清单
     pageList: [
       {
-        // 是否为页面主入口
-        main: true,
-        isPage: true,
         name: 'home',
         prop: controlList,
         src: tempUrl
