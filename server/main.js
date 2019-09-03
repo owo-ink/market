@@ -430,11 +430,12 @@ app.ws('/', function(ws) {
     // 判断消息类型
     switch (message.type) {
       case 'create':
-        console.log(creatStyle(message.data))
-        fs.writeFileSync('./create/page.owo', `
+        const fileData = `
           <template>${createHtml(message.data)}<div class="owo-build-info">${(new Date()).valueOf()}</div></template>
           <style>${creatStyle(message.data)}</style>
-        `)
+        `
+        console.log(fileData)
+        fs.writeFileSync('./create/page.owo', fileData)
         // htmlText
         // 生成页面配置
         let config = {
@@ -476,9 +477,6 @@ app.ws('/', function(ws) {
           // 页面清单
           pageList: [
             {
-              // 是否为页面主入口
-              main: true,
-              isPage: true,
               name: 'home',
               src: './create/page.owo'
             }
