@@ -141,116 +141,148 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-  .home
-    width: 100%
-    height: 100%
-  .type-bar
-    height: 40px
-    display: flex
-    background-color: #262626
-    .type-item
-      color: #bbb
-      width: 60px
-      text-align: center
-      line-height: 30px
-      padding: 5px
-      cursor: pointer
-      font-size: 14px
-    .active
-      color: #3d91ff
-  .content-bar
-    height: calc(100% - 40px)
-    width: 100%
-    display: flex
-  .left
-    height: 100%
-    overflow-y: auto
-    position: relative
-    width: 100%
-    .card-box
-      width: 100%
-      height: 100%
-      overflow: auto
-    .add-temple-button
-      position: absolute
-      right: 20px
-      bottom: 20px
-      font-size: 40px
-      color: chocolate
-  .control-bar
-    position: fixed
-    top: 2%
-    background-color: white
-    .input-box
-      height: calc(100% - 40px)
-      overflow-x: hidden
-      overflow-y: auto
-    .title
-      height: 40px
-      background-color: #2b303b
-      line-height: 40px
-      padding: 0 10px
-      color: white
-    .title-button-box
-      position: absolute
-      top: 0
-      right: 0
-      line-height: 40px
-      display: flex
-      font-size: 14px
-      color: #87ceeb
-      height: 40px
-      overflow: hidden
+<style scoped lang="less">
+  .home {
+    width: 100%;
+    height: 100%;
+  }
+  .type-bar {
+    height: 40px;
+    display: flex;
+    background-color: #262626;
+    .type-item {
+      color: #bbb;
+      width: 60px;
+      text-align: center;
+      line-height: 30px;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .active {
+      color: #3d91ff;
+    }
+  }
+    
+  .content-bar {
+    height: calc(100% - 40px);
+    width: 100%;
+    display: flex;
+  }
+    
+  .left {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    .card-box {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+    .add-temple-button {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 40px;
+      color: chocolate;
+    }
+  }
+    
+  .control-bar {
+    position: fixed;
+    top: 2%;
+    background-color: white;
+    .input-box {
+      height: calc(100% - 40px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+      
+    .title {
+      height: 40px;
+      background-color: #2b303b;
+      line-height: 40px;
+      padding: 0 10px;
+      color: white;
+    }
+    .title-button-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      line-height: 40px;
+      display: flex;
+      font-size: 14px;
+      color: #87ceeb;
+      height: 40px;
+      overflow: hidden;
       // 属性管理标题栏按钮
-      .title-button-box-item
-        display: flex
-        padding: 0 5px
-      .close
-        cursor: pointer
-      span
-        display: block
-      .icon
-        height: 40px
-        margin: 0 5px
-        line-height: 40px
-        font-size: 20px
-        color: skyblue
-  .control-title-bar
-    height: 40px
-    display: flex
-    line-height: 40px
-    background-color: #f2f2f2
-    .active
-      background-color: #009fe9
-      color: white
-  .title-bar-item
-    width: 50%
-    text-align: center
-    cursor: pointer
-    background-color: white
-    color: #333
-  .active
-    opacity: 1
-  iframe
-    width: 100%
-    height: 100%
-    border: none
+      .title-button-box-item {
+        display: flex;
+        padding: 0 5px;
+      }
+      .close {
+        cursor: pointer;
+      }
+      span {
+        display: block;
+      }
+      .icon {
+        height: 40px;
+        margin: 0 5px;
+        line-height: 40px;
+        font-size: 20px;
+        color: skyblue;
+      }
+    }
+  }
+    
+    
+  .control-title-bar {
+    height: 40px;
+    display: flex;
+    line-height: 40px;
+    background-color: #f2f2f2;
+    .active {
+      background-color: #009fe9;
+      color: white;
+    }
+  }
+  .title-bar-item {
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
+  }
+    
+  .active {
+    opacity: 1;
+  }
+    
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
   
+.loading-box {
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/loading.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
   
-.loading-box
-  width: 100%
-  height: 100%
-  background-image: url('../assets/loading.svg')
-  background-repeat: no-repeat
-  background-position: center
-.creat
-  position: absolute
-  bottom: 0
-  height: 45px
-  text-align: center
-  line-height: 45px
-  width: 100%
-  background-color: #009fe9
-  color: white
+.creat {
+  position: absolute;
+  bottom: 0;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  width: 100%;
+  background-color: #009fe9;
+  color: white;
+}
+  
 </style>

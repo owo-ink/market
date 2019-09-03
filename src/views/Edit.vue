@@ -105,57 +105,74 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
-.edit-box
-  width: 100%
-  height: 100%
-.text-input
-  width: calc(100% - 20px)
-  border: none
-  height: 40px
-  background-color: white
-  padding: 0 10px
-  font-size: 1rem
-  border-bottom: 1px solid #ccc
-.edit
-  overflow-x: hidden
-  overflow-y: auto
-  height: calc(100% - 242px)
-  border: none
-  width: 100%
-  display: flex
-  .left
-    width: calc(100% - 250px)
-    height: 100%
-  textarea
-    width: 100%
-    height: calc(100% - 40px)
-    resize: none
-    display: block
-    border: none
-    padding: 0
-select
-  width: 100%
-  border: none
-  height: 40px
-  border-bottom: 1px solid #ccc
-  padding: 0 7px
-  color: #333
-  font-size: 1rem
-.send
-  width: 100%
-  text-align: center
-  background-color: #009fe9
-  color: white
-  line-height: 40px
-.check-box
-  height: 40px
-  overflow-y: hidden
-  overflow-x: scroll
-  .check-item
-    line-height: 40px
-    float: left
-    margin: 0 10px
-.clear
-  clear: both
+<style scoped lang="less">
+.edit-box {
+  width: 100%;
+  height: 100%;
+}
+  
+.text-input {
+  width: calc(100% - 20px);
+  border: none;
+  height: 40px;
+  background-color: white;
+  padding: 0 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+.edit {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: calc(100% - 242px);
+  border: none;
+  width: 100%;
+  display: flex;
+  .left {
+    width: calc(100% - 250px);
+    height: 100%;
+  }
+  textarea {
+    width: 100%;
+    height: calc(100% - 40px);
+    resize: none;
+    display: block;
+    border: none;
+    padding: 0;
+  }
+}
+  
+select {
+  width: 100%;
+  border: none;
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 7px;
+  color: #333;
+  font-size: 1rem;
+}
+  
+.send {
+  width: 100%;
+  text-align: center;
+  background-color: #009fe9;
+  color: white;
+  line-height: 40px;
+}
+  
+.check-box {
+  height: 40px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  .check-item {
+    line-height: 40px;
+    float: left;
+    margin: 0 10px;
+  }
+  .clear {
+    clear: both;
+  }
+}
+  
+  
+
 </style>
