@@ -68,6 +68,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
   console.log('创建文件:', styleLsit, scriptList)
   console.log('传递参数:', controlList)
   console.log('模板路径:', tempUrl)
+  // console.log('模板路ID:', templateID)
   let styleArr = [
     {
       name: "market",
@@ -145,6 +146,7 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
       addVersion: false,
     }
   }
+  // console.log(config)
   // console.log(styleArr, scriptArr)
   const pack = new owo(config, () => {})
   pack.pack()

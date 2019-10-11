@@ -192,6 +192,7 @@ export default {
   .control-bar {
     position: fixed;
     top: 2%;
+    z-index: 2;
     background-color: white;
     .input-box {
       height: calc(100% - 40px);
