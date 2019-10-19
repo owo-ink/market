@@ -4,7 +4,7 @@
       .label {{item.label}}
       .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
       .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-    WaterRipple.creat(text="添加标签", @onClick="showAddTagBox = true")
+    WaterRipple.creat(text="添加标签", @onClick="showAddBox")
     //- 添加标签
     .add-tag-box(v-show="showAddTagBox || editTagID !== null")
       .close.icon(@click="showAddTagBox = false; editTagID = null") &#xe616;
@@ -143,6 +143,19 @@ export default {
           this.showAddTagBox = false
         }
       })
+    },
+    showAddBox: function () {
+      this.addTag = {
+        name: "",
+        type: "string",
+        label: "",
+        value: "",
+        model: "template"
+      }
+      if (window.getSelection().toString()) {
+        this.addTag.value = window.getSelection().toString()
+      }
+      this.showAddTagBox = true
     }
   }
 }
