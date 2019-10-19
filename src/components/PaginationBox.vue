@@ -1,5 +1,6 @@
 <template lang="pug">
   .pagination-box
+    span.text 页码:
     .page(v-for="item in paginationNum", :class="{active: activePaginationNum === item}", @click="$emit('changePageNum', item)") {{item}}
 </template>
 
@@ -14,34 +15,37 @@ export default {
 
 <style scoped>
 .pagination-box {
-  height: 32px;
+  height: 28px;
   text-align: center;
-  margin: 15px 0;
+  position: absolute;
+  font-size: 14px;
 }
 .page {
   display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
   position: relative;
-  margin-left: -1px;
   color: #337ab7;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #ddd;
   cursor: pointer;
+  margin-right: 8px;
 }
 .page:hover {
   z-index: 2;
-  color: #23527c;
-  background-color: #eee;
-  border-color: #ddd;
+  background-color: #337ab7;
 }
 .active {
   z-index: 3;
   color: #fff;
-  cursor: default;
   background-color: #337ab7;
   border-color: #337ab7;
+}
+.text {
+  padding-right: 8px;
+  color: #888;
+  font-size: 12px;
 }
 </style>

@@ -12,10 +12,11 @@
           .card-box
             TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", :key="value.id")
               iframe(:src="'https://owo.ink/public/' + value.template + '/index.html'")
+          // 添加模板按钮
+          .bottom-bar
             // 页码
             PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
-          // 添加模板按钮
-          .add-temple-button.icon(@click="$router.push(`/edit/new`)") &#xe6ff;
+            .add-temple-button.icon(@click="$router.push(`/add/${$route.params.type}`)", title="添加新组件") &#xe705;
         //- 属性控制
         Deformation.control-bar#attribute(v-if="activeID !== null", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
           .title-bar.drag-bar
@@ -152,12 +153,12 @@ export default {
     background-color: #262626;
     .type-item {
       color: #bbb;
-      width: 60px;
       text-align: center;
       line-height: 30px;
       padding: 5px;
       cursor: pointer;
       font-size: 14px;
+      margin: 0 10px;
     }
     .active {
       color: #3d91ff;
@@ -177,15 +178,8 @@ export default {
     width: 100%;
     .card-box {
       width: 100%;
-      height: 100%;
+      height: calc(100% - 30px);
       overflow: auto;
-    }
-    .add-temple-button {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      font-size: 40px;
-      color: chocolate;
     }
   }
     
@@ -285,5 +279,15 @@ export default {
   background-color: #009fe9;
   color: white;
 }
-  
+.bottom-bar {
+  height: 29px;
+  overflow: hidden;
+  background-color: #e2e2e2;
+  font-size: 23px;
+  line-height: 29px;
+  color: #009fe9;
+  padding: 0 5px;
+  text-align: right;
+  border-top: 1px solid #ccc;
+}
 </style>

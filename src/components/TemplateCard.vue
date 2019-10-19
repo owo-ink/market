@@ -84,8 +84,10 @@ export default {
     margin: 10px;
     font-size: 12px;
     border: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
+    box-shadow: 1px 1px 3px #d4c6c6;
   }
   .attribute-bar {
     background-color: white;

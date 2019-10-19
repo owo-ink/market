@@ -1,12 +1,13 @@
 <template lang="pug">
   .edit-box
-    input.text-input(type="text", placeholder="请输入模板名称!", v-model="name")
-    input.text-input(type="text", placeholder="请输入文件名称!", v-model="templateFile")
-    select(v-model="browser")
-      option(value ="兼容各种浏览器") 兼容各种浏览器
-      option(value ="兼容现代浏览器") 兼容现代浏览器
-    select(v-model="type")
-      option(v-for="item in info.type", :value="item.value") {{item.name}}
+    .info-bar
+      input.text-input(type="text", placeholder="请输入模板名称!", v-model="name")
+      input.text-input(type="text", placeholder="请输入文件名称!", v-model="templateFile")
+      select(v-model="browser")
+        option(value ="兼容各种浏览器") 兼容各种浏览器
+        option(value ="兼容现代浏览器") 兼容现代浏览器
+      select(v-model="type")
+        option(v-for="item in info.type", :value="item.value") {{item.name}}
     .check-box
       .check-item(v-for="(item, ind) in info.style")
         input(type="checkbox", :id="'style' + ind" :value="item.name", v-model="checkStyle")
@@ -48,11 +49,13 @@ export default {
     WaterRipple
   },
   beforeCreate: function () {
+    // console.log(this.$route)
     // 判断是修改还是新增
-    if (this.$route.params.id === 'new') {
+    if (this.$route.name === 'add') {
       // 获取分组信息
       axios.get('https://owo.ink/getInfo').then((response) => {
         this.info = response.data.data
+        this.type = this.$route.params.type
       })
     } else {
       axios.get(`https://owo.ink/getInfo?id=${this.$route.params.id}`).then((response) => {
@@ -112,9 +115,9 @@ export default {
 }
   
 .text-input {
-  width: calc(100% - 20px);
+  width: calc(25% - 20px);
   border: none;
-  height: 40px;
+  height: 39px;
   background-color: white;
   padding: 0 10px;
   font-size: 1rem;
@@ -123,7 +126,7 @@ export default {
 .edit {
   overflow-x: hidden;
   overflow-y: auto;
-  height: calc(100% - 242px);
+  height: calc(100% - 120px);
   border: none;
   width: 100%;
   display: flex;
@@ -142,7 +145,7 @@ export default {
 }
   
 select {
-  width: 100%;
+  width: 25%;
   border: none;
   height: 40px;
   border-bottom: 1px solid #ccc;
@@ -172,7 +175,9 @@ select {
     clear: both;
   }
 }
-  
+.info-bar {
+  display: flex;
+}
   
 
 </style>
