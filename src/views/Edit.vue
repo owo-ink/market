@@ -88,7 +88,7 @@ export default {
         value: this.value
       }
       // console.log(this.checkStyle)
-      if (this.$route.params.id === 'new') {
+      if (this.$route.name === 'add') {
         axios.post('https://owo.ink/saveTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
