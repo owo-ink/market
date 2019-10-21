@@ -49,7 +49,7 @@ export default {
       this.$router.push(`/edit/${id}`)
     },
     getCopyUrl: function () {
-      console.log(typeof this.data.control)
+      // console.log(typeof this.data.control)
       const control = typeof this.data.control === 'string' ? JSON.parse(this.data.control) : this.data.control
       let parameter = ''
       if (control) {
@@ -62,7 +62,7 @@ export default {
           }
         }
       }
-      const temp = `<temple name="${this.data.templateFile}" ${parameter} src="https://${window.location.host}/public/${this.data.template}.page"></temple>`
+      const temp = `<temple _name="${this.data.templateFile}" ${parameter} _src="https://${window.location.host}/public/${this.data.template}.page"></temple>`
       return temp
     },
     setDefault: function () {
