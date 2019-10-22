@@ -8,21 +8,26 @@
         option(value ="兼容现代浏览器") 兼容现代浏览器
       select(v-model="type")
         option(v-for="item in info.type", :value="item.value") {{item.name}}
-    .check-box
-      .check-item(v-for="(item, ind) in info.style")
-        input(type="checkbox", :id="'style' + ind" :value="item.name", v-model="checkStyle")
-        label.text(:for="'style' + ind") {{item.name}}
-      .clear
-    .check-box
-      .check-item(v-for="(item, ind) in info.script")
-        input(type="checkbox", :id="'script' + ind" :value="item.name", v-model="checkScript")
-        label.text(:for="'script' + ind") {{item.name}}
-      .clear
+    .icon-bar
+      span.text-item.tag(@click="rightType = 'tag'") 标签
+      span.text-item.style(@click="rightType = 'style'") 样式
+      span.text-item.script(@click="rightType = 'script'") 脚本
     .edit
       .left
         textarea(v-model="value")
         WaterRipple.send(text="发布", @onClick="send")
-      editTag(v-model="control")
+      .right
+        editTag(v-model="control", v-if="rightType === 'tag'")
+        .check-box(v-else-if="rightType === 'style'")
+          .check-item(v-for="(item, ind) in info.style")
+            input(type="checkbox", :id="'style' + ind" :value="item.name", v-model="checkStyle")
+            label.text(:for="'style' + ind") {{item.name}}
+          .clear
+        .check-box(v-else-if="rightType === 'script'")
+          .check-item(v-for="(item, ind) in info.script")
+            input(type="checkbox", :id="'script' + ind" :value="item.name", v-model="checkScript")
+            label.text(:for="'script' + ind") {{item.name}}
+          .clear
 </template>
 
 <script>
@@ -33,6 +38,7 @@ export default {
   name: 'edit',
   data: function () {
     return {
+      rightType: "tag",
       info: {},
       name: "",
       templateFile: "",
@@ -163,12 +169,11 @@ select {
 }
   
 .check-box {
-  height: 40px;
-  overflow-y: hidden;
-  overflow-x: scroll;
+  overflow: hidden;
+  width: 25%;
+  position: absolute;
   .check-item {
     line-height: 40px;
-    float: left;
     margin: 0 10px;
   }
   .clear {
@@ -178,6 +183,16 @@ select {
 .info-bar {
   display: flex;
 }
-  
-
+.check-box-bar {
+  height: 40px;
+}
+.icon-bar {
+  height: 40px;
+  line-height: 40px;
+}
+.text-item {
+  margin: 0 10px;
+  cursor: pointer;
+  color: #666;
+}
 </style>
