@@ -1,9 +1,12 @@
 <template lang="pug">
   .edit-tag-box
-    .tag-item(v-for="(item, ind) in value", v-if="item")
+    .tag-item(v-if="item && item.lenght > 0", v-for="(item, ind) in value")
       .label {{item.label}}
       .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
       .delete.icon(@click="deleteTag(item, ind)") &#xe686;
+    .empty
+      .icon &#xe708;
+      p 当前还没有标签哦
     WaterRipple.creat(text="添加标签", @onClick="showAddBox")
     //- 添加标签
     .add-tag-box(v-show="showAddTagBox || editTagID !== null")
@@ -235,5 +238,30 @@ export default {
     color: white;
     font-size: 35px;
   }  
+}
+.empty {
+  color: #a0a0a0;
+  width: 150px;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 10%;
+  margin: auto;
+  .icon {
+    font-size: 90px;
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+  p {
+    height: 20px;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
 }
 </style>

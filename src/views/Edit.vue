@@ -132,7 +132,7 @@ export default {
 .edit {
   overflow-x: hidden;
   overflow-y: auto;
-  height: calc(100% - 120px);
+  height: calc(100% - 80px);
   border: none;
   width: 100%;
   display: flex;
