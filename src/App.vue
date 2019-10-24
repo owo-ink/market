@@ -15,12 +15,12 @@ html, body, .app {
 }
 @font-face {
   font-family: 'iconfont';  /* project id 1131144 */
-  src: url('//at.alicdn.com/t/font_1131144_prl9zd5468e.eot');
-  src: url('//at.alicdn.com/t/font_1131144_prl9zd5468e.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1131144_prl9zd5468e.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1131144_prl9zd5468e.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1131144_prl9zd5468e.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1131144_prl9zd5468e.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.eot');
+  src: url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1131144_9zuqwzakgle.svg#iconfont') format('svg');
 }
 .icon {
   font-family: "iconfont";
