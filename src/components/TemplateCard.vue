@@ -62,8 +62,12 @@ export default {
           }
         }
       }
-      const temp = `<temple _name="${this.data.templateFile}" ${parameter} _src="https://${window.location.host}/public/${this.data.template}.page"></temple>`
-      return temp
+      // 判断是否为pug代码
+      if (!window.localStorage.getItem("usePug")) {
+        return `<plug _name="${this.data.templateFile}" ${parameter}_src="https://${window.location.host}/public/${this.data.template}.page"></plug>`
+      } else {
+        return `plug(_name="${this.data.templateFile}" ${parameter}_src="https://${window.location.host}/public/${this.data.template}.page")`
+      }
     },
     setDefault: function () {
       console.log('更新默认模板!')

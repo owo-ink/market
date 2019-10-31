@@ -17,6 +17,7 @@
             // 页码
             PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
             .add-temple-button.icon(@click="$router.push(`/add/${$route.params.type}`)", title="添加新组件") &#xe705;
+            .add-temple-button.icon(@click="$router.push(`/setting`)", title="配置") &#xe68d;
         //- 属性控制
         Deformation.control-bar#attribute(v-if="activeID !== null", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
           .title-bar.drag-bar

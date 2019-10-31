@@ -8209,6 +8209,11 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+switch-ios-puge@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/switch-ios-puge/-/switch-ios-puge-1.0.4.tgz#7164b22ec3f34b88cd2e2e6cfb2cdb027d680644"
+  integrity sha512-tIlGYteH0vKL2PSOODwVn+Dro3lACftYMIsEN9tcUIVPdn80Za/3Llz7W/HN2qhPdz6hbES/mx6IlD17oH9tEw==
+
 table@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/table/-/table-4.0.2.tgz#a33447375391e766ad34d3486e6e2aedc84d2e36"
