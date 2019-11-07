@@ -1,10 +1,10 @@
 <template lang="pug">
   .edit-tag-box
-    .tag-item(v-if="item && item.lenght > 0", v-for="(item, ind) in value")
+    .tag-item(v-if="value && value.length > 0", v-for="(item, ind) in value")
       .label {{item.label}}
       .edit.icon(@click="showEditTagBox(item, ind)") &#xe64f;
       .delete.icon(@click="deleteTag(item, ind)") &#xe686;
-    .empty
+    .empty(v-else)
       .icon &#xe708;
       p 当前还没有标签哦
     WaterRipple.creat(text="添加标签", @onClick="showAddBox")
@@ -63,6 +63,7 @@ export default {
     WaterRipple
   },
   created: function () {
+    console.log(this.value)
   },
   methods: {
     deleteTag: function (item, ind) {

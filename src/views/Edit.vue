@@ -2,7 +2,7 @@
   .edit-box
     .left
       .title-bar
-        .back
+        .back(@click="back")
           .icon &#xe626;
           span 返回
       textarea(v-model="value")
@@ -44,7 +44,7 @@ export default {
   name: 'edit',
   data: function () {
     return {
-      rightType: "tag",
+      rightType: "info",
       info: {},
       name: "",
       templateFile: "",
@@ -115,6 +115,9 @@ export default {
           }
         })
       }
+    },
+    back: function () {
+      window.history.go(-1)
     }
   }
 }
@@ -144,7 +147,7 @@ export default {
 }
 textarea {
   width: calc(100% - 20px);
-  height: calc(100% - 20px);
+  height: calc(100% - 60px);
   resize: none;
   display: block;
   border: none;
