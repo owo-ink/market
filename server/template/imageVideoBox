@@ -3,7 +3,7 @@
   img.show-image(src="<<showImg>>")
   video(src="<<videoSrc>>" controls="controls" playsinline)
   .play-button-box
-    img.play-button(src="https://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/play-button.png", :tap="play")
+    img.play-button(src="https://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/play-button.png", o-tap="play")
 </template>
 
 <script>

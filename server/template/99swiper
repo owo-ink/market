@@ -7,8 +7,8 @@
           img(src="{{item.src}}" width="525" height="395")
           .text {{item.text}}
   .tool-bar
-    img.back(src="http://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/back-2.png" o-hover="grow" :tap="previou")
-    img.forward(src="http://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/forward-2.png" o-hover="grow" :tap="next")
+    img.back(src="http://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/back-2.png" o-hover="grow" o-tap="previou")
+    img.forward(src="http://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/forward-2.png" o-hover="grow" o-tap="next")
   
 </template>
 

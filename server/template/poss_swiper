@@ -8,8 +8,8 @@
     .pagination.clear
     span.index
     //- 前进后退按钮
-    .back(:tap="previou") <
-    .forward(:tap="next") >
+    .back(o-tap="previou") <
+    .forward(o-tap="next") >
 </template>
 
 <script>
