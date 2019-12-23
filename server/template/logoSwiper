@@ -1,0 +1,134 @@
+<template>
+  <div class="swiper-cooperation clear">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网1</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网2</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网3</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网4</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网5</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网6</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网7</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网8</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网9</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网10</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网11</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网12</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网13</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网14</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网15</p>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://cunchu.site/owo/material/people%20running/logo.png">
+        <p>腾讯网16</p>
+      </div>
+    </div>
+    <div class="left-button" :click="prev"></div>
+    <div class="right-button" :click="next"></div>
+  </div>
+</template>
+
+
+<script>
+module.exports = {
+  data: {
+    cooperation: null
+  },
+  created: function () {
+    this.data.cooperation = new Swiper('.swiper-cooperation', {
+      slidesPerView: 9
+    })
+  },
+  prev: function () {
+    this.data.cooperation.swipePrev()
+  },
+  next: function () {
+    this.data.cooperation.swipeNext()
+  }
+}
+</script>
+
+<style>
+.swiper-cooperation {
+  height: 90px;
+  width: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+p {
+  margin: 0;
+}
+
+.swiper-cooperation .swiper-slide {
+  align-items: center;
+  text-align: center;
+}
+
+.swiper-cooperation .swiper-slide p {
+  text-align: center;
+}
+
+.swiper-cooperation .left-button {
+  background-image: url('https://cunchu.site/owo/material/people%20running/left.png');
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 39px;
+  top: 13px;
+  cursor: pointer;
+}
+
+.swiper-cooperation .right-button {
+  background-image: url('https://cunchu.site/owo/material/people%20running/right.png');
+  position: absolute;
+  right: 0;
+  width: 10px;
+  height: 39px;
+  top: 13px;
+  cursor: pointer;
+}
+</style>

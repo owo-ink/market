@@ -1,0 +1,561 @@
+<template>
+<div class="left w600 people">
+  <a name="fy01"></a>
+  <!--切换标题-->
+  <h2 class="qiehuan1 mt15">
+    <i class="one">最新报道</i>
+    <i>法治万象</i>
+    <i>法治生活</i>
+  </h2>
+  <!--切换内容1-->
+  <div class="headingNews qiehuan1_c">
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406431.html" target="_blank">周强：努力把新时代刑事审判工作提高到新水平</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406431.html" target="_blank">新华社北京10月17日电&nbsp;最高人民法院院长周强17日在第七次全国刑事审判工作会议上强调，要坚持以习近平新时代中国特色社会主义思想为指导，努力把新时代刑事审判工作提高到新水平，更好发挥刑事审判职能作用，为推动建设更高水平平安中国、法治中国提供有力司法服务和保障。 周强强调，要贯彻总体国家安全观，落实宽严相济刑事政策，深化刑事司法改革，加强刑事审判队伍建设，不断提升新时代刑事审判工作能力水平。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406431.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406412.html" target="_blank">全国法院过去6年审结一审刑事案件660余万件</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406412.html" target="_blank">新华社北京10月17日电（记者罗沙）2013年至2018年，全国法院共审结一审刑事案件668.7万件，判处罪犯750万人。 这是记者从最高人民法院17日召开的第七次全国刑事审判工作会议上获悉的。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406412.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406411.html" target="_blank">最高法：刑事审判要兼顾天理国法人情</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406411.html" target="_blank">新华社北京10月17日电（记者罗沙）最高人民法院17日召开的第七次全国刑事审判工作会议提出，树立适应新时代新要求的刑事司法理念，准确把握刑事政策，突出打击重点；正确适用刑事法律，兼顾天理国法人情。 最高法要求，各级法院要落实宽严相济刑事政策，精准适用刑罚，努力用较小的刑罚成本争取更好的犯罪治理效果。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406411.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406410.html" target="_blank">三部门落实食药安全“四个最严” 对违法行为处罚到人</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406410.html" target="_blank">人民网北京10月17日电&nbsp;10月17日，记者从最高检发布会获悉，最高人民检察院、国家市场监督管理总局、国家药品监督管理局决定自2019年9月至2020年12月在全国联合开展“落实食品药品安全‘四个最严’要求”专项行动，坚持依法从严打击，对违法行为“处罚到人”。此外，最高检还发布了《全国检察机关、市场监管部门、药品监管部门落实食品药品安全“四个最严”要求专项行动工作方案》（下面简称《工作方案》）。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/203936/index.html" target="_blank">本网原创</a>|
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406410.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406406.html" target="_blank">70年，最高人民法院推动人民司法事业不断实现新发展</a></h5>
+        <a href="/n1/2019/1017/c42510-31406406.html" target="_blank">
+          <img src=" http://legal.people.com.cn/NMediaFile/2019/1017/MAIN201910172215000164637272336.jpg" width="250"></a>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406406.html" target="_blank">人民网北京10月17日电（记者&nbsp;孝金波）10月16日，最高人民法院举行庆祝中华人民共和国成立70周年暨最高人民法院建院70周年座谈会，最高人民法院党组书记、院长周强出席会议并讲话。周强强调，要坚持以习近平新时代中国特色社会主义思想为指导，深入学习贯彻习近平总书记在庆祝中华人民共和国成立70周年大会上的重要讲话精神，弘扬人民司法优良传统，坚持改革创新，坚持服务大局、司法为民、公正司法，为实现“两个一百年”奋斗目标、实现中华民族伟大复兴的中国梦作出新的更大贡献。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/204446/index.html" target="_blank">司法关注</a>|
+          <a href="/GB/203936/index.html" target="_blank">本网原创</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406406.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="page_n clearfix">&nbsp;
+      <a class="common_current_page">1</a>&nbsp;
+      <a href="index2.html#fy01">2</a>&nbsp;
+      <a href="index3.html#fy01">3</a>&nbsp;
+      <a href="index4.html#fy01">4</a>&nbsp;
+      <a href="index5.html#fy01">5</a>&nbsp;
+      <a href="index6.html#fy01">6</a>&nbsp;&nbsp;
+      <a href="index2.html#fy01">下一页</a></div>
+    <!--all page-->
+    <!--PageNo=12--></div>
+  <!--end切换内容1-->
+  <!--切换内容2-->
+  <div class="headingNews qiehuan1_c">
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31406108.html" target="_blank">《中国司法文明指数报告2018》发布 各地差距进一步缩小</a></h5>
+        <a href="/n1/2019/1017/c42510-31406108.html" target="_blank">
+          <img src=" http://legal.people.com.cn/NMediaFile/2019/1017/MAIN201910171435000155417675052.jpg" width="250"></a>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31406108.html" target="_blank">发布会现场 人民网北京10月17日电&nbsp;（朱紫阳）今天上午，国家司法文明协同创新中心在北京举行《中国司法文明指数报告2018》发布会。上海市在五年评估中第四次排名第一，全国各地司法文明差距进一步缩小。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/204446/index.html" target="_blank">司法关注</a>|
+          <a href="/GB/203936/index.html" target="_blank">本网原创</a>|
+          <a href="/GB/205462/index.html" target="_blank">法治万象</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31406108.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31405354.html" target="_blank">群众来信被当家书阅处当案件办理</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31405354.html" target="_blank">“写信反映的问题如果没有回音,我就当面反映。如果还引不起重视,就到市里、省里直至北京继续反映。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/205462/index.html" target="_blank">法治万象</a>|
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31405354.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31405277.html" target="_blank">细化过程保护打消证人出庭顾虑</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31405277.html" target="_blank">不想出庭、不愿出庭、不敢出庭……一直以来,刑事案件中证人出庭率普遍较低,是长期困扰我国司法机关办案的一个难题,也是推进庭审实质化改革亟待破解的问题。 广东省广州市中级人民法院刑事第一审判庭庭长严剑飞近日接受记者采访时说,证人之所以不愿意出庭作证,无外乎两个原因——出庭的必要经费无法保障、害怕遭到打击报复。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/205462/index.html" target="_blank">法治万象</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31405277.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31405234.html" target="_blank">刑事证人如何愿出庭敢出庭</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31405234.html" target="_blank">◆&nbsp;重新确定必须出庭证人范围 ◆&nbsp;加强强制证人出庭制度运用 ◆&nbsp;规定亲属免证允许自愿作证 ◆&nbsp;不断完善证人出庭保障机制 10月14日,备受关注的孙小果再审案件开庭审理。庭审中,检察员申请了两名证人远程视频作证,一名鉴定人出庭作证,并就孙小果原审认定的犯罪事实、证据及法律适用等发表了出庭意见。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/205462/index.html" target="_blank">法治万象</a>|
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31405234.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/1017/c42510-31405204.html" target="_blank">内盗频发 中小企业成重灾区</a></h5>
+        <em>　　
+          <a href="/n1/2019/1017/c42510-31405204.html" target="_blank">10月15日，上海市普陀区检察院发布职务侵占罪、挪用资金罪案件专项分析报告。该报告显示，内部员工针对企业财产的违法犯罪，最容易发生在中小企业的起步阶段，危害极大。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/205462/index.html" target="_blank">法治万象</a></em>
+        <span>
+          <a href="/n1/2019/1017/c42510-31405204.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="page_n clearfix">&nbsp;
+      <a class="common_current_page">1</a>&nbsp;
+      <a href="index2.html#fy01">2</a>&nbsp;
+      <a href="index3.html#fy01">3</a>&nbsp;
+      <a href="index4.html#fy01">4</a>&nbsp;
+      <a href="index5.html#fy01">5</a>&nbsp;
+      <a href="index6.html#fy01">6</a>&nbsp;&nbsp;
+      <a href="index2.html#fy01">下一页</a></div>
+    <!--all page-->
+    <!--PageNo=12--></div>
+  <!--end切换内容2-->
+  <!--切换内容3-->
+  <div class="headingNews qiehuan1_c">
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/0619/c42510-31167829.html" target="_blank">记者探访礼让斑马线基层实践</a></h5>
+        <em>　　
+          <a href="/n1/2019/0619/c42510-31167829.html" target="_blank">有人走上人行横道线,机动车就会主动自觉礼让,这种人车和谐共处的温馨画面,正在越来越多的城市出现。 斑马线是行人过街的生命线和安全线,礼让斑马线是机动车驾驶人的法定义务,体现的是城市道路交通治理水平,折射的是对生命的尊重和敬畏,彰显了一座城市的整体文明程度。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/204453/index.html" target="_blank">法治生活</a></em>
+        <span>
+          <a href="/n1/2019/0619/c42510-31167829.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/0618/c42510-31165762.html" target="_blank">失信联合惩戒力度加大！587万人次限制购买动车高铁票</a></h5>
+        <em>　　
+          <a href="/n1/2019/0618/c42510-31165762.html" target="_blank">6月17日上午，国家发改委召开6月份定时定主题新闻发布会，国家发改委新闻发言人孟玮在介绍社会信用体系建设情况时表示，失信联合惩戒力度加大，5月份新增失信黑名单主体信息27.68万条，涉及失信主体24.65万个，退出失信黑名单主体7.46万个。有关情况已通过“信用中国”网站向社会公示。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/204453/index.html" target="_blank">法治生活</a>|
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/0618/c42510-31165762.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/0613/c42510-31134633.html" target="_blank">交通安全进校园</a></h5>
+        <a href="/n1/2019/0613/c42510-31134633.html" target="_blank">
+          <img src="http://paper.people.com.cn/rmrb/res/1/20190613/1560370137085_1.jpg" width="250"></a>
+        <em>　　
+          <a href="/n1/2019/0613/c42510-31134633.html" target="_blank">记者&nbsp;黄孝邦摄 日前，广西柳州市交警支队民警走进融水苗族自治县杆洞乡党鸠小学，教孩子们学习交通手势，开展交通安全进校园活动。 《&nbsp;人民日报&nbsp;》（&nbsp;2019年06月13日&nbsp;19&nbsp;版）。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/223276/index.html" target="_blank">公安新闻</a>|
+          <a href="/GB/204453/index.html" target="_blank">法治生活</a>|
+          <a href="/GB/index.html" target="_blank">法治</a></em>
+        <span>
+          <a href="/n1/2019/0613/c42510-31134633.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/0612/c42510-31132817.html" target="_blank">上海：居民任性倒垃圾最高可罚200元</a></h5>
+        <em>　　
+          <a href="/n1/2019/0612/c42510-31132817.html" target="_blank">“小区撤离垃圾桶、定时定点投放。”垃圾分类成为上海居民的热门话题。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/204453/index.html" target="_blank">法治生活</a></em>
+        <span>
+          <a href="/n1/2019/0612/c42510-31132817.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="hdNews clearfix">
+      <div class="on">
+        <h5>
+          <a href="/n1/2019/0612/c42510-31132440.html" target="_blank">68万元竞拍“一片海”送女友 小众拍卖业走进公众生活</a></h5>
+        <em>　　
+          <a href="/n1/2019/0612/c42510-31132440.html" target="_blank">高冷小众的拍卖业悄然走进公众生活 曾经，霸道总裁示爱的方式是：“你的鱼塘我承包了！”可今年“520”，现实版的恩爱秀，让网友们再难以淡定——有人出价68万元，竞拍“一片海”送给女友，引发全民围观。 在某拍卖平台上，青岛海事法院拍卖了日照车牛山岛海洋开发有限公司海域使用权，使用面积210.6102公顷。</a></em>
+      </div>
+      <h6>
+        <em class="gray">
+          <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon4.gif" width="24" height="21">
+          <a href="/GB/index.html" target="_blank">法治</a>|
+          <a href="/GB/204453/index.html" target="_blank">法治生活</a></em>
+        <span>
+          <a href="/n1/2019/0612/c42510-31132440.html#liuyan" target="_blank">
+            <img src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2b.gif" class="ly"></a>
+          <div class="bshare-custom fr">
+            <div class="bsPromo bsPromo2"></div>
+            <div class="bsPromo bsPromo2"></div>
+            <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+          </div>
+        </span>
+      </h6>
+    </div>
+    <div class="page_n clearfix">&nbsp;
+      <a class="common_current_page">1</a>&nbsp;
+      <a href="index2.html#fy01">2</a>&nbsp;&nbsp;
+      <a href="index2.html#fy01">下一页</a></div>
+    <!--all page-->
+    <!--PageNo=2--></div>
+  <!--end切换内容3-->
+</div>
+</template>
+
+<script>
+module.exports = {
+  created: function () {
+    this.changeItem(0)
+    const newsList = owo.query('.qiehuan1 i')
+    for (let ind = 0; ind < newsList.length; ind++) {
+      newsList[ind].onmouseover = () => {
+        this.changeItem(ind)
+      }
+    }
+  },
+  changeItem: function (index) {
+    const menuList = owo.query('.qiehuan1 i')
+    const newsList = owo.query('.headingNews')
+    for (let ind = 0; ind < newsList.length; ind++) {
+      newsList[ind].style.display = 'none'
+    }
+    for (let ind = 0; ind < menuList.length; ind++) {
+      menuList[ind].classList.remove('one')
+    }
+    newsList[index].style.display = 'block'
+    menuList[index].classList.add('one')
+  }
+}
+</script>
+
+<style original>
+.headingNews {
+  display: none;
+}
+.sp_news_box strong{ font-family:"\5FAE\8F6F\96C5\9ED1"; font-size:18px; line-height:30px;}
+.sp_news_box p{ line-height:28px; font-size:12px;}
+.sp_news_box p a{ margin:auto 5px;} 
+.sp_news_box .line1{ margin:10px auto}
+.sp2_content .left h2 em{ font-size:14px; padding-left:20px;}
+.sp2_content .left h2 em a{ margin:auto 8px;}
+.sp3_contentbox{ width:1038px; margin:0 auto}
+.sp3_contentbox h2{ width:1000px; margin:0 auto}
+.sp3_content .sp3_c1 { width:310px; float:left; margin:5px 18px 35px 18px;}
+.sp3_content .sp3_c1 .line2{ margin:30px auto 18px auto}
+.qiehuan1 {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  padding: 0;
+  border-bottom: 2px solid #bfbfbf;
+}
+.qiehuan1 i{
+  font-family: "\5FAE\8F6F\96C5\9ED1";
+  font-size: 22px;
+  line-height: 60px;
+  font-weight: normal;
+  padding: 0 13px;
+  height: 60px;
+  display: block;
+  float: left;
+  cursor: pointer;
+  color: #bfbfbf;
+  letter-spacing: 4px;
+}
+.qiehuan1 i.one {
+  color: #26517c;
+  font-weight: bold;
+  border-bottom: 2px solid #26517c;
+}
+.hdNews{ margin:10px auto; border-bottom:#efefef 1px solid;}
+.hdNews p{ display:block; clear:both; margin:10px 0 0; font-size:14px; line-height:36px}
+.hdNews p img{ display:block; float:left; margin-right:20px; margin-top:10px;}
+.hdNews p strong{font: normal 24px/200% \5FAE\8F6F\96C5\9ED1;  display: block; line-height:36px; padding-bottom:15px;}
+.hdNews p em{ color:#666;}
+.hdNews h6{ clear:both; height:25px; padding:25px 0 10px; font-weight:normal; font-size:12px;}
+.hdNews h6 em {
+  float: left;
+  padding-left: 25px;
+  position: relative;
+  height: 25px;
+  line-height: 25px;
+}
+.hdNews h6 span{
+  float:right;
+  height: 25px;
+}
+.hdNews h6 span img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.hdNews h6 span a {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  position: relative;
+}
+.hdNews h6 em a{ padding:0 8px; display: inline-block;}
+.hdNews h6 em img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.hdNews div.on h5 {
+  font: bold 24px \5FAE\8F6F\96C5\9ED1;
+  line-height: 34px;
+  padding: 10px 0;
+  font-weight: normal;
+  margin: 0;
+}
+.hdNews a:link, .hdNews a:visited {
+  color: #000;
+  text-decoration: none;
+}
+.page_n{ text-align:center; padding:20px 0;}
+.page_n a {
+  border:#dddad2 1px solid;
+  background:#f7f6f3;
+  padding: 10px 15px;
+  color: #000000;
+}
+.page_n a:hover{ background:#cc3333; color:#fff; text-decoration:none;}
+.bshare-custom .bshare-more.more-style-addthis{background-image:url(http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon3.gif);}
+.people em, .people i {
+  font-style: normal;
+}
+.w600 {
+  width: 600px;
+}
+.bshare-more.bshare-more-icon {
+  height: 25px;
+  width: 25px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bshare-custom {
+  display: inline-block;
+}
+.people .gray {
+  color: #928f8f;
+}
+.people .gray a {
+  color: #928f8f;
+}
+.hdNews div.on em a {
+  line-height: 36px;
+  font-size: 14px;
+  color: #585858;
+}
+.hdNews div.on {
+  display:block;
+  clear:both;
+  margin:10px 0 0;
+  font-size:14px;
+  line-height:36px;
+  overflow: hidden;
+}
+.hdNews div.on img{ display:block; float:left; margin-right:20px; margin-top:10px;}
+.hdNews div.on h5{font: normal 24px/200% \5FAE\8F6F\96C5\9ED1;  display: block; line-height:36px; padding-bottom:15px;}
+.hdNews div.on em{ color:#666;}
+</style>

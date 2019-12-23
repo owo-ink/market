@@ -1,0 +1,52 @@
+<template>
+  <ul>
+    <li :for="item in 8">
+      <a target="_blank" href="#">雅加达亚运夺金练兵兼顾 中国军团提速迈向东京奥运雅加达亚运夺金练兵兼顾 中国军团提速迈向东京奥运雅加达亚运夺金练兵兼顾 中国军团提速迈向东京奥运</a>
+    </li>
+  </ul>
+</template>
+
+<style lang="less">
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  color: #595757;
+  line-height: 38px;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+  font-weight: bold;
+  a {
+    color: #202021;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #c00;
+    text-decoration: underline;
+  }
+  .time {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    font-size: 13px;
+    clear: both;
+  }
+}
+li {
+  overflow: hidden;
+  padding: 0 40px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 26px;
+  cursor: pointer;
+}
+a {
+  color: #595757;
+  display: block;
+}
+ul {
+  padding: 0;
+}
+</style>

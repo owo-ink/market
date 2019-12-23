@@ -1,0 +1,40 @@
+<template>
+  <div class="title-bar">
+    <a :for="item in data.list" href="{{item.url}}" target="_blank">{{item.text}}</a>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      list: <<data>>
+    }
+  }
+</script>
+
+<style lang="less">
+.title-bar {
+  color: <<color>>;
+  height: <<height>>px;
+  font-size: 30px;
+  line-height: <<height>>px;
+  background-size: auto 100%;
+  text-align: center;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('<<bgImage>>');
+}
+
+.title-bar a {
+  color: white;
+  margin: 0 20px;
+}
+
+.title-bar a:hover {
+  color: <<hoverColor>>;
+  padding-bottom: 10px;
+  text-decoration: none;
+  border-bottom: 3px solid <<hoverColor>>;
+}
+</style>

@@ -1,0 +1,29 @@
+<template>
+  <div class="editor-note">
+    <p>{{prop.text}}</p>
+  </div>
+</template>
+
+<style lang="less">
+.editor-note {
+  height: 200px;
+  width: 830px;
+  color: <<color>>;
+  font-size: 20px;
+  font-family: "Microsoft YaHei";
+  background-repeat: no-repeat;
+  position: relative;
+  background-image: url('https://cunchu.site/owo/material/yjx/editorNote.png');
+}
+p {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 740px;
+  height: 130px;
+  text-indent: 40px;
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+}
+</style>

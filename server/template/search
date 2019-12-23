@@ -1,0 +1,49 @@
+<template>
+<div class="search-bar-box">
+  <form>
+    <input type="text"/>
+    <input class="button" type="button"/>
+  </form>
+</div>
+</template>
+
+
+<style lang="less">
+.search-bar-box {
+  width: <<width>>;
+  background-color: <<bgColor>>;
+  border-radius: <<borderRadius>>px;
+  height: 40px;
+  padding: 5px;
+  margin: 10px auto;
+}
+.search-bar-box form {
+  background-color: white;
+  border-radius: <<borderRadius>>px;
+  position: relative;
+}
+.search-bar-box form input {
+  width: calc(100% - 60px);
+  padding: 0 10px;
+  font-size: 18px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  display: block;
+}
+.search-bar-box form .button {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  border: none;
+  top: 0;
+  cursor: pointer;
+  background-size: 20px;
+  background-position: center;
+  background-color: transparent;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAADIklEQVRYhb2Ya2iOYRjHfxuijZzC+IBhzVg0I0StMIdWUnyRsOSDKfFlm5TDcs6xnJXTByvCPhAioXxQGstWM6dJRJvswKIwutb16up+n/d9n23vs389vfd138/77Pdez33d9/9ewuKiH/hUOjADmABkAUOARKAOqAIqgcdAud8Hiq7s7dX22d3HvUuB1cCsCONpChjSU+AccLQ9QIlRxjKB20BpFAgvTQKOABXAfL9fipSRVcAZj/6rwD2gFvgI/AZSgBHANGA5kKT3TgRuASXAto6AbAAOmbgVOAicBN543F+tn+eBzcBKoAgYpP1bdT4VRANxX80KB+IVMA4ojADhqh7YD4wB7pixNcBuvyCpwAUT3wfGAzU+AFw1A/M0iyFtjDZnLMhF036nE/RXByCsCpzMlMYCWQRMN/05nQSwksx81rg/sCUayCbTJ3PkfRxB0AIIqdCrSARkFDDF9O2KM4Tokk5kUW9grhfIHBOXAV8CABGdNu08L5BME18LCEJ02bTTvECyTPwpQJA6XRxDIAkuSEoXgXwDWrQ9FOjrgliyVoLTX/P8BHdVl+CriQcHCCLVkqxtKYgmF6TCxCkEpwFm/ZA97I8LUmni2QGCLDDtsA1UQB6aWJxYz4BA1pn2XS+Q58BLE68NACJHd3fUTF33AkGNT0jbgW5xBjlh2mdNGYeBnALeajtZ7WC8dBzI0GfVq3sLk63lZaad4/yKjmq9YxF3uGXrZgQ9k1iTK/buRicm7zHgsNOXD4yMBSIqcexdnprj/HYA5OmP8pr0WXoAGx4LBE2lNbqpemB6DezRY4M8qI9ew4DJangqNYtTo4DKwvZMjyD/FelcI47tCXDAlN1ooFgv2Te+a39ShCprVJO1EJjpAVOuhqw2UkZCKtNjwU7ggzOWYDLiQjTp65Wtfp+u1tWEa6DALCn+2TZn/B7CewC5avEEbqzZlxr0D8my/UBde4Pz/WTNcIbHs+Xe7Pb8N8BVP42bfdqHZH0d6R5jNdFeTSw16uXXw7TonHjhMZbeGZCOSFyawIgNsKrqahCRVFs2cFMPXo+A3H9ilptvgLhWfAAAAABJRU5ErkJggg==');
+}
+</style>

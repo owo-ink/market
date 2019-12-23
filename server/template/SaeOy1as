@@ -1,0 +1,20 @@
+<template>
+  <div class="title-bar">圆桌对话</div>
+</template>
+
+
+<style>
+.title-bar{
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 41px;
+  text-align: center;
+  line-height: 41px;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 4px;
+  font-style: italic;
+  font-weight: bold;
+  background-image: url('http://society.people.com.cn/img/MAIN/2019/06/119372/static/resource/title-bar.png');
+}
+</style>

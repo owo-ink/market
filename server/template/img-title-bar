@@ -1,0 +1,11 @@
+<template lang="pug">
+.img-title-bar
+  img(src="{{prop._image}}")
+</template>
+
+
+<style lang="less">
+.img-title-bar {
+  text-align: center;
+}
+</style>

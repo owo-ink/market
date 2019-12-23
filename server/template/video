@@ -1,0 +1,15 @@
+<template lang="pug">
+.video-box
+  video(src="{{prop.movie}}", controls="controls")
+</template>
+
+
+<style lang="less">
+.video-box {
+  max-width: 1000px;
+  margin: 0 auto;
+  video {
+    width: 100%;
+  }
+}
+</style>

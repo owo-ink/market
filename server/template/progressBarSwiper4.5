@@ -1,0 +1,136 @@
+<template lang="pug">
+.swiper-box
+  .swiper-container.clear
+    .swiper-wrapper
+      .swiper-slide(:for="item in data._swiperBoxList")
+        img(src="{{item.src}}" width="690" height="460")
+        .text {{item.text}}
+    .pagination.clear
+    span.index
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      swiper: null,
+      _swiperBoxList: [
+        {src:"http://www.people.com.cn/NMediaFile/2019/0618/MAIN201906181255181321992447490.jpg", text: "全省“法治进校园”巡讲团首站——晋中"},
+        {src:"http://www.people.com.cn/NMediaFile/2019/0618/MAIN201906181011409383792014803.jpg", text: "全省“法治进校园”巡讲团首站——晋中"},
+        {src:"http://www.people.com.cn/NMediaFile/2019/0618/MAIN201906181011411060153107563.jpg", text: "全省“法治进校园”巡讲团首站——晋中"},
+      ]
+    },
+    created: function () {
+      const slideListLength = owo.query('.swiper-wrapper .swiper-slide').length
+      owo.query('.index')[0].innerText = '1/' + slideListLength
+      // 轮播图展示区域swiper
+      setTimeout(() => {
+        this.data.swiper = new Swiper(owo.query('.swiper-container')[0], {
+          autoplay: {
+            delay: 3000,
+          },
+          pagination: {
+            el: owo.query('.pagination')[0]
+          },
+          loop: true,
+          onSlideChangeStart: function (swiper) {
+            let index = null
+            if (swiper.activeIndex <= slideListLength) index = swiper.activeIndex
+            else index = 1
+            owo.query('.index')[0].innerText = index + '/' + slideListLength
+          }
+        })
+        setTimeout(() => {
+          const switchList = owo.query('.pagination .swiper-pagination-bullet')
+          for (let ind = 0; ind < switchList.length; ind++) {
+            switchList[ind].style.width = (100 / slideListLength) + '%'
+          }
+        }, 100)
+      }, 0)
+    },
+    previou: function () {
+      this.data.swiper.swipePrev()
+    },
+    next: function () {
+      this.data.swiper.swipeNext()
+    }
+  }
+</script>
+
+
+<style lang="less">
+.swiper-box {
+  height: 60vw;
+  overflow: hidden;
+  width: 90vw;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-wrapper .text {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    line-height: 30px;
+    padding: 0 10px;
+    width: 100%;
+    font-size: 14px;
+  }
+  .swiper-container {
+    width: 100%;
+    height: 60vw;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    .pagination{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 5px;
+      width: 100%;
+      background-color: black;
+      z-index: 9;
+      .swiper-pagination-bullet {
+        height: 5px;
+        display: block;
+        background-color: black;
+        position: relative;
+        cursor: pointer;
+        float: left;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: #064cc0;
+      }
+    }
+  }
+}
+a {
+  text-decoration: none;
+}
+.swiper-slide {
+  position: relative;
+}
+
+.previou {
+  position: absolute;
+  width: auto;
+  height: auto;
+  bottom: 10px;
+  right: 70px;
+  cursor: pointer;
+}
+.index {
+  position: absolute;
+  bottom: 9px;
+  right: 10px;
+  color: white;
+  font-size: 18px;
+  line-height: 20px;
+  z-index: 9;
+}
+</style>

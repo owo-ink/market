@@ -1,0 +1,49 @@
+<template>
+  <div class="wrapper">
+    <div class="card">
+        <span><svg t="1563500220411" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2733" width="30" height="30"><path d="M512 704C458.976 704 416 661.024 416 608L416 96C416 42.976 458.976 0 512 0 565.024 0 608 42.976 608 96L608 608C608 661.024 565.024 704 512 704M512 832C565.024 832 608 874.976 608 928 608 981.024 565.024 1024 512 1024 458.976 1024 416 981.024 416 928 416 874.976 458.976 832 512 832" p-id="2734" fill="#e6e6e6"></path></svg></span>
+        <h1>Hi</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, libero explicabo similique eius minus at nam ipsa assumenda aliquid necessitatibus!
+        </p>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+.wrapper{
+    position: relative;
+    top:50%;
+    left:50%;
+    width: 20em;
+    transform: translate(-50%,-50%);
+    display: block;
+    color: #fff;
+}
+.card{
+    padding: 1em;
+    background-color: #f0645e;
+    width:300px;
+    clip-path: circle(8% at 93% 16%);
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+}
+.card:hover{
+    clip-path: circle(75%);
+    background-color: #00979c;
+}
+.card span{
+    transition: all .5s;
+    position: absolute;
+    right: -3px;
+    top: 17px;
+}
+.card h1{
+    margin: 0px;
+}
+.card p{
+    white-space: pre-line;
+    padding: 0px;
+    margin: 0px;
+}
+</style>

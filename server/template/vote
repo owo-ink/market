@@ -1,0 +1,289 @@
+<template>
+  <div class="ranking-list">
+    <!-- 顶部赞小图标 -->
+    <div class="fabulous"></div>
+    <!-- 顶部说明文字 -->
+    <div class="title-box">
+      <p class="title">援疆省市点赞</p>
+      <p class="name">排行榜</p>
+    </div>
+    <!-- 排行列表 -->
+    <ul class="list-box"></ul>
+    <!-- 底部文字 -->
+    <p class="bottom-text">点击给你喜欢的省市投票</p>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      list: [
+        {name: "北京", number: 21324},
+        {name: "上海", number: 21324},
+        {name: "黑龙江", number: 21324},
+        {name: "河北", number: 21324},
+        {name: "山西", number: 21324},
+        {name: "黑龙江", number: 21324},
+        {name: "上海", number: 21324},
+        {name: "河北", number: 21324},
+        {name: "黑龙江", number: 21324},
+        {name: "河北", number: 21324},
+        {name: "北京", number: 21324},
+        {name: "黑龙江", number: 21324},
+      ],
+      cityList: {
+        "58953": "北京",
+        "58954": "安徽",
+        "58955": "天津",
+        "58956": "广东",
+        "58957": "山东",
+        "58958": "上海",
+        "58959": "深圳",
+        "58960": "江苏",
+        "58961": "江西",
+        "58962": "浙江",
+        "58963": "河北",
+        "58964": "河南",
+        "58965": "湖南",
+        "58966": "湖北",
+        "58967": "福建",
+        "58968": "山西",
+        "58969": "黑龙江",
+        "58970": "吉林",
+        "58971": "辽宁"
+      },
+      value: [
+        {
+          "vid": "58953",
+          "bnum": "4"
+        }, {
+          "vid": "58954",
+          "bnum": "6"
+        }, {
+          "vid": "58955",
+          "bnum": "13"
+        }, {
+          "vid": "58956",
+          "bnum": "0"
+        }, {
+          "vid": "58957",
+          "bnum": "0"
+        }, {
+          "vid": "58958",
+          "bnum": "0"
+        }, {
+          "vid": "58959",
+          "bnum": "0"
+        }, {
+          "vid": "58960",
+          "bnum": "0"
+        }, {
+          "vid": "58961",
+          "bnum": "0"
+        }, {
+          "vid": "58962",
+          "bnum": "0"
+        }, {
+          "vid": "58963",
+          "bnum": "0"
+        }, {
+          "vid": "58964",
+          "bnum": "1"
+        }, {
+          "vid": "58965",
+          "bnum": "3"
+        }, {
+          "vid": "58966",
+          "bnum": "0"
+        }, {
+          "vid": "58967",
+          "bnum": "0"
+        }, {
+          "vid": "58968",
+          "bnum": "1"
+        }, {
+          "vid": "58969",
+          "bnum": "1"
+        }, {
+          "vid": "58970",
+          "bnum": "1"
+        }, {
+          "vid": "58971",
+          "bnum": "0"
+        }
+      ]
+    },
+    created: function () {
+      let data = this.data.value
+      // 由大到小排序
+      data = data.sort(function(a, b) {
+        return parseInt(b['bnum']) - parseInt(a['bnum'])
+      })
+      // console.log(data)
+      let tempHtml = ''
+      for (let ind = 0; ind < data.length; ind ++) {
+        const element = data[ind]
+        const indexText = ind < 10 ? '0' + (ind + 1) : ind + 1
+        tempHtml += `<li><i class="left fl">${indexText}</i><div class="right fl"><p class="name">${this.data.cityList[element.vid]}</p><p class="clear add" id="${element.vid}" title="为 ${this.data.cityList[element.vid]} 点赞"><span class="support"></span><span class="number">${element.bnum}</span></p></div></li>`
+      }
+      this.$el.getElementsByClassName('list-box')[0].innerHTML = tempHtml
+      setTimeout(() => {
+        const domList = this.$el.getElementsByClassName('add')
+        for (let ind = 0; ind < domList.length; ind ++) {
+          const element = domList[ind]
+          const _this = this
+          element.onclick = function () {
+            // 点赞请求
+            alert('投票成功!')
+          }
+        }
+      }, 0)
+    }
+  }
+</script>
+
+<style lang="less">
+.ranking-list {
+  position: fixed;
+  width: 160px;
+  height: 495px;
+  right: 2%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: "Microsoft YaHei";
+  background-image: url('https://cunchu.site/owo/material/yjx/top-bar.png');
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.fabulous {
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 10px;
+  background-image: url('https://cunchu.site/owo/material/yjx/fabulous.png');
+}
+.title-box {
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  line-height: 25px;
+}
+.title {
+  font-size: 16px;
+}
+.name {
+  font-size: 19px;
+}
+ul {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 140px;
+  position: absolute;
+  margin: 0 auto;
+  top: 140px;
+  left: 0;
+  right: 0;
+  padding: 0;
+  .fl {
+    float: left;
+  }
+  li {
+    height: 39px;
+    border-bottom: 1px solid #c52800;
+    margin: 0 5px;
+    padding: 10px 0;
+  }
+  li:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+  }
+  .left {
+    height: 34px;
+    width: 34px;
+    background-color: #c52800;
+    border-radius: 20px;
+    line-height: 40px;
+    margin: 3px 0;
+    font-size: 22px;
+    color: #ffd554;
+    line-height: 34px;
+    // 强制视觉居中
+    text-indent: 2px;
+  }
+  .right {
+    padding-left: 10px;
+    width: 68px;
+    height: 40px;
+    overflow: hidden;
+  }
+  .name {
+    text-align: left;
+    font-size: 16px;
+    width: 68px;
+    height: 21px;
+    overflow: hidden;
+  }
+}
+ul::-webkit-scrollbar {/*滚动条整体样式*/
+  width: 5px;     /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+ul::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background: #a0a0a0;
+}
+ul::-webkit-scrollbar-track {/*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  background: #EDEDED;
+}
+
+.support {
+  background-image: url('https://cunchu.site/owo/material/yjx/noSupport.png');
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  display: block;
+  float: left;
+  background-repeat: no-repeat;
+}
+.number {
+  float: left;
+  line-height: 22px;
+  width: 40px;
+  text-align: center;
+  color: #c70000;
+  font-size: 13px;
+}
+.add {
+  cursor: pointer;
+}
+.bottom-text {
+  position: absolute;
+  bottom: 10px;
+  color: #c70000;
+  width: 110px;
+  text-align: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+</style>

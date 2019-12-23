@@ -1,0 +1,93 @@
+<template>
+  <div class="friendship-links clear">
+    <div class="left">友情链接:</div>
+    <div class="right">
+      <a target="_blank" href="http://www.people.com.cn/">记协</a>
+      <a target="_blank" href="http://www.people.com.cn/">新华网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国网</a>
+      <a target="_blank" href="http://www.people.com.cn/">央视网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国日报网</a>
+      <a target="_blank" href="http://www.people.com.cn/">国际在线</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国青年网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国经济网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国台湾网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国西藏网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国文明网</a>
+      <a target="_blank" href="http://www.people.com.cn/">央广网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国新闻网</a>
+      <a target="_blank" href="http://www.people.com.cn/">光明网 </a>
+      <a target="_blank" href="http://www.people.com.cn/">中国政府网</a>
+      <a target="_blank" href="http://www.people.com.cn/">国新办</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国网</a>
+      <a target="_blank" href="http://www.people.com.cn/">信网</a>
+      <a target="_blank" href="http://www.people.com.cn/">国防部中央纪委监察部</a>
+      <a target="_blank" href="http://www.people.com.cn/">中联部</a>
+      <a target="_blank" href="http://www.people.com.cn/">中编办</a>
+      <a target="_blank" href="http://www.people.com.cn/">国务院参事室</a>
+      <a target="_blank" href="http://www.people.com.cn/">紫光阁</a>
+      <a target="_blank" href="http://www.people.com.cn/">残联</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国民主促进会</a>
+      <a target="_blank" href="http://www.people.com.cn/">政府采购网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国志愿服务联合会 </a>
+      <a target="_blank" href="http://www.people.com.cn/">法制网</a>
+      <a target="_blank" href="http://www.people.com.cn/">文汇网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国军网</a>
+      <a target="_blank" href="http://www.people.com.cn/">互联网举报中心</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国禁毒网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中工网半月谈</a>
+      <a target="_blank" href="http://www.people.com.cn/">党建网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中青在线齐鲁网</a>
+      <a target="_blank" href="http://www.people.com.cn/">华龙网</a>
+      <a target="_blank" href="http://www.people.com.cn/">未来网</a>
+      <a target="_blank" href="http://www.people.com.cn/">长城网</a>
+      <a target="_blank" href="http://www.people.com.cn/">东方网</a>
+      <a target="_blank" href="http://www.people.com.cn/">环球人物网</a>
+      <a target="_blank" href="http://www.people.com.cn/">城市网 </a>
+      <a target="_blank" href="http://www.people.com.cn/">求是网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国小康网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国作家网</a>
+      <a target="_blank" href="http://www.people.com.cn/">中国报业北方网</a>
+      <a target="_blank" href="http://www.people.com.cn/">南方网</a>
+      <a target="_blank" href="http://www.people.com.cn/">红网</a>
+      <a target="_blank" href="http://www.people.com.cn/">西藏新闻网</a>
+      <a target="_blank" href="http://www.people.com.cn/">天山网</a>
+      <a target="_blank" href="http://www.people.com.cn/">荆楚网</a>
+      <a target="_blank" href="http://www.people.com.cn/">浦东新闻网</a>
+      <a target="_blank" href="http://www.people.com.cn/">黄冈新闻网</a>
+      <a target="_blank" href="http://www.people.com.cn/">千龙网</a>
+      <a target="_blank" href="http://www.people.com.cn/">红色旅游网</a>
+    </div>
+  </div>
+</template>
+
+
+<style>
+.friendship-links {
+  color: #333;
+  width: 1000px;
+  padding: 40px 0;
+}
+
+.left {
+  float: left;
+  width: 100px;
+  font-size: 16px;
+}
+
+.right {
+  float: left;
+  width: 900px;
+}
+
+.right a {
+  color: #333;
+  margin-right: 12px;
+  line-height: 25px;
+  font-size: 14px;
+}
+
+a:hover{
+  color:#c00;
+  text-decoration:underline;
+}
+</style>

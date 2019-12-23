@@ -1,0 +1,18 @@
+<template>
+  <aside>
+    <img height="<<height>>" src="{{prop.imgSrc}}">
+  </aside>
+</template>
+
+<style>
+aside {
+  height: <<height>>px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: <<paddingBottom>>px;
+}
+a, img {
+  display: inline-block;
+}
+</style>

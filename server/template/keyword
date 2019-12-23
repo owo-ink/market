@@ -1,0 +1,205 @@
+<template>
+<div class="circle">
+	<em>创新<br />热词</em>
+	<ul class="con_circle">
+		<li class="tit4a bg1 menuItem Single"><a href="" target="_blank">教育</a></li>
+		<li class="tit4b bg2 menuItem Single"><a href="" target="_blank">医疗</a></li>
+		<li class="tit4c bg1 menuItem Double"><a href="" target="_blank">一带<br />一路</a></li>
+		<li class="tit4d bg2 menuItem Double"><a href="" target="_blank">红船<br />精神</a></li>
+		<li class="tit4e bg1 menuItem Double"><a href="" target="_blank">依法<br />治国</a></li>
+		<li class="tit4f bg2 menuItem Double"><a href="" target="_blank">脱贫<br />攻坚</a></li>
+		<li class="tit4g bg1 menuItem Single"><a href="" target="_blank">十九大</a></li>
+		<li class="tit4h bg2 menuItem Double"><a href="" target="_blank">从严<br />治党</a></li>
+		<li class="tit4i bg1 menuItem Double"><a href="" target="_blank">四个<br />全面</a></li>
+		<li class="tit4j bg2 menuItem Double"><a href="" target="_blank">小康<br />社会</a></li>
+		<li class="tit4k bg1 menuItem Double"><a href="" target="_blank">深化<br />改革</a></li>
+		<li class="tit4l bg2 menuItem Double"><a href="" target="_blank">命运<br />共同体</a></li>				
+	</ul>
+</div>
+</template>
+
+
+<style lang="less">
+ol,ul,li{
+  padding: 0;
+  margin: 0;
+  list-style:none;
+} 
+
+.circle {
+  position: relative;
+  width: 332px;
+  height: 334px;
+  border-radius: 50%;
+}
+
+.circle em {
+  position: absolute;
+  width: 125px;
+  height: 89px;
+  background: #c70024;
+  color: #fff;
+  font-size: 22px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 50%;
+  padding-top: 36px;
+  top: 105px;
+  left: 104px;
+  font-style: normal;
+}
+
+.con_circle li {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  font-size: 14px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: \5B8B\4F53;
+}
+
+.con_circle li a {
+  color: #8c671a;
+  text-decoration: none;
+  display: block;
+  -webkit-animation: circle_zi 15s linear infinite;
+  animation: circle_zi 15s linear infinite;
+}
+
+.con_circle li#odd {
+  background: #ffe6b3;
+}
+
+.con_circle li.Single {
+  line-height: 62px;
+}
+
+.con_circle li.Double {
+  line-height: 16px;
+  height: 46px;
+  padding-top: 16px;
+}
+
+.con_circle {
+  position: absolute;
+  width: 332px;
+  height: 334px;
+  border-radius: 50%;
+  -webkit-animation: circle 15s linear infinite;
+  animation: circle 15s linear infinite;
+}
+
+.bg1 {
+  background: #fcf1da;
+}
+
+.bg2 {
+  background: #ffe6b3;
+}
+
+.con_circle li.tit4a {
+  left: 135px;
+  top: 0px;
+}
+
+.con_circle li.tit4b {
+  left: 202px;
+  top: 18px;
+}
+
+.con_circle li.tit4c {
+  left: 252px;
+  top: 67px;
+}
+
+.con_circle li.tit4d {
+  left: 270px;
+  top: 135px;
+}
+
+.con_circle li.tit4e {
+  left: 251px;
+  top: 202px;
+}
+
+.con_circle li.tit4f {
+  left: 208px;
+  top: 252px;
+}
+
+.con_circle li.tit4g {
+  left: 135px;
+  top: 269px;
+}
+
+.con_circle li.tit4h {
+  left: 67px;
+  top: 252px;
+}
+
+.con_circle li.tit4i {
+  left: 17px;
+  top: 202px;
+}
+
+.con_circle li.tit4j {
+  left: 0px;
+  top: 135px;
+}
+
+.con_circle li.tit4k {
+  left: 17px;
+  top: 67px;
+}
+
+.con_circle li.tit4l {
+  left: 67px;
+  top: 18px;
+}
+
+@-webkit-keyframes circle {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes circle_zi {
+  0% {
+    -webkit-transform: rotate(360deg);
+  }
+
+  25% {
+    -webkit-transform: rotate(270deg);
+  }
+
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+
+  75% {
+    -webkit-transform: rotate(90deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+</style>

@@ -1,0 +1,28 @@
+<template>
+  <a href="http://people.com.cn" target="_blank">下载报名表</div>
+</template>
+
+
+<style lang="less">
+a {
+  display: block;
+  width: 520px;
+  height: 90px;
+  background-color: #994850;
+  line-height: 90px;
+  text-align: center;
+  color: white;
+  border-radius: 45px;
+  margin: auto;
+  font-size: 35px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 13px;
+  text-decoration: none;
+  box-shadow: inset 0 -1px 1px #7c96a2, 1px 1px 0 #6d7c84, 0 6px 10px rgba(0, 0, 0, 0.35);
+}
+a:hover {
+  text-decoration: none;
+  text-shadow: 0 0 5px rgba(241, 241, 241, 0.65), -1px -1px 0 rgba(26, 26, 26, 0.5);
+}
+</style>

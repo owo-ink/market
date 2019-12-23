@@ -1,0 +1,33 @@
+<template lang="pug">
+ul.news-list.clear
+  li(:for="item in 8")
+    a(href="#") 人民日报评：党的新一届中央领导机构产生纪实 承前启人民日报评：党的新一届中央领导机构产生纪实 承前启
+</template>
+
+<style>
+.news-list {
+  overflow: hidden;
+  width: <<boxWidth>>;
+}
+a {
+  color: #333;
+}
+a:hover {
+  color: #e60012;
+  text-decoration: none;
+}
+li {
+  background-image: url('http://puge-10017157.cos.ap-shanghai.myqcloud.com/ozzx/resource/li-icon.png');
+  background-repeat: no-repeat;
+  line-height: <<lineHeight>>;
+  background-position: left center;
+  padding-left: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 20px;
+  height: 40px;
+  width: <<liWidth>>;
+  overflow: hidden;
+  float: left;
+}
+</style>

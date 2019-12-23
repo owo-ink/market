@@ -1,0 +1,38 @@
+<template>
+  <div class="header1">
+    <div class="w1000 clear">
+      <span>
+        <a href="http://www.people.com.cn" target="_blank">
+          <img src="http://www.people.com.cn/img/MAIN/2014/06/114539/images/nav/logo_rmw.png" alt="人民网首页">
+        </a>
+      </span>
+      <em>
+        <a href="http://sports.people.com.cn/" target="_blank">人民网</a>
+        |
+        <a href="http://sports.people.com.cn/" target="_blank">人民体育</a>
+      </em>
+    </div>
+  </div>
+</template>
+
+<style original>
+.w1000 {
+  width: 1000px;
+  margin: 0 auto;
+}
+.header1{background:#fff;height:40px;}
+.header1 span{float:left;}
+.header1 span img{margin-top:3px;}
+.header1 em {
+  float: right;
+  padding-top: 8px;
+  line-height: 22px;
+  font-style: normal;
+  font-size: 12px;
+}
+.header1 em a {
+  display: inline-block;
+}
+.header1 em,.header1 em a,.header1 em a:link,.header1 em a:visited,.header1 em a:hover{color:#666;}
+
+</style>

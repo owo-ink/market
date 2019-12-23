@@ -1,0 +1,113 @@
+<template lang="pug">
+.slide-nav
+  .left-nav-bar(o-tap="scroll(-100)")
+    svg(t="1576916031074" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6314")
+      path(d="M244.89375 548.680273c0.640625 0.647461 1.298828 1.260742 1.967773 1.862305 0.602539 0.664063 1.21582 1.322266 1.863281 1.962891l457.020898 457.027148c19.285156 19.287891 50.552539 19.285156 69.834766 0 19.285156-19.28418 19.285156-50.549609 0-69.836719L349.651172 513.763477l429.456445-429.457031c19.28418-19.288086 19.28418-50.552539 0-69.840625-19.288086-19.287109-50.552539-19.287109-69.837695 0L244.89375 478.844922C225.605664 498.127148 225.605664 529.393164 244.89375 548.680273L244.89375 548.680273z" p-id="6315" fill="#ffffff")
+  ul
+    li.to-one(o-tap="goClass('one')") 封面
+    li.to-two.active(o-tap="goClass('two')") 两会要闻
+    li.to-three(o-tap="goClass('three')") 会期查询
+    li.to-eight(o-tap="goClass('eight')") 领导人资料
+    li.to-seven(o-tap="goClass('seven')") 政府工作报告
+    li.to-five(o-tap="goClass('five')") 两会访谈
+    li.to-six(o-tap="goClass('six')") 交卷时刻
+    li.to-four(o-tap="goClass('four')") 高清组图
+  .right-nav-bar(o-tap="scroll(100)")
+    svg( t="1576916242137" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7830")
+      path(d="M804.288 520.288c1.119-14.86-3.681-30.045-15.009-41.627l-446.179-446.499c-21.028-20.961-55.078-20.961-76.291 0.033-21.065 20.999-20.921 55.265-0.11 76.258l411.912 411.875-411.946 411.731c-20.849 21.098-21.176 55.046-0.071 76.187 21.279 21.031 55.222 20.993 76.363-0.038l446.323-446.148c11.4-11.472 16.128-26.658 15.009-41.772v0 0 0zM804.288 520.288z" fill="#ffffff")
+</template>
+
+
+<script>
+  module.exports = {
+    created: function () {
+    },
+    goClass: function (name) {
+      const dom = document.getElementsByClassName(name)[0]
+      if (dom) {
+        const offsetTop = dom.offsetTop
+        for (let index = 0; index < 20; index++) {
+          setTimeout(() => {
+            document.body.scrollTo(0, document.body.scrollTop + (offsetTop / 20))
+          }, index * 5)
+        }
+      }
+    },
+    scroll: function (number) {
+      const ul = this.$el.getElementsByTagName('ul')[0]
+      if (ul) {
+        for (let index = 0; index < 20; index++) {
+          setTimeout(() => {
+            ul.scrollTo(ul.scrollLeft + (Number(number) / 20), 0)
+          }, index * 5)
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+a, svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.slide-nav {
+  position: relative;
+  background-color: #e0233b;
+  line-height: 40px;
+  height: 40px;
+}
+ul {
+  line-height: 40px;
+  height: 40px;
+  overflow: auto;
+  display: block;
+    margin: 0 20px;
+  white-space: nowrap;
+}
+li {
+  display: inline;
+  margin: 0 10px;
+  font-size: 16px;
+  color: white;
+  line-height: 40px;
+  height: 40px;
+}
+.left-nav-bar {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 10px;
+  margin: auto;
+  opacity: 0.6;
+}
+.right-nav-bar {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  top: 10px;
+  margin: auto;
+  opacity: 0.6;
+}
+.left-nav-bar:active , .right-nav-bar:active {
+  opacity: 1;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0;
+  background-color: transparent;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+</style>

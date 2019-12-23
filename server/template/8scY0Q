@@ -1,0 +1,47 @@
+<template>
+  <nav>
+    <a target="_blank" :for="item in data.itemLiat" href="{{item.url}}">{{item.name}}</a>
+  </nav>
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      itemLiat: <<itemList>>
+    }
+  }
+</script>
+
+<style lang="less">
+nav {
+  max-width: 920px;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 40px;
+  text-align: center;
+  background-color: <<bgColor>>;
+  a {
+    color: <<textColor>>;
+    text-decoration: none;
+  }
+  a:hover {
+    color: white;
+    text-decoration: <<activeTextColor>>;
+  }
+
+}
+a {
+  width: 109px;
+  color: white;
+  display: inline-block;
+  margin: 10px 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-left: 1px solid <<borderColor>>;
+}
+a:nth-last-child(1) {
+  border-right: 1px solid <<borderColor>>;
+}
+</style>

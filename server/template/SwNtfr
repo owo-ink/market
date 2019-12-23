@@ -1,0 +1,86 @@
+<template>
+  <div class="real-time-bar">
+    <div class="news-box">
+      <span class="tip">即时新闻</span>
+      <div class="marquee-box">
+        <marquee direction="left" scrollamount="3" width="520" height="34" onmousemove="stop()" onmouseout="start()">
+          <a target="_blank" href="/n1/2019/0505/c22141-31063839.html" target="_blank">西甲-武磊重回首发 西班牙人主场3-0完胜马竞</a>
+          <a target="_blank" href="/n1/2019/0505/c22141-31063786.html" target="_blank">英超-萨拉赫破门伤退奥里吉绝杀 利物浦3-2险胜纽卡</a>
+          <a target="_blank" href="/n1/2019/0505/c407727-31063777.html" target="_blank">国际化团队助航 中国短道队训练忙</a>
+          <a target="_blank" href="/n1/2019/0505/c22155-31063772.html" target="_blank">女垒亚洲杯：中国女垒晋级半决赛 锁定奥运资格赛“门票”</a>
+          <a target="_blank" href="/n1/2019/0505/c22134-31063735.html" target="_blank">在恒大主场拿到3分 于大宝坦言这让球队更自信</a>
+          <a target="_blank" href="/n1/2019/0505/c22134-31063722.html" target="_blank">施密特：考虑夺冠为时尚早，更需着眼下周亚冠</a>
+          <a target="_blank" href="/n1/2019/0505/c22134-31063703.html" target="_blank">锻炼年轻球员的同时 卡纳瓦罗更奢望窗口期</a>
+          <a target="_blank" href="/n1/2019/0505/c22149-31063682.html" target="_blank">4加时 NBA66年再现史诗级大战</a>
+          <a target="_blank" href="/n1/2019/0505/c22155-31063647.html" target="_blank">高清：女排亚俱杯天津3-0力克日本久光 将与泰国球队争冠</a>
+          <a target="_blank" href="/n1/2019/0505/c22155-31063607.html" target="_blank">花游系列赛首日中国队摘金夺铜</a>
+        </marquee>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="search-box">
+      <form action="http://search.people.com.cn/cnpeople/searchForChannel.do" name="searchForm" method="post" target="_blank">
+        <input type="hidden" name="siteName" value="people">
+        <input type="hidden" name="pageNum" value="1">
+        <input type="hidden" name="totalPage" value="0">
+        <input type="hidden" name="channelName" value="sports">
+        <input class="button-input" type="image" src="http://sports.people.com.cn/img/MAIN/2016/10/116825/images/icon2.gif">
+        <input class="keyword-input" name="keyword" id="keyword" alt="search" value="新闻检索" onblur="if(this.value=='') this.value='新闻检索';this.style.color='#ccc';" onfocus="if(this.value=='新闻检索') this.value='';this.style.color='#000';" class="jianso_t" style="color: rgb(204, 204, 204);">
+      </form> 
+    </div>
+    <div class="clear"></div>
+  </div>
+</template>
+
+<style lang="less">
+.real-time-bar {
+  height: 35px;
+  padding: 10px 20px;
+  max-width: 1000px;
+}
+.tip {
+  float: left;
+  background: #e70012;
+  line-height: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 0 15px;
+  font-size: 12px;
+  color: white;
+}
+.news-box {
+  float: left;
+}
+.marquee-box {
+  float: left;
+  width: 546px;
+  height: 33px;
+  border: 1px solid #ebebeb;
+  line-height: 33px;
+  padding: 0 15px;
+  color: #ccc;
+  a {
+    color: #787878;
+    margin: auto 5px;
+    font-size: 12px;
+  }
+}
+
+.search-box {
+  float: right;
+}
+.keyword-input {
+  width: 225px;
+  height: 33px;
+  border: 1px solid #ebebeb;
+  float: right;
+  padding-left: 10px;
+  color: rgb(204, 204, 204);
+  font-size: 12px;
+}
+.button-input {
+  float: right;
+  width: 35px;
+  height: 35px;
+}
+</style>

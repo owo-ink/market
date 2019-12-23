@@ -1,0 +1,83 @@
+<template>
+  <div class="ripple">
+    <span>{{prop.text}}</span>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      function createRipple() {
+        //Create Ripple
+        const ripple = document.createElement("div");
+        ripple.className = "ripple-effect";
+
+        //Add Ripple to document
+        this.appendChild(ripple);
+
+        //Position Ripple
+        ripple.style.top = (event.layerY - (ripple.offsetWidth / 2)) + "px";
+        ripple.style.left = (event.layerX - (ripple.offsetHeight / 2)) + "px";
+
+        ripple.addEventListener("animationend", destroyRipple, false);
+        ripple.addEventListener("webkitAnimationEnd", destroyRipple, false);
+        ripple.addEventListener("oAnimationEnd", destroyRipple, false);
+        ripple.addEventListener("MSAnimationEnd", destroyRipple, false);
+      }
+
+      function destroyRipple() {
+        this.parentElement.removeChild(this)
+      }
+      this.$el.addEventListener('mousedown', createRipple, false)
+      this.$el.addEventListener('touchstart', createRipple, false)
+    }
+  }
+</script>
+
+<style>
+.ripple {
+  background-color: #2A9AF2;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 3px;
+  overflow: hidden;
+  user-select: none;
+  display: inline-block;
+}
+
+span {
+  color: #FFFFFF;
+  font-family: Roboto, arial;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+  padding: 25px 70px;
+}
+
+.ripple-effect {
+  background-color: rgba(255, 255, 255, .6);
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  position: absolute;
+  animation-name: ripple;
+  animation-iteration-count: 1;
+  animation-duration: 1.2s;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+@keyframes ripple {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  to {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+</style>

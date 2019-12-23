@@ -1,0 +1,73 @@
+<template>
+  <div class="image-3d">
+    <div class="viewer"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+			<path d="M16 9C8.019 9 2 11.794 2 15.5c0 3.388 5.038 6.006 12 6.432V25l5-4-5-4v2.926C8.162 19.522 4 17.412 4 15.5 4 13.376 9.132 11 16 11s12 2.376 12 4.5c0 1.301-1.93 2.694-5 3.58v2.1c4.245-1.091 7-3.176 7-5.68C30 11.794 23.981 9 16 9z"/>
+		</svg>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    data: {
+    },
+    created: function () {
+      //	build scene
+      const viewer = this.query('.viewer')[0]
+      const images = [];
+      for (let i = 1; i <= 120; ++i) {
+        const img = new Image()
+        img.src = "//s3-us-west-2.amazonaws.com/s.cdpn.io/68939/360-" + ('00' + i).slice(-3) + ".jpg";
+        images.push(img)
+        viewer.appendChild(img)
+      }
+
+      const threshold = 5;
+      const total = images.length - 1;
+      let frame = 0;
+      const impetus = new Impetus({
+        source: document,
+        update: function (x) {
+          images[frame].classList.remove('active')
+          frame = Math.floor(-x / threshold) % total
+          frame = frame <= 0 ? total + frame : frame
+          images[frame].classList.add('active')
+        }
+      })
+      // 默认显示第一张图片
+      images[frame].classList.add('active')
+    }
+  }
+</script>
+
+<style>
+.image-3d {
+  position: relative;
+}
+.viewer {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.viewer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+.viewer img:first-of-type {
+  position: relative;
+}
+.viewer img.active {
+  opacity: 1;
+}
+svg {
+  fill: #78909C;
+  position: absolute;
+  width: 30px;
+  right: 5px;
+  bottom: 5px;
+}
+</style>

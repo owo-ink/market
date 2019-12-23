@@ -1,0 +1,17 @@
+<template>
+  <div>
+    <h2><solt></solt></h2>
+  </div>
+</template>
+
+<style>
+h2 {
+  color:#563614;
+  background: url('https://cunchu.site/owo/material/phjr/title.png') top center no-repeat;
+  line-height: 30px;
+  text-align: center;
+  background-position: center;
+  font-weight: bold;
+  height: 30px;
+}
+</style>

@@ -1,0 +1,49 @@
+<template>
+  <div class="nav clearfix">
+    <a href="" target="_blank">滚动</a>
+    <a href="" target="_blank">国际观察</a>
+    <a href="" target="_blank">时事快报</a>
+    <a href="" target="_blank">独家</a>
+    <a href="" target="_blank">外媒关注</a>
+    <a href="" target="_blank">图说世界</a>
+    <a href="" target="_blank">视频</a>
+    <a href="" target="_blank">关注中国</a>
+    <a href="" target="_blank">华人华侨</a>
+    <a href="" target="_blank">日</a>
+    <a href="" target="_blank">美</a>
+    <a href="" target="_blank">英</a>
+    <a href="" target="_blank">俄</a>
+    <a href="" target="_blank">韩</a>
+    <a href="" target="_blank">澳新</a>
+    <a href="" target="_blank">北欧</a>
+  </div>
+</template>
+
+<style lang="less">
+
+a:link,a:visited {
+  color: #484848;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c00;
+  text-decoration: underline;
+}
+.nav, .nav a:link, .nav a:visited, .nav a:hover {
+  color: #fff;
+}
+
+.nav {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  background: #003c9f;
+}
+
+.nav a {
+  margin: 0 10px;
+}
+
+</style>

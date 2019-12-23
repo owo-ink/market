@@ -1,0 +1,52 @@
+<template>
+  <div class="title-bar-4FmNC16N">
+    <img src="https://puge-10017157.cos.ap-shanghai.myqcloud.com/owo/material/whcygflt/people.jpg"/>
+    <strong>柳斌杰</strong>
+    <p>清华大学文化创意发展研究院院长</p>
+  </div>
+</template>
+
+<script>
+  module.exports = {
+    data: {
+      itemLiat: []
+    }
+  }
+</script>
+
+<style lang="less">
+.title-bar-4FmNC16N {
+  width: 386px;
+  height: 380px;
+  color: #060606;
+  position: relative;
+  background-image: url('https://puge-10017157.cos.ap-shanghai.myqcloud.com/owo/material/whcygflt/people-1.png');
+  img {
+    position: absolute;
+    right: 10px;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    top: 10px;
+  }
+  strong {
+    font-size: 25px;
+    width: 270px;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    top: 280px;
+    right: 0;
+    position: absolute;
+  }
+  p {
+    line-height: 30px;
+    width: 270px;
+    position: absolute;
+    right: 0;
+    top: 310px;
+    text-align: center;
+  }
+}
+
+</style>

@@ -1,0 +1,66 @@
+<template>
+<div class="title-bar">
+  <ul>
+    <li>
+      <a href="http://www.people.com.cn/" target="_blank">要闻联播</a>
+    </li>
+    <li>
+      <a href="http://www.people.com.cn/" target="_blank">党派寄语</a>
+    </li>
+    <li>
+      <span>新时代</span>
+      <p>
+        <a href="http://www.people.com.cn/" target="_blank">实践创新</a>
+        <a href="http://www.people.com.cn/" target="_blank">爱国一家</a>
+        <a href="http://www.people.com.cn/" target="_blank">和谐发展</a>
+        <br>
+        <a href="http://www.people.com.cn/" target="_blank">献计出力</a>
+        <a href="http://www.people.com.cn/" target="_blank">民企风采</a>
+        <a href="http://www.people.com.cn/" target="_blank">爱国奋斗者</a>
+      </p>
+    </li>
+    <li>
+      <a href="http://www.people.com.cn/" target="_blank">中国统一战线新闻网</a>
+    </li>
+  </ul>
+</div>
+</template>
+
+
+<style lang="less">
+.title-bar {
+  height: 115px;
+  overflow: hidden;
+  background-color: #d62c2b;
+}
+ul {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+li {
+  display: inline-block;
+  height: 115px;
+  line-height: 115px;
+  font-size: 32px;
+  color: white;
+  margin: 0 8px;
+  a {
+    color: white;
+    display: inline;
+  }
+}
+p {
+  width: 272px;
+  overflow: hidden;
+  height: 50px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 25px;
+  margin-bottom: -15px;
+  margin-left: -20px;
+}
+p a {
+  font-size: 18px;
+}
+</style>
