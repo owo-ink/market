@@ -12,8 +12,8 @@
         </div>
       </div>
     </div>
-    <img src="<<rightIcon>>" class="swiper-button swiper-button-next" :click="swiperNext"/>
-    <img src="<<leftIcon>>" class="swiper-button swiper-button-prev" :click="swiperPrev"/>
+    <img src="http://www.people.com.cn/img/2016people/images/left_b.png" class="swiper-button swiper-button-next" :click="swiperNext"/>
+    <img src="http://www.people.com.cn/img/2016people/images/left_b.png" class="swiper-button swiper-button-prev" :click="swiperPrev"/>
   </div>
 </template>
 
@@ -43,7 +43,6 @@
     height: 180px;
     width: 100%;
     max-width: 1000px;
-    background-color: <<bgColor>>;
     .swiper-container {
       height: 190px;
       width: 960px;
@@ -63,7 +62,6 @@
   .swiper-box {
     position: relative;
     .swiper-button {
-      width: 30px;
       height: 30px;
       position: absolute;
       top: 0;
@@ -74,6 +72,7 @@
     }
     .swiper-button-next {
       right: 0;
+      transform: rotate(180deg);
     }
     .swiper-button-prev {
       left: 0;
@@ -99,6 +98,8 @@
     text-align: center;
     line-height: 30px;
     font-size: 14px;
+    width: 190px;
+    margin: 0 auto;
   }
   .swiper-slide {
     position: relative;

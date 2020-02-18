@@ -81,7 +81,7 @@
   right: 0;
   top: 0;
 }
-.swiper-slide {
+.swiper-container .swiper-slide {
   height: 33.33%;
   overflow: hidden;
   img {
@@ -96,6 +96,7 @@
     color: white;
     padding: 0 2%;
     height: 25px;
+    font-size: 12px;
     line-height: 25px;
     background-image: url("@|play.png|");
     background-repeat: no-repeat;
