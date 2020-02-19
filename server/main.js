@@ -104,10 +104,8 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
   let config = {
     // 项目根目录
     root: "/src",
-    // 项目入口文件
-    entry: "home",
     // 页面标题
-    title: '页面',
+    title: '组件预览',
     // 输出目录
     outFolder: './temp/' + templateID,
     // 资源目录
@@ -146,9 +144,10 @@ function creatHtml (tempUrl, templateID, styleLsit, scriptList, controlList) {
       addVersion: false,
     }
   }
-  // console.log(config)
+  console.log('使用配置:')
+  console.log(JSON.stringify(config))
   // console.log(styleArr, scriptArr)
-  const pack = new owo(config, () => {})
+  const pack = new owo(config)
   pack.pack()
 }
 
