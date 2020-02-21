@@ -11,33 +11,30 @@
   "dependencies": {
     "@puge/checkbox": "^1.1.7",
     "@puge/highlight": "^1.1.8",
-    "axios": "0.19.0",
+    "axios": "0.19.2",
     "body-parser": "1.19.0",
     "clipboard": "^2.0.4",
     "crypto": "^1.0.1",
     "deformation": "^1.1.2",
     "es6-promise": "4.2.8",
     "express": "4.17.1",
-    "less": "3.10.3",
+    "less": "3.11.1",
     "less-loader": "^5.0.0",
-    "mysql": "2.17.1",
-    "node-sass": "^4.12.0",
     "pug": "2.0.4",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^8.0.0",
     "switch-ios-puge": "1.0.4",
-    "vue": "2.6.10",
-    "vue-router": "3.1.3",
-    "vuex": "^3.1.1",
+    "vue": "2.6.11",
+    "vue-router": "3.1.5",
+    "vuex": "3.1.2",
     "waterripple": "^1.0.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "3.11.0",
+    "@vue/cli-plugin-babel": "4.2.2",
     "@vue/cli-plugin-eslint": "3.11.0",
-    "@vue/cli-service": "3.11.0",
+    "@vue/cli-service": "4.2.2",
     "babel-eslint": "10.0.3",
     "eslint": "6.3.0",
     "eslint-plugin-vue": "5.2.3",
-    "vue-template-compiler": "2.6.10"
+    "vue-template-compiler": "^2.6.11"
   }
 }

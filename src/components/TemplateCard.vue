@@ -39,11 +39,11 @@ export default {
   methods: {
     getUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
-      return 'http://going.run:8004/public/' + this.data.template + '.page'
+      return 'https://owo.going.run/public/' + this.data.template + '.page'
     },
     getShowUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template
-      return 'http://going.run:8004/public/' + this.data.template
+      return 'https://owo.going.run/public/' + this.data.template
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
@@ -71,7 +71,7 @@ export default {
     },
     setDefault: function () {
       console.log('更新默认模板!')
-      axios.get(`http://going.run:8004/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
+      axios.get(`https://owo.going.run/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
         if (response.data.err === 0) {
           alert('更新成功!')
         } else {

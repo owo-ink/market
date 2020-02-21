@@ -11,7 +11,7 @@
         .left
           .card-box
             TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", :key="value.id")
-              iframe(:src="'http://going.run:8004/public/' + value.template + '/index.html'")
+              iframe(:src="'https://owo.going.run/public/' + value.template + '/index.html'")
           // 添加模板按钮
           .bottom-bar
             // 页码
@@ -95,7 +95,7 @@ export default {
       const type = this.$route.params.type ? this.$route.params.type : 'header'
       const page = this.$route.params.page ? this.$route.params.page : 1
 
-      axios.get(`http://going.run:8004/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+      axios.get(`https://owo.going.run/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
         const data = response.data.data
         this.templateList = data.template
         this.typeList = data.type
@@ -114,7 +114,7 @@ export default {
       this.templateControl = value
     },
     creatTemplate: function () {
-      axios.post('http://going.run:8004/creatTemplate', {data: this.templateControl}).then((response) => {
+      axios.post('https://owo.going.run/creatTemplate', {data: this.templateControl}).then((response) => {
         this.templateList[this.activeID].template = response.data.templateID
       })
     },
@@ -127,7 +127,6 @@ export default {
     },
     // 变更页码
     changePageNum: function (num) {
-      console.log(`跳转到页码: ${num}`)
       // 设置活跃页码
       this.activePaginationNum = num
       this.loading = true
