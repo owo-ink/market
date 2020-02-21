@@ -72,7 +72,7 @@ export default {
         let control = JSON.parse(JSON.stringify(this.value))
         control.splice(ind, 1)
         // 发送删除请求
-        axios.post('https://owo.ink/changeControl', {id: this.$route.params.id, data: control}).then((response) => {
+        axios.post('http://going.run:8004/changeControl', {id: this.$route.params.id, data: control}).then((response) => {
           if (response.data.err === 0) {
             this.$emit('input', control)
           }
@@ -96,7 +96,7 @@ export default {
         control[this.editTagID].value = JSON.parse(control[this.editTagID].value)
       }
       this.$emit('input', control)
-      axios.post('https://owo.ink/changeControl', {id: this.$route.params.id, data: control}).then((response) => {
+      axios.post('http://going.run:8004/changeControl', {id: this.$route.params.id, data: control}).then((response) => {
         // console.log(response.data)
         if (response.data.err === 0) {
           this.editTagID = null
@@ -132,7 +132,7 @@ export default {
       }
       
       templateControlCopy.push(addTagCopy)
-      axios.post('https://owo.ink/changeControl', {id: this.$route.params.id, data: templateControlCopy}).then((response) => {
+      axios.post('http://going.run:8004/changeControl', {id: this.$route.params.id, data: templateControlCopy}).then((response) => {
         // console.log(response.data)
         if (response.data.err === 0) {
           this.addTag = {

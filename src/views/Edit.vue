@@ -65,12 +65,12 @@ export default {
     // 判断是修改还是新增
     if (this.$route.name === 'add') {
       // 获取分组信息
-      axios.get('https://owo.ink/getInfo').then((response) => {
+      axios.get('http://going.run:8004/getInfo').then((response) => {
         this.info = response.data.data
         this.type = this.$route.params.type
       })
     } else {
-      axios.get(`https://owo.ink/getInfo?id=${this.$route.params.id}`).then((response) => {
+      axios.get(`http://going.run:8004/getInfo?id=${this.$route.params.id}`).then((response) => {
         const value = response.data
         this.info = value.data
         // 处理模板信息
@@ -101,14 +101,14 @@ export default {
       }
       // console.log(this.checkStyle)
       if (this.$route.name === 'add') {
-        axios.post('https://owo.ink/saveTemplateFile', sendData).then((response) => {
+        axios.post('http://going.run:8004/saveTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
             window.history.back(-1)
           }
         })
       } else {
-        axios.post('https://owo.ink/updataTemplateFile', sendData).then((response) => {
+        axios.post('http://going.run:8004/updataTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
             window.history.back(-1)
