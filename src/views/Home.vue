@@ -5,13 +5,13 @@
     template(v-else)
       //- 顶部标签栏
       .type-bar
-        .type-item(v-for="value in typeList", :class="{active: $route.params.type === value.value}" @click="changeType(value.value)") {{value.name}}
+        .type-item(v-for="value in typeList", :class="{active: $route.params.type === value.value}" @click="changeType(value)") {{value.name}}
       //- 模块预览区
       .content-bar
         .left
           .card-box
-            TemplateCard(v-for="(value, ind) in templateList", :data="value", @changeConfig="templateClick(value, ind)", :key="value.id")
-              iframe(:src="'https://owo.going.run/public/' + value.template + '/index.html'")
+            TemplateCard(v-for="(value, ind) in templateList", :data="value", :style="cardStyle", @changeConfig="templateClick(value, ind)", :key="value.id")
+              iframe(:src="'https://template.owo.ink/' + value.template + '/index.html'")
           // 添加模板按钮
           .bottom-bar
             // 页码
@@ -68,7 +68,8 @@ export default {
       // 页码总数
       paginationNum: 1,
       // 当前活跃页码
-      activePaginationNum: 1
+      activePaginationNum: 1,
+      cardStyle: ""
     }
   },
   created: function () {
@@ -99,6 +100,12 @@ export default {
         const data = response.data.data
         this.templateList = data.template
         this.typeList = data.type
+        for (const key in data.type) {
+          const element = data.type[key];
+          if (element.value === type) {
+            this.cardStyle = element.cardStyle
+          }
+        }
         // 获取页码
         this.templateNumber = data.total
         this.paginationNum = Math.ceil(data.total / 5)
@@ -118,12 +125,13 @@ export default {
         this.templateList[this.activeID].template = response.data.templateID
       })
     },
-    changeType: function (type) {
+    changeType: function (item) {
       this.loading = true
+      this.cardStyle = item.cardStyle
       // 清除活跃页码
       this.activePaginationNum = 1
-      this.$store.commit('changeActiveType', type)
-      this.$router.push(`/home/${type}/1`)
+      this.$store.commit('changeActiveType', item.value)
+      this.$router.push(`/home/${item.value}/1`)
     },
     // 变更页码
     changePageNum: function (num) {
@@ -146,10 +154,11 @@ export default {
   .home {
     width: 100%;
     height: 100%;
+    display: flex;
   }
   .type-bar {
-    height: 40px;
-    display: flex;
+    height: 100%;
+    width: 120px;
     background-color: #262626;
     .type-item {
       color: #bbb;
@@ -166,9 +175,8 @@ export default {
   }
     
   .content-bar {
-    height: calc(100% - 40px);
-    width: 100%;
-    display: flex;
+    height: 100%;
+    width: calc(100% - 120px);
   }
     
   .left {

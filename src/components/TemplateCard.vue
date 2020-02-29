@@ -16,7 +16,7 @@
       <span class="attribute-bar-item attribute-script" v-for="item in JSON.parse(data.scriptList)" :key="'script' + item">{{item}}</span>
       <span class="attribute-bar-item attribute-style" v-for="item in JSON.parse(data.styleList)" :key="'style' + item">{{item}}</span>
     </div>
-    <div v-if="data.height" class="template-view" :style="'height: ' + data.height + 'px;'">
+    <div v-if="data.height" class="template-view">
       <slot></slot>
     </div>
     <div v-else class="template-view">
@@ -39,11 +39,11 @@ export default {
   methods: {
     getUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
-      return 'https://owo.going.run/public/' + this.data.template + '.page'
+      return 'https://template.owo.ink/' + this.data.template + '.page'
     },
     getShowUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template
-      return 'https://owo.going.run/public/' + this.data.template
+      return 'https://template.owo.ink/' + this.data.template
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
@@ -70,7 +70,6 @@ export default {
       }
     },
     setDefault: function () {
-      console.log('更新默认模板!')
       axios.get(`https://owo.going.run/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
         if (response.data.err === 0) {
           alert('更新成功!')
@@ -91,11 +90,11 @@ export default {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
+    height: 300px;
     box-shadow: 1px 1px 3px #d4c6c6;
   }
   .attribute-bar {
     background-color: white;
-    border-top: 1px solid #ccc;
   }
   .attribute-bar-item {
     width: 140px;
@@ -114,7 +113,7 @@ export default {
     cursor: pointer;
     box-sizing: border-box;
     background-color: #f2f2f2;
-    height: 300px;
+    height: calc(100% - 50px);
     position: relative;
   }
   .title-bar {
