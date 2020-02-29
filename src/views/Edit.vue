@@ -16,7 +16,6 @@
         .info-bar(v-if="rightType === 'info'")
           .info-bar-content
             input.text-input(type="text", placeholder="请输入模板名称!", v-model="name")
-            input.text-input(type="text", placeholder="请输入文件名称!", v-model="templateFile")
             select(v-model="browser")
               option(value ="兼容各种浏览器") 兼容各种浏览器
               option(value ="兼容现代浏览器") 兼容现代浏览器
@@ -47,7 +46,6 @@ export default {
       rightType: "info",
       info: {},
       name: "",
-      templateFile: "",
       browser: "兼容各种浏览器",
       type: "header",
       value: "",
@@ -78,7 +76,6 @@ export default {
           this.name = value.templateInfo.name
           this.checkStyle = JSON.parse(value.templateInfo.styleList)
           this.checkScript = JSON.parse(value.templateInfo.scriptList)
-          this.templateFile = value.templateInfo.templateFile
           this.value = value.fileData
           this.type = value.templateInfo.type
           this.control = JSON.parse(value.templateInfo.control)
@@ -91,7 +88,7 @@ export default {
       const sendData = {
         id: this.$route.params.id,
         name: this.name,
-        templateFile: this.templateFile,
+        templateFile: this.name + '.owo',
         styleList: this.checkStyle.length > 0 ? `["${this.checkStyle.join('","')}"]` : '[]',
         scriptList: this.checkScript.length > 0 ? `["${this.checkScript.join('","')}"]` : '[]',
         browser: this.browser,

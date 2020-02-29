@@ -128,6 +128,7 @@ export default {
     border-right: 1px solid #ccc;
   }
   .title-bar .url {
+    overflow: hidden;
     width: calc(100% - 240px);
   }
   .title-bar .url:hover {
