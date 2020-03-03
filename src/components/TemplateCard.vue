@@ -13,8 +13,8 @@
     </div>
     <div class="attribute-bar">
       <span class="attribute-bar-item">{{data.browser}}</span>
-      <span class="attribute-bar-item attribute-script" v-for="item in JSON.parse(data.scriptList)" :key="'script' + item">{{item}}</span>
-      <span class="attribute-bar-item attribute-style" v-for="item in JSON.parse(data.styleList)" :key="'style' + item">{{item}}</span>
+      <span class="attribute-bar-item attribute-script" v-for="item in JSON.parse(data.scriptList)" :key="'script' + item.name">{{item.name}}</span>
+      <span class="attribute-bar-item attribute-style" v-for="item in JSON.parse(data.styleList)" :key="'style' + item.name">{{item.name}}</span>
     </div>
     <div v-if="data.height" class="template-view">
       <slot></slot>
@@ -39,11 +39,11 @@ export default {
   methods: {
     getUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
-      return 'https://template.owo.ink/' + this.data.template + '.page'
+      return 'http://template.owo.ink/' + this.data.template + '.page'
     },
     getShowUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template
-      return 'https://template.owo.ink/' + this.data.template
+      return 'http://template.owo.ink/' + this.data.template
     },
     edit: function (id) {
       this.$router.push(`/edit/${id}`)
@@ -94,6 +94,7 @@ export default {
     box-shadow: 1px 1px 3px #d4c6c6;
   }
   .attribute-bar {
+    height: 25px;
     background-color: white;
   }
   .attribute-bar-item {

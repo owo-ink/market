@@ -25,12 +25,18 @@
         editTag(v-model="control", v-else-if="rightType === 'tag'")
         .check-box(v-else-if="rightType === 'style'")
           .check-item(v-for="(item, ind) in info.style")
-            input(type="checkbox", :id="'style' + ind" :value="item.name", v-model="checkStyle")
+            input(v-if="checkStyle[item.name]", checked, type="checkbox", :id="'style' + item.name" :value="item", @input="changeStyle(item)")
+            input(v-else, type="checkbox", :id="'script' + item.name" :value="item", @input="changeStyle(item)")
             label.text(:for="'style' + ind") {{item.name}}
           .clear
         .check-box(v-else-if="rightType === 'script'")
+          // 用户自定义脚本
+          .user-script
+            input(type="text" v-model="userScriptUrl")
+            .button(@click="addUserScript") 确定
           .check-item(v-for="(item, ind) in info.script")
-            input(type="checkbox", :id="'script' + ind" :value="item.name", v-model="checkScript")
+            input(v-if="checkScript[item.name]", checked, type="checkbox", :id="'script' + item.name" :value="item", @input="changeScript(item)")
+            input(v-else, type="checkbox", :id="'script' + item.name" :value="item", @input="changeScript(item)")
             label.text(:for="'script' + ind") {{item.name}}
           .clear
 </template>
@@ -50,8 +56,9 @@ export default {
       type: "header",
       value: "",
       control: [],
-      checkStyle: [],
-      checkScript: []
+      checkStyle: {},
+      checkScript: {},
+      userScriptUrl: ''
     }
   },
   components: {
@@ -71,11 +78,31 @@ export default {
       axios.get(`https://owo.going.run/getInfo?id=${this.$route.params.id}`).then((response) => {
         const value = response.data
         this.info = value.data
+        // 生成页面的Script列表
+        let checkScript = {}
+        let scriptListData = JSON.parse(value.templateInfo.scriptList)
+        for (const key in scriptListData) {
+          const element = scriptListData[key]
+          checkScript[element.name] = {
+            name: element.name,
+            src: element.src
+          }
+        }
+        // 生成页面的Script列表
+        let checkStyle = {}
+        let styleListData = JSON.parse(value.templateInfo.styleList)
+        for (const key in styleListData) {
+          const element = styleListData[key]
+          checkStyle[element.name] = {
+            name: element.name,
+            src: element.src
+          }
+        }
         // 处理模板信息
         if (value.templateInfo) {
           this.name = value.templateInfo.name
-          this.checkStyle = JSON.parse(value.templateInfo.styleList)
-          this.checkScript = JSON.parse(value.templateInfo.scriptList)
+          this.checkStyle = checkStyle
+          this.checkScript = checkScript
           this.value = value.fileData
           this.type = value.templateInfo.type
           this.control = JSON.parse(value.templateInfo.control)
@@ -85,12 +112,24 @@ export default {
   },
   methods: {
     send: function () {
+      // 转换成后台数据格式
+      let sendCheckStyle = []
+      for (const key in this.checkStyle) {
+        const element = this.checkStyle[key]
+        if (element) sendCheckStyle.push(element)
+      }
+      let sendCheckScript = []
+      for (const key in this.checkScript) {
+        const element = this.checkScript[key]
+        if (element) sendCheckScript.push(element)
+      }
+
       const sendData = {
         id: this.$route.params.id,
         name: this.name,
         templateFile: this.name + '.owo',
-        styleList: this.checkStyle.length > 0 ? `["${this.checkStyle.join('","')}"]` : '[]',
-        scriptList: this.checkScript.length > 0 ? `["${this.checkScript.join('","')}"]` : '[]',
+        styleList: sendCheckStyle.length > 0 ? JSON.stringify(sendCheckStyle) : '[]',
+        scriptList: sendCheckScript.length > 0 ? JSON.stringify(sendCheckScript) : '[]',
         browser: this.browser,
         control: '[]',
         type: this.type,
@@ -115,6 +154,38 @@ export default {
     },
     back: function () {
       window.history.go(-1)
+    },
+    addUserScript: function () {
+      if (this.userScriptUrl) {
+        const url = this.userScriptUrl
+        let name = url.split('/')
+        name = name[name.length - 1].split('.')[0]
+        this.checkScript.push({
+          name,
+          src: url,
+        })
+        this.userScriptUrl = ''
+      }
+    },
+    changeScript: function (item) {
+      if (this.checkScript[item.name]) {
+        this.checkScript[item.name] = null
+      } else {
+        this.checkScript[item.name] = {
+          name: item.name,
+          src: item.url
+        }
+      }
+    },
+    changeStyle: function (item) {
+      if (this.checkStyle[item.name]) {
+        this.checkStyle[item.name] = null
+      } else {
+        this.checkStyle[item.name] = {
+          name: item.name,
+          src: item.url
+        }
+      }
     }
   }
 }
@@ -172,7 +243,7 @@ select {
   
 .check-box {
   overflow: hidden;
-  width: 25%;
+  width: 100%;
   position: absolute;
   .check-item {
     line-height: 40px;
@@ -200,6 +271,7 @@ select {
 }
 .right-content {
   width: 100%;
+  position: relative;
   height: calc(100% - 40px);
 }
 .text-item {
@@ -237,6 +309,25 @@ select {
   .icon {
     font-size: 20px;
     width: 40px;
+  }
+}
+.user-script {
+  display: flex;
+  height: 30px;
+  input {
+    border: none;
+    padding: 0 5px;
+    width: calc(100% - 60px);
+  }
+  .button {
+    display: block;
+    cursor: pointer;
+    width: 60px;
+    background-color: #009fe9;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    user-select: none;
   }
 }
 </style>
