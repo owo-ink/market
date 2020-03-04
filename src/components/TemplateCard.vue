@@ -37,10 +37,6 @@ export default {
     new ClipboardJS('.copy')
   },
   methods: {
-    getUrl: function () {
-      // return 'https://' + window.location.host + '/public/' + this.data.template + '.page'
-      return 'http://template.owo.ink/' + this.data.template + '.page'
-    },
     getShowUrl: function () {
       // return 'https://' + window.location.host + '/public/' + this.data.template
       return 'http://template.owo.ink/' + this.data.template
@@ -64,9 +60,9 @@ export default {
       }
       // 判断是否为pug代码
       if (!window.localStorage.getItem("usePug")) {
-        return `<plug _name="${this.data.templateFile}" ${parameter}_src="https://${window.location.host}/public/${this.data.template}.page"></plug>`
+        return `<plug _name="${this.data.templateFile}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo"></plug>`
       } else {
-        return `plug(_name="${this.data.templateFile}" ${parameter}_src="https://${window.location.host}/public/${this.data.template}.page")`
+        return `plug(_name="${this.data.templateFile}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo")`
       }
     },
     setDefault: function () {
