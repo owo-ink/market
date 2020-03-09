@@ -58,7 +58,8 @@ export default {
       control: [],
       checkStyle: {},
       checkScript: {},
-      userScriptUrl: ''
+      userScriptUrl: '',
+      templateFile: null
     }
   },
   components: {
@@ -107,6 +108,7 @@ export default {
           this.type = value.templateInfo.type
           this.control = JSON.parse(value.templateInfo.control)
         }
+        this.templateFile = value.templateInfo.templateFile
       })
     }
   },
@@ -127,7 +129,7 @@ export default {
       const sendData = {
         id: this.$route.params.id,
         name: this.name,
-        templateFile: this.name + '.owo',
+        templateFile: this.templateFile ? this.templateFile : this.name + '.owo',
         styleList: sendCheckStyle.length > 0 ? JSON.stringify(sendCheckStyle) : '[]',
         scriptList: sendCheckScript.length > 0 ? JSON.stringify(sendCheckScript) : '[]',
         browser: this.browser,
