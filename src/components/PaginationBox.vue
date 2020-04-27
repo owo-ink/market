@@ -29,12 +29,13 @@ export default {
   color: #337ab7;
   text-decoration: none;
   background-color: #fff;
-  border: 1px solid #ddd;
+  box-shadow: 1px 1px 2px #ccc;
   cursor: pointer;
   margin-right: 8px;
 }
 .page:hover {
   z-index: 2;
+  color: white;
   background-color: #337ab7;
 }
 .active {

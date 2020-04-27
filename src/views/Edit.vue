@@ -5,7 +5,8 @@
         .back(@click="back")
           .icon &#xe626;
           span 返回
-      textarea(v-model="value")
+      #textareaBox
+      //- textarea(v-model="value")
     .right
       .icon-bar
         span.text-item.script(@click="rightType = 'info'", :class="{active: rightType == 'info'}") 信息
@@ -45,6 +46,8 @@
 import axios from 'axios'
 import WaterRipple from 'waterripple'
 import editTag from '@/components/editTag'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+import 'monaco-editor/esm/vs/basic-languages/html/html.contribution';
 export default {
   name: 'edit',
   data: function () {
@@ -54,7 +57,7 @@ export default {
       name: "",
       browser: "兼容各种浏览器",
       type: "header",
-      value: "",
+      monacoInstance: null,
       control: [],
       checkStyle: {},
       checkScript: {},
@@ -92,6 +95,7 @@ export default {
         // 生成页面的Script列表
         let checkStyle = {}
         let styleListData = JSON.parse(value.templateInfo.styleList)
+        // console.log(styleListData)
         for (const key in styleListData) {
           const element = styleListData[key]
           checkStyle[element.name] = {
@@ -104,10 +108,17 @@ export default {
           this.name = value.templateInfo.name
           this.checkStyle = checkStyle
           this.checkScript = checkScript
-          this.value = value.fileData
           this.type = value.templateInfo.type
           this.control = JSON.parse(value.templateInfo.control)
         }
+        // 创建文本输入框
+        setTimeout(() => {
+          this.monacoInstance = monaco.editor.create(document.getElementById("textareaBox"),{
+            value: value.fileData,
+            language:"html"
+          })
+          // monacoInstance.dispose()
+        }, 0);
         this.templateFile = value.templateInfo.templateFile
       })
     }
@@ -135,7 +146,7 @@ export default {
         browser: this.browser,
         control: '[]',
         type: this.type,
-        value: this.value
+        value: this.monacoInstance.getValue()
       }
       // console.log(this.checkStyle)
       if (this.$route.name === 'add') {
@@ -215,7 +226,7 @@ export default {
   height: 100%;
   background-color: white;
 }
-textarea {
+textarea, #textareaBox {
   width: calc(100% - 20px);
   height: calc(100% - 60px);
   resize: none;

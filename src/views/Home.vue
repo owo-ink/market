@@ -1,13 +1,13 @@
 <template lang="pug">
   .home
-    //- 加载动画
-    .loading-box(v-if="loading")
-    template(v-else)
+    template
       //- 顶部标签栏
       .type-bar
         .type-item(v-for="value in typeList", :class="{active: $route.params.type === value.value}" @click="changeType(value)") {{value.name}}
+      //- 加载动画
+      .loading-box(v-if="loading")
       //- 模块预览区
-      .content-bar
+      .content-bar(v-else)
         .left
           .card-box
             TemplateCard(v-for="(value, ind) in templateList", :data="value", :style="cardStyle", @changeConfig="templateClick(value, ind)", :key="value.id")
@@ -159,15 +159,18 @@ export default {
   .type-bar {
     height: 100%;
     width: 120px;
-    background-color: #262626;
+    background-color: #2b303b;
     .type-item {
-      color: #bbb;
+      color: #ddd;
       text-align: center;
       line-height: 30px;
       padding: 5px;
       cursor: pointer;
       font-size: 14px;
-      margin: 0 10px;
+      padding: 5px 10px;
+    }
+    .type-item:hover {
+      background-color: #344258;
     }
     .active {
       color: #3d91ff;
@@ -270,7 +273,7 @@ export default {
   }
   
 .loading-box {
-  width: 100%;
+  width: calc(100% - 120px);
   height: 100%;
   background-image: url('../assets/loading.svg');
   background-repeat: no-repeat;
@@ -297,5 +300,8 @@ export default {
   padding: 0 5px;
   text-align: right;
   border-top: 1px solid #ccc;
+}
+.add-temple-button {
+  margin-left: 5px;
 }
 </style>
