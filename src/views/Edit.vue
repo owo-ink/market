@@ -20,6 +20,9 @@
             select(v-model="browser")
               option(value ="兼容各种浏览器") 兼容各种浏览器
               option(value ="兼容现代浏览器") 兼容现代浏览器
+            select(v-model="container")
+              option(value="") 不使用容器
+              option(value="scale-box") 使用缩放容器
             select(v-model="type")
               option(v-for="item in info.type", :value="item.value") {{item.name}}
           WaterRipple.send(text="发布", @onClick="send")
@@ -62,7 +65,8 @@ export default {
       checkStyle: {},
       checkScript: {},
       userScriptUrl: '',
-      templateFile: null
+      templateFile: null,
+      container: '',
     }
   },
   components: {
@@ -82,6 +86,7 @@ export default {
       axios.get(`https://owo.going.run/getInfo?id=${this.$route.params.id}`).then((response) => {
         const value = response.data
         this.info = value.data
+        this.container = value.templateInfo.container
         // 生成页面的Script列表
         let checkScript = {}
         let scriptListData = JSON.parse(value.templateInfo.scriptList)
@@ -146,9 +151,10 @@ export default {
         browser: this.browser,
         control: '[]',
         type: this.type,
+        container: this.container,
         value: this.monacoInstance.getValue()
       }
-      // console.log(this.checkStyle)
+      // console.log(sendData)
       if (this.$route.name === 'add') {
         axios.post('https://owo.going.run/saveTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面

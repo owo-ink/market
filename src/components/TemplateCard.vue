@@ -58,11 +58,12 @@ export default {
           }
         }
       }
+      console.log(this.data)
       // 判断是否为pug代码
       if (!window.localStorage.getItem("usePug")) {
-        return `<plug _name="${this.data.templateFile}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo"></plug>`
+        return `<plug _name="module${this.data.id}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo"></plug>`
       } else {
-        return `plug(_name="${this.data.templateFile}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo")`
+        return `plug(_name="module${this.data.id}" ${parameter}_src="https://template.owo.ink/${this.data.template}.owo")`
       }
     },
     setDefault: function () {
