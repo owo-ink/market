@@ -82,6 +82,14 @@ export default {
         this.info = response.data.data
         this.type = this.$route.params.type
       })
+      // 创建文本输入框
+      setTimeout(() => {
+        this.monacoInstance = monaco.editor.create(document.getElementById("textareaBox"),{
+          value: '',
+          language:"html"
+        })
+        // monacoInstance.dispose()
+      }, 0);
     } else {
       axios.get(`https://owo.going.run/getInfo?id=${this.$route.params.id}`).then((response) => {
         const value = response.data

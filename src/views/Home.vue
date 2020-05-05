@@ -109,6 +109,8 @@ export default {
         // 获取页码
         this.templateNumber = data.total
         this.paginationNum = Math.ceil(data.total / 5)
+        // 就算没有一个模板也显示一页
+        if (this.paginationNum <= 0) this.paginationNum = 1
         this.loading = false
         // 设置活跃页码
         this.activePaginationNum = parseInt(page)
