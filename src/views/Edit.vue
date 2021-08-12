@@ -187,10 +187,10 @@ export default {
         const url = this.userScriptUrl
         let name = url.split('/')
         name = name[name.length - 1].split('.')[0]
-        this.checkScript.push({
+        this.checkScript[name] = {
           name,
           src: url,
-        })
+        }
         this.userScriptUrl = ''
       }
     },

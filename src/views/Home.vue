@@ -11,7 +11,7 @@
         .left
           .card-box
             TemplateCard(v-for="(value, ind) in templateList", :data="value", :style="cardStyle", @changeConfig="templateClick(value, ind)", :key="value.id")
-              iframe(:src="'https://template.owo.ink/' + value.template + '/index.html'")
+              iframe(:src="'http://template.owo.ink/' + value.template + '/index.html'")
           // 添加模板按钮
           .bottom-bar
             // 页码
