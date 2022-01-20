@@ -1,6 +1,6 @@
 <template lang="pug">
   .create-box
-    iframe(src="http://127.0.0.1:8004/create/")
+    iframe(src="http://lamp.run:8082:8004/create/")
     .tool
       .add(@click="addDiv") DIV
       .add(@click="addText") H1

@@ -78,7 +78,7 @@ export default {
     // 判断是修改还是新增
     if (this.$route.name === 'add') {
       // 获取分组信息
-      axios.get('https://owo.going.run/getInfo').then((response) => {
+      axios.get('http://lamp.run:8082/getInfo').then((response) => {
         this.info = response.data.data
         this.type = this.$route.params.type
       })
@@ -91,7 +91,7 @@ export default {
         // monacoInstance.dispose()
       }, 0);
     } else {
-      axios.get(`https://owo.going.run/getInfo?id=${this.$route.params.id}`).then((response) => {
+      axios.get(`http://lamp.run:8082/getInfo?id=${this.$route.params.id}`).then((response) => {
         const value = response.data
         this.info = value.data
         this.container = value.templateInfo.container
@@ -164,14 +164,14 @@ export default {
       }
       // console.log(sendData)
       if (this.$route.name === 'add') {
-        axios.post('https://owo.going.run/saveTemplateFile', sendData).then((response) => {
+        axios.post('http://lamp.run:8082/saveTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
             window.history.back(-1)
           }
         })
       } else {
-        axios.post('https://owo.going.run/updataTemplateFile', sendData).then((response) => {
+        axios.post('http://lamp.run:8082/updataTemplateFile', sendData).then((response) => {
           // 添加成功跳转页面
           if (response.data.err === 0) {
             window.history.back(-1)

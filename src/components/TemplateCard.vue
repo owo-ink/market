@@ -67,7 +67,7 @@ export default {
       }
     },
     setDefault: function () {
-      axios.get(`https://owo.going.run/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
+      axios.get(`http://lamp.run:8082/setDefault?id=${this.data.id}&template=${this.data.template}`).then((response) => {
         if (response.data.err === 0) {
           alert('更新成功!')
         } else {

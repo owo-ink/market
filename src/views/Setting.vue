@@ -24,7 +24,7 @@ export default {
       window.localStorage.setItem("usePug", this.usePug)
     },
     clearTemp: function () {
-      axios.get('https://owo.going.run/clearTemp')
+      axios.get('http://lamp.run:8082/clearTemp')
     }
   }
 }

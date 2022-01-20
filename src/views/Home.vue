@@ -11,7 +11,7 @@
         .left
           .card-box
             TemplateCard(v-for="(value, ind) in templateList", :data="value", :style="cardStyle", @changeConfig="templateClick(value, ind)", :key="value.id")
-              iframe(:src="'http://template.owo.ink/' + value.template + '/index.html'")
+              iframe(:src="'http://lamp.run:8082/' + value.template + '/index.html'")
           // 添加模板按钮
           .bottom-bar
             // 页码
@@ -96,7 +96,7 @@ export default {
       const type = this.$route.params.type ? this.$route.params.type : 'header'
       const page = this.$route.params.page ? this.$route.params.page : 1
 
-      axios.get(`https://owo.going.run/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
+      axios.get(`http://lamp.run:8082/getTemplateListByType?type=${type}&page=${page}&num=5`).then((response) => {
         const data = response.data.data
         this.templateList = data.template
         this.typeList = data.type
@@ -123,7 +123,7 @@ export default {
       this.templateControl = value
     },
     creatTemplate: function () {
-      axios.post('https://owo.going.run/creatTemplate', {data: this.templateControl}).then((response) => {
+      axios.post('http://lamp.run:8082/creatTemplate', {data: this.templateControl}).then((response) => {
         this.templateList[this.activeID].template = response.data.templateID
       })
     },
