@@ -18,6 +18,8 @@
             PaginationBox(:paginationNum="paginationNum", :activePaginationNum="activePaginationNum", @changePageNum="changePageNum")
             .add-temple-button.icon(@click="$router.push(`/add/${$route.params.type}`)", title="添加新组件") &#xe705;
             .add-temple-button.icon(@click="$router.push(`/setting`)", title="配置") &#xe68d;
+            .bah
+              a(href="https://beian.miit.gov.cn/") 陕ICP备16000895号-4
         //- 属性控制
         Deformation.control-bar#attribute(v-if="activeID !== null", dragElement="drag-bar", :w="320", :h="760", :x="100", :y="100")
           .title-bar.drag-bar
@@ -302,8 +304,20 @@ export default {
   padding: 0 5px;
   text-align: right;
   border-top: 1px solid #ccc;
+  position: relative;
 }
 .add-temple-button {
   margin-left: 5px;
+}
+.bah {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  width: 200px;
 }
 </style>
